@@ -18,8 +18,8 @@ export const routes: Routes = [
     path: 'pages',
     component: Pages,
     children: [
-      { path: '', redirectTo: 'no-content', pathMatch: 'full' },
-      { path: 'no-content', loadChildren: 'app/pages/no-content/no-content.module#NoContentModule' },
+      // { path: '', redirectTo: 'no-content', pathMatch: 'full' },
+      // { path: 'no-content', loadChildren: 'app/pages/no-content/no-content.module#NoContentModule' },
     //   { path: 'editors', loadChildren: 'app/pages/editors/editors.module#EditorsModule' },
     //   { path: 'components', loadChildren: 'app/pages/components/components.module#ComponentsModule' },
     //   { path: 'charts', loadChildren: 'app/pages/charts/charts.module#ChartsModule' },

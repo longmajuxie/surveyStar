@@ -3,8 +3,8 @@ import { ModuleWithProviders } from '@angular/core';
 import { NoContentComponent } from './pages/no-content/no-content.component'
 
 export const routes: Routes = [
-   { path: '', redirectTo: 'pages', pathMatch: 'full' },
-   { path: '**', redirectTo: 'pages/no-content' }
+   { path: '', redirectTo: '/pages', pathMatch: 'full' },
+   { path: '**', component: NoContentComponent }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes, { useHash: true });
