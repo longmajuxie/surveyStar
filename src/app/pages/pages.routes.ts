@@ -1,24 +1,37 @@
 import { Routes, RouterModule }  from '@angular/router';
-import { Pages } from './pages.component';
 import { ModuleWithProviders } from '@angular/core';
+import { AuthGuard } from '../services/guard.service';
+import { Pages } from './pages.component';
+import { SignupComponent } from './signup/signup.component';
+import { LoginComponent } from './login/login.component';
+'./service/ga'
+
 // noinspection TypeScriptValidateTypes
 
 // export function loadChildren(path) { return System.import(path); };
 
 export const routes: Routes = [
   {
+    path: '',
+    component: Pages
+  },
+  {
     path: 'login',
-    loadChildren: 'app/pages/login/login.module#LoginModule'
+    component: LoginComponent
   },
   {
     path: 'signup',
-    loadChildren: 'app/pages/signup/signup.module#SignupModule'
+    component: SignupComponent
   },
   {
     path: 'pages',
     component: Pages,
     children: [
-      // { path: '', redirectTo: 'no-content', pathMatch: 'full' },
+       { 
+         canActivate: [AuthGuard],
+         path: '', 
+         redirectTo: 'no-content',
+          pathMatch: 'full' },
       // { path: 'no-content', loadChildren: 'app/pages/no-content/no-content.module#NoContentModule' },
     //   { path: 'editors', loadChildren: 'app/pages/editors/editors.module#EditorsModule' },
     //   { path: 'components', loadChildren: 'app/pages/components/components.module#ComponentsModule' },

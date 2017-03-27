@@ -11,35 +11,18 @@ import { AuthenticationService } from '../../services/authentication.service';
 })
 export class LoginComponent implements OnInit, OnDestroy {
     
-    loginForm: FormGroup;
-    error: string;
+    
 
-    constructor(private router: Router, private formBuilder: FormBuilder, private authService:AuthenticationService) {
+    ngOnInit() {
         
     }
 
-    ngOnInit() {
-        this.loginForm = this.formBuilder.group({
-          email: ['', Validators.required],
-          password: ['', Validators.required],
-          rememberme: ['']
-        });
-
-        this.error = '';
-    }
-
     doLogin() {
-        if (this.loginForm.valid) {
-            this.authService.loginFake(this.loginForm.value.email, this.loginForm.value.password)
-            .then((user) => {
-                console.log(user);
-                this.router.navigate(['/']);
-            });
-        }
+       
       }
 
     ngOnDestroy() {
-      this.loginForm = null;
+      
     }
 
 }
