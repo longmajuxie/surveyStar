@@ -148,3 +148,13 @@ body {
     padding: 20px 10px 30px;
     display: block;
 }
+
+.Liability {
+    color: #0275d8;
+    text-decoration: none;
+}
+
+.Liability:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
