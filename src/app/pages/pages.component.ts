@@ -12,6 +12,7 @@ export class Pages implements OnInit {
     title: "",
     content:"",
   };
+  public isPrint:boolean=true;
   constructor( @Inject(DOCUMENT) private document: Document) {
   }
 
@@ -51,6 +52,7 @@ export class Pages implements OnInit {
   }
   public dialogClick(number: number): void {
     if (number == 1) {
+      this.isPrint=false;
       this.dialogConfig.title = "技术支持";
       this.dialogConfig.content = "<ul>"+
       "<li><a href='https://github.com/timjacobi/angular2-education' target='_back'> education </a></li>"+

@@ -2,17 +2,26 @@
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-    <a class="navbar-brand" href="#">Carousel</a>
+    <a class="navbar-brand" href="#"><img src="../../assets/img/logo.jpg" class="logo" /><span>surveyStar</span></a>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home  <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#">首页  <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">话题讨论</a>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
+                <a class="nav-link" href="#">模板</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">问卷</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">报告</a>
             </li>
         </ul>
         <form class="form-inline mt-2 mt-md-0 searchbox">
@@ -34,31 +43,31 @@
     </ol>
     <div class="carousel-inner" role="listbox">
         <div class="carousel-item active">
-            <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
+            <img class="first-slide" src="../../assets/img/bg-img.jpg" alt="First slide">
             <div class="container">
                 <div class="carousel-caption d-none d-md-block text-left">
-                    <h1>Example headline.</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+                    <h1>简单 好用 无限制 的 在线调查工具</h1>
+                    <p>以事实信息为基础，作出正确的价值判断结果，针对当前瞬息万变的经济形势，做足对这些信息的收集、整理、归纳、分析工作，企业的判断才有依据和保障，企业的应对市场的能力才会增强。</p>
+                    <p><a class="btn btn-lg btn-primary" [routerLink]="['signup']" [routerLinkActive]="['active']" role="button">Sign up today</a></p>
                 </div>
             </div>
         </div>
         <div class="carousel-item">
-            <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
+            <img class="second-slide" src="../../assets/img/bg-img2.jpg" alt="Second slide">
             <div class="container">
                 <div class="carousel-caption d-none d-md-block">
-                    <h1>Another example headline.</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <h1>灵活的使用方案，总有一款适合你</h1>
+                    <p>调查数据实时查看表格、图表多样的数据展示数据筛选、交叉分析，原始数据下载数据来源，趋势一目了然</p>
                     <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
                 </div>
             </div>
         </div>
         <div class="carousel-item">
-            <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
+            <img class="third-slide" src="../../assets/img/bg-img4.jpg" alt="Third slide">
             <div class="container">
                 <div class="carousel-caption d-none d-md-block text-right">
-                    <h1>One more for good measure.</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <h1>一个调查，不同的数据收集渠道，独立统计</h1>
+                    <p>无论您身处哪一行业、从事何种职业、担任什么角色，调查星都可以帮助您轻松完成在线调查、调研和信息收集等复杂工作</p>
                     <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
                 </div>
             </div>
@@ -160,6 +169,7 @@
             <span data-toggle="modal" data-target="#gridSystemModal" class="Liability" (click)="dialogClick(1)">技术支持</span> -
             <span data-toggle="modal" data-target="#gridSystemModal" class="Liability" (click)="dialogClick(2)">免责声明</span> -
             <span data-toggle="modal" data-target="#gridSystemModal" class="Liability" (click)="dialogClick(3)">联系我们</span> -
+            <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=987c2953ec67295cab368d9497da678b12a59c0fd2befa17b0559080de66d5df">加入我们</a> -
             <a href="mailto:1040015203@qq.com">在线投稿</a>
         </p>
         <p>&#169;CopyRight 2017. 浙江工业大学</p>
@@ -183,7 +193,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" (click)="print()">打印</button>
+                <button type="button" [hidden]="!isPrint" class="btn btn-primary" (click)="print()">打印</button>
             </div>
         </div>
     </div>
