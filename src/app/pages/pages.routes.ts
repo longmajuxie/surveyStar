@@ -4,6 +4,7 @@ import { AuthGuard } from '../services/guard.service';
 import { Pages } from './pages.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
+import { LayoutsComponent } from './layouts/layouts.component';
 './service/ga'
 
 // noinspection TypeScriptValidateTypes
@@ -24,14 +25,15 @@ export const routes: Routes = [
     component: SignupComponent
   },
   {
-    path: 'pages',
-    component: Pages,
+    path: '',
+    component: LayoutsComponent,
     children: [
        { 
          canActivate: [AuthGuard],
          path: '', 
          redirectTo: 'no-content',
-          pathMatch: 'full' },
+          pathMatch: 'full' 
+      },
       // { path: 'no-content', loadChildren: 'app/pages/no-content/no-content.module#NoContentModule' },
     //   { path: 'editors', loadChildren: 'app/pages/editors/editors.module#EditorsModule' },
     //   { path: 'components', loadChildren: 'app/pages/components/components.module#ComponentsModule' },

@@ -1,40 +1,4 @@
-<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    <a class="navbar-brand" href="#"><img src="../../assets/img/logo.jpg" class="logo" /><span>surveyStar</span></a>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">首页  <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">话题讨论</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="#">模板</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="#">问卷</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="#">报告</a>
-            </li>
-        </ul>
-        <form class="form-inline mt-2 mt-md-0 searchbox">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-        <ul class="nav navbar-nav navbar-right userbox">
-            <li class="signup"><i class="fa fa-user-plus" aria-hidden="true" style="margin-right: 1px"></i> <a [routerLink]="['signup']" [routerLinkActive]="['active']">注册</a></li>
-            <li class="login"><i class="fa fa-sign-in" aria-hidden="true" style="margin-right: 2px"></i><a [routerLink]="['login']" [routerLinkActive]="['active']">登录</a></li>
-        </ul>
-    </div>
-</nav>
-
+<app-header></app-header>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -163,40 +127,4 @@
     <!-- /END THE FEATURETTES -->
 </div>
 <!-- FOOTER -->
-<div id="footer">
-    <div class="main">
-        <p>
-            <a href="#">关于我们</a> -
-            <a target="view_frame" href="http://wpa.qq.com/msgrd?v=3&uin=1040015203&site=qq&menu=yes">QQ对话</a> -
-            <span data-toggle="modal" data-target="#gridSystemModal" class="Liability" (click)="dialogClick(1)">技术支持</span> -
-            <span data-toggle="modal" data-target="#gridSystemModal" class="Liability" (click)="dialogClick(2)">免责声明</span> -
-            <span data-toggle="modal" data-target="#gridSystemModal" class="Liability" (click)="dialogClick(3)">联系我们</span> -
-            <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=987c2953ec67295cab368d9497da678b12a59c0fd2befa17b0559080de66d5df">加入我们</a> -
-            <a href="mailto:1040015203@qq.com">在线投稿</a>
-        </p>
-        <p>&#169;CopyRight 2017. 浙江工业大学</p>
-    </div>
-    <div [hidden]="!navIsFixed">
-        <img src="../../assets/img/gotop.jpg" id="ScrollToTop" (click)="goTop()">
-    </div>
-</div>
-<!--end footer-->
-<div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div id="print-section">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="gridModalLabel">{{dialogConfig.title}}</h4>
-                </div>
-                <div class="modal-body" [innerHtml]="dialogConfig.content">
-
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" [hidden]="!isPrint" class="btn btn-primary" (click)="print()">打印</button>
-            </div>
-        </div>
-    </div>
-</div>
+<app-footer></app-footer>

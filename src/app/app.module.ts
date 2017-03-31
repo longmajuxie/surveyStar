@@ -13,11 +13,10 @@ import { routing } from './app.routes';
 
 //Utilities
 import * as _ from 'lodash';
-
 @NgModule({
   declarations: [
     AppComponent,
-    NoContentComponent
+    NoContentComponent,
   ],
   imports: [
     BrowserModule,
