@@ -5,6 +5,7 @@ import { Pages } from './pages.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { LayoutsComponent } from './layouts/layouts.component';
+import { HomeComponent } from './home/home.component';
 './service/ga'
 
 // noinspection TypeScriptValidateTypes
@@ -12,10 +13,6 @@ import { LayoutsComponent } from './layouts/layouts.component';
 // export function loadChildren(path) { return System.import(path); };
 
 export const routes: Routes = [
-  {
-    path: '',
-    component: Pages
-  },
   {
     path: 'login',
     component: LoginComponent
@@ -25,15 +22,15 @@ export const routes: Routes = [
     component: SignupComponent
   },
   {
-    path: '',
-    component: LayoutsComponent,
+    path: 'pages',
+    component: Pages,
     children: [
-       { 
-         canActivate: [AuthGuard],
-         path: '', 
-         redirectTo: 'no-content',
-          pathMatch: 'full' 
-      },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', component:HomeComponent },
+      { path: 'topic-discussion', loadChildren: 'app/pages/topic-discussion/topic-discussion.module#TopicDiscussionModule' },
+      { path: 'questionnaire', loadChildren: 'app/pages/questionnaire/questionnaire.module#QuestionnaireModule' },
+      { path: 'report', loadChildren: 'app/pages/report/report.module#ReportModule' },
+      { path: 'template', loadChildren: 'app/pages/template/template.module#TemplateModule' }
       // { path: 'no-content', loadChildren: 'app/pages/no-content/no-content.module#NoContentModule' },
     //   { path: 'editors', loadChildren: 'app/pages/editors/editors.module#EditorsModule' },
     //   { path: 'components', loadChildren: 'app/pages/components/components.module#ComponentsModule' },

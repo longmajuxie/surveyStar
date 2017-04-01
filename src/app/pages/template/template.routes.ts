@@ -1,13 +1,13 @@
 import { Routes, RouterModule }  from '@angular/router';
 
-import { TopicDiscussionComponent } from './topic-discussion.component';
+import { TemplateComponent } from './template.component';
 import { ModuleWithProviders } from '@angular/core';
 
 // noinspection TypeScriptValidateTypes
 export const routes: Routes = [
   {
     path: '',
-    component: TopicDiscussionComponent,
+    component: TemplateComponent,
     children: [
       //{ path: 'treeview', component: TreeViewComponent }
     ]

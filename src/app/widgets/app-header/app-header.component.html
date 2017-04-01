@@ -5,23 +5,23 @@
     <a class="navbar-brand" href="#"><img src="../../assets/img/logo.jpg" class="logo" /><span>surveyStar</span></a>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">首页  <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/pages/home']" [routerLinkActive]="['active']">首页  <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">话题讨论</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="#">模板</a>
+                <a class="nav-link" [routerLink]="['/pages/topic-discussion']" [routerLinkActive]="['active']">话题讨论</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">问卷</a>
+                <a class="nav-link" [routerLink]="['/pages/template']" [routerLinkActive]="['active']">模板</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">报告</a>
+                <a class="nav-link" [routerLink]="['/pages/questionnaire']" [routerLinkActive]="['active']">问卷</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/pages/report']" [routerLinkActive]="['active']">报告</a>
             </li>
         </ul>
         <form class="form-inline mt-2 mt-md-0 searchbox">

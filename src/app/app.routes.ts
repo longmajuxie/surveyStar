@@ -4,7 +4,8 @@ import { NoContentComponent } from './pages/no-content/no-content.component'
 import { Pages } from './pages/pages.component';
 
 export const routes: Routes = [
-  { path: '', loadChildren: 'app/pages/pages.module#PagesModule' },
+ /* { path: '', loadChildren: 'app/pages/pages.module#PagesModule' },*/
+   { path: '', redirectTo: 'pages', pathMatch: 'full' },
    { path: '**', component: NoContentComponent }
 ];
 
