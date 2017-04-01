@@ -30,7 +30,8 @@ export const routes: Routes = [
       { path: 'topic-discussion', loadChildren: 'app/pages/topic-discussion/topic-discussion.module#TopicDiscussionModule' },
       { path: 'questionnaire', loadChildren: 'app/pages/questionnaire/questionnaire.module#QuestionnaireModule' },
       { path: 'report', loadChildren: 'app/pages/report/report.module#ReportModule' },
-      { path: 'template', loadChildren: 'app/pages/template/template.module#TemplateModule' }
+      { path: 'template', loadChildren: 'app/pages/template/template.module#TemplateModule' },
+      { path: 'measurement', loadChildren: 'app/pages/measurement/measurement.module#MeasurementModule' }
       // { path: 'no-content', loadChildren: 'app/pages/no-content/no-content.module#NoContentModule' },
     //   { path: 'editors', loadChildren: 'app/pages/editors/editors.module#EditorsModule' },
     //   { path: 'components', loadChildren: 'app/pages/components/components.module#ComponentsModule' },
