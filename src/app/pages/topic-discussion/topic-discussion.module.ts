@@ -6,13 +6,16 @@ import { routing }       from './topic-discussion.routes';
 
 import { TopicDiscussionComponent } from './topic-discussion.component';
 
+import { topicService } from '../../services/mock.topic'
+
 
 
 @NgModule({
   imports: [CommonModule, routing],
   declarations: [
         TopicDiscussionComponent,
-     ]
+     ],
+  providers: [topicService]
 })
 export class TopicDiscussionModule {
 }
