@@ -1,3 +1,42 @@
-<p style="background-color: red;margin-top: 10rem;">
-    topic-discussion works!
-</p>
+<div class="tablist">
+    <!-- <div style="float:left; width:76px; height:31px; line-height:31px; text-align:center; margin-right:15px; background-image:url(images/kind_bg.gif)" class="style_bai_12">
+        互动调查
+    </div>
+
+    <div style="float:left; width:80px; height:31px; line-height:31px; text-align:center;">
+        <a href="http://www.zdiao.com/vtest.asp" class="hei_12" style="display:block;">所有调查</a>
+    </div>
+    <div style="float:left; height:31px; line-height:31px;" class="style_shenhui_12">|</div>-->
+
+    <div class="tab " [ngClass]="{'currentTab':indextab==0}">
+        <span (click)="changeNewsList(0)" class="hei_12">休闲娱乐</span>
+    </div>
+    <div class="style_shenhui_12">|</div>
+
+    <div class="tab" [ngClass]="{'currentTab':indextab==1}">
+        <span (click)="changeNewsList(1)" class="hei_12">社会生活</span>
+    </div>
+    <div class="style_shenhui_12">|</div>
+
+    <div class="tab" [ngClass]="{'currentTab':indextab==2}">
+        <span (click)="changeNewsList(2)" class="hei_12">情感世界</span>
+    </div>
+    <div class="style_shenhui_12">|</div>
+
+    <div class="tab" [ngClass]="{'currentTab':indextab==3}">
+        <span (click)="changeNewsList(3)" class="hei_12">科技财经</span>
+    </div>
+    <div class="style_shenhui_12">|</div>
+
+    <div class="tab" [ngClass]="{'currentTab':indextab==4}">
+        <span (click)="changeNewsList(4)" class="hei_12">热点时事</span>
+    </div>
+    <div class="style_shenhui_12">|</div>
+
+    <div class="tab" [ngClass]="{'currentTab':indextab==5}">
+        <span (click)="changeNewsList(5)" class="hei_12">各行各业</span>
+    </div>
+</div>
+<div class="tableContainer">
+    <<router-outlet></router-outlet>
+</div>

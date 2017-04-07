@@ -1,0 +1,51 @@
+<table width="1080" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:10px;font-size: 12px;">
+    <tbody>
+        <tr>
+            <td width="820" valign="top" style="border:1px solid #dedede;">
+                <table width="800" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:10px; margin-bottom:10px;">
+                    <tbody>
+                        <tr>
+                            <td width="447" height="30" bgcolor="#E6E6E6" class="style_hei_12" style="padding-left:15px;">标题</td>
+                            <td width="121" bgcolor="#E6E6E6" class="style_hei_12">发起人</td>
+                            <td width="74" align="center" bgcolor="#E6E6E6" class="style_hei_12">票数</td>
+                            <td width="80" align="center" bgcolor="#E6E6E6" class="style_hei_12">发布日期</td>
+                        </tr>
+
+                        <tr *ngFor="let news of newsList; let i = index;">
+                            <td height="32" class="style_hei_12" style="padding-left:10px; border-bottom:1px dotted #dedede;">
+                                [{{genreTab}}]
+                                <a href="vtest_show.asp?vtestid=419221" target="_blank" class="lan_12">{{news.title}}</a>
+
+                            </td>
+                            <td class="style_hei_12" style="border-bottom:1px dotted #dedede;">{{news.author}}</td>
+                            <td height="32" align="center" class="style_hei_12" style="border-bottom:1px dotted #dedede;">{{news.ticketNumber}}</td>
+                            <td align="center" class="style_hei_12" style="border-bottom:1px dotted #dedede;">{{news.createDate}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td width="260" align="right" valign="top">
+                <table width="240" border="0" cellpadding="0" cellspacing="0" style="border:1px solid #dedede;">
+                    <tbody>
+                        <tr>
+                            <td height="35" align="left" bgcolor="#E6E6E6" class="style_cheng_14_bold" style="padding-left:10px;">调查说明</td>
+                        </tr>
+                        <tr>
+                            <td align="left" class="style_hui_12" style="line-height:24px; padding:10px;">1、调查投票只有前500名有奖励<br>
+                                <span class="style_hong_12">2、发布的某一个调查，问题数越多，更容易被推荐，并获得20金币奖励</span><br> 3、如盗用本站其他会员发布的调查、重复发布,将被扣除20金币
+                                <br> 4、发布调查须保证调查质量，具有调查意义！内容尽量避免重复，不得涉及反动/色情
+                                <br> 5、会员发布的调查不带金币奖励，由管理员向审核后的调查注入金币
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <!--	<div style="float:right; text-align:left; width:240px; margin-top:10px; ">
+			<script>QIHOO_UNION_SLOT={w:240, h:600, ls:"s27d6b10884"};</script><script src="http://s.lianmeng.360.cn/so/inlay.js" charset="utf-8"></script>
+		</div>  -->
+
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { topicService } from '../../services/mock.topic'
+
 
 @Component({
   selector: 'app-topic-discussion',
@@ -7,18 +7,15 @@ import { topicService } from '../../services/mock.topic'
   styleUrls: ['./topic-discussion.component.scss']
 })
 export class TopicDiscussionComponent implements OnInit {
-  private news;
-  constructor(private _mockService: topicService) { }
+  public indextab;
+  constructor() { }
 
   ngOnInit() {
-      this._mockService.getNews().subscribe(
-      // the first argument is a function which runs on success
-      data => { this.news = data},
-      // the second argument is a function which runs on error
-      err => console.error(err),
-      // the third argument is a function which runs on completion
-      () => console.log('done loading foods')
-    );
+    this.indextab=0;
+
+  }
+  public changeNewsList(index){
+       this.indextab=index;
   }
 
 }

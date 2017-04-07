@@ -1,15 +1,19 @@
 import { Routes, RouterModule }  from '@angular/router';
 
 import { TopicDiscussionComponent } from './topic-discussion.component';
+import { TopicDiscussionListComponent } from './topic-discussion-list/topic-discussion-list.component'
+import { TopicDiscussionDetailComponent } from './topic-discussion-detail/topic-discussion-detail.component'
 import { ModuleWithProviders } from '@angular/core';
 
 // noinspection TypeScriptValidateTypes
 export const routes: Routes = [
   {
-    path: '',
+    path:'',
     component: TopicDiscussionComponent,
     children: [
-      //{ path: 'treeview', component: TreeViewComponent }
+      { path: 'topic-discussion', redirectTo: 'list', pathMatch: 'full' },
+      { path: 'list', component:TopicDiscussionListComponent },
+      { path: 'detail', component: TopicDiscussionDetailComponent }
     ]
   }
 ];

@@ -1,0 +1,35 @@
+.tablist {
+    width: 1080px;
+    margin: auto;
+    border-bottom: 2px solid #f27a03;
+    margin-top: 100px;
+    height: 31px;
+}
+
+.tab {
+    float: left;
+    width: 80px;
+    height: 31px;
+    line-height: 31px;
+    text-align: center;
+    cursor: pointer
+}
+
+.hei_12 {
+    display: block;
+    font-size: 12px;
+    color: #333333;
+}
+
+.style_shenhui_12 {
+    font-size: 12px;
+    color: #8a8a8a;
+    float: left;
+    height: 31px;
+    line-height: 31px;
+}
+
+.currentTab {
+    background-image: url('../../../assets/img/kind_bg.gif');
+    color: white;
+}

@@ -6,7 +6,8 @@ import { routing }       from './topic-discussion.routes';
 
 import { TopicDiscussionComponent } from './topic-discussion.component';
 
-import { topicService } from '../../services/mock.topic'
+import { TopicDiscussionDetailComponent } from './topic-discussion-detail/topic-discussion-detail.component';
+import { TopicDiscussionListComponent } from './topic-discussion-list/topic-discussion-list.component'
 
 
 
@@ -14,8 +15,9 @@ import { topicService } from '../../services/mock.topic'
   imports: [CommonModule, routing],
   declarations: [
         TopicDiscussionComponent,
-     ],
-  providers: [topicService]
+        TopicDiscussionDetailComponent,
+        TopicDiscussionListComponent,
+     ]
 })
 export class TopicDiscussionModule {
 }

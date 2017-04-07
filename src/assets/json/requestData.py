@@ -56,7 +56,6 @@ def requestData(url):
             print(insertSql,listDic)
             databaseOp(str(insertSql),listDic)
             list.append(result)
-    ioData(list)
     return list
 
 #数据io操作
@@ -95,8 +94,9 @@ def databaseOp(sql,listDic):
 initDatabase()
 list= requestData('http://www.zdiao.com/vtest.asp?kindid=1')
 list1=requestData('http://www.zdiao.com/vtest.asp?kindid=2')
-list1=requestData('http://www.zdiao.com/vtest.asp?kindid=3')
-list1=requestData('http://www.zdiao.com/vtest.asp?kindid=4')
-list1=requestData('http://www.zdiao.com/vtest.asp?kindid=5')
-list1=requestData('http://www.zdiao.com/vtest.asp?kindid=6')
-
+list2=requestData('http://www.zdiao.com/vtest.asp?kindid=3')
+list3=requestData('http://www.zdiao.com/vtest.asp?kindid=4')
+list4=requestData('http://www.zdiao.com/vtest.asp?kindid=5')
+list5=requestData('http://www.zdiao.com/vtest.asp?kindid=6')
+listAll=[list,list1,list2,list3,list4,list5]
+ioData(listAll)
