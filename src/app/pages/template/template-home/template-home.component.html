@@ -1,11 +1,11 @@
 <div class="Mbdiv">
-    <div class="Mbtab_title">
+    <div class="Mbtab_title" (click)="changeTab(0)" [ngClass]="{'titlebg':tabIndex == 0}">
         <h2 class="fblue"><a href="/lib">问卷模板</a></h2>
     </div>
-    <div class="Mbtab_title titlebg">
+    <div class="Mbtab_title titlebg" (click)="changeTab(1)">
         <h2><a href="/form_lib">表单模板</a></h2>
     </div>
-    <div class="Mbtab_title titlebg">
+    <div class="Mbtab_title titlebg" (click)="changeTab(2)">
         <h2><a href="/assess_lib">测评模板</a></h2>
     </div>
     <hr class="Mb_hr">
