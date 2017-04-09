@@ -11,8 +11,8 @@ export const routes: Routes = [
     path:'',
     component: TopicDiscussionComponent,
     children: [
-      { path: '', redirectTo:'list', pathMatch:'full' },
-      { path: 'list', component:TopicDiscussionListComponent },
+      { path: '', redirectTo:'list/0', pathMatch:'full' },
+      { path: 'list/:id', component:TopicDiscussionListComponent },
       { path: 'detail', component: TopicDiscussionDetailComponent }
     ]
   }

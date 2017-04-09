@@ -16,9 +16,7 @@ export class Pages implements OnInit {
   constructor( @Inject(DOCUMENT) private document: Document) {
   }
 
-  ngOnInit() {
-    console.log($("#gridModalLabel").val());
-  }
+  ngOnInit() {}
   @HostListener("window:scroll", [])
   onWindowScroll() {
     //we'll do some stuff here when the window is scrolled

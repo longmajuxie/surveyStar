@@ -1,3 +1,61 @@
-<p>
-  topic-discussion-detail works!
-</p>
+<table width="1080" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:20px;">
+    <tbody>
+        <tr>
+            <td width="820" valign="top" style="border:1px solid #dedede; padding-bottom:50px; position:relative;" *ngIf='topicMessage'>
+
+
+                <div style="line-height:30px; background-color:#E6E6E6; padding-left:10px;" class="style_hei_14_bold">
+                    调查结果</div>
+                <div style="line-height:30px; text-align:center; padding:10px;" class="style_cheng_18_bold">
+                    {{topicMessage.title}}
+                </div>
+                <div class="style_shenhui_12" style="text-align:center; margin-top:10px;">
+                    发布日期：<span class="style_hei_12">{{topicMessage.createDate}}</span>&nbsp; 已投票：
+                    <span class="style_hei_12">{{topicMessage.ticketNumber}}</span>&nbsp;&nbsp; 发布人：
+                    <span class="style_hei_12">{{topicMessage.author}}</span>
+                </div>
+
+                <div *ngFor="let item of topicMessage.question">
+                    <div class="style_hei_12_bold" style="height:30px; line-height:30px; padding-left:20px; margin-top:20px;">
+                        {{item.title}}
+                    </div>
+
+                    <table width="780" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#E6E6E6" style="margin-top:5px;">
+
+                        <tbody>
+                            <tr *ngFor="let item2 of item.questionChoiceList">
+                                <td width="320" height="23" bgcolor="#FFFFFF" class="style_hei_12" style="padding-left:10px; padding-right:10px; padding-top:5px; padding-bottom:5px; line-height:20px;">{{item2.title}}</td>
+                                <td width="340" bgcolor="#FFFFFF" class="style_hui_12">
+                                    <div style="float:left; margin-left:10px; border:1px solid #666666; background-color:#dedede; width:180px;">
+                                        <div style="float:left; background-color:#53C7FF; " [ngStyle]="{'width':(item2.ticketNumber | percent2:topicMessage.ticketNumber)+'px'}">&nbsp;</div>
+                                    </div>
+                                    <div style=" float:left; margin-left:10px; width:60px; " class="style_hong_12 ">{{item2.ticketNumber}}</div>
+                                    <div style="float:left; margin-left:5px; ">{{item2.ticketNumber| percent:topicMessage.ticketNumber}}%</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="margin-top:255px; margin-left:25px; ">
+                    <a href="vtest_show.asp?vtestid=419209 " (click)="back()"><span class="style_hong_14_bold ">返回查看</span></a>
+                </div>
+            </td>
+            <td width="260 " align="right " valign="top ">
+                <table width="240 " border="0 " cellpadding="0 " cellspacing="0 " style="border:1px solid #dedede; ">
+                    <tbody>
+                        <tr>
+                            <td height="35 " align="left " bgcolor="#E6E6E6 " class="style_cheng_14_bold " style="padding-left:10px; ">调查说明</td>
+                        </tr>
+                        <tr>
+                            <td align="left " class="style_hui_12 " style="line-height:24px; padding:10px; ">1、调查投票只有前500名有奖励<br>
+                                <span class="style_hong_12 ">2、发布的某一个调查，问题数越多，更容易被推荐，并获得20金币奖励</span><br> 3、如盗用本站其他会员发布的调查、重复发布,将被扣除20金币
+                                <br> 4、发布调查须保证调查质量，具有调查意义！内容尽量避免重复，不得涉及反动/色情
+                                <br> 5、会员发布的调查不带金币奖励，由管理员向审核后的调查注入金币
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>

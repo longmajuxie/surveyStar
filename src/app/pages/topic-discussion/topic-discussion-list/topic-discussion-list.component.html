@@ -14,7 +14,7 @@
                         <tr *ngFor="let news of newsList; let i = index;">
                             <td height="32" class="style_hei_12" style="padding-left:10px; border-bottom:1px dotted #dedede;">
                                 [{{genreTab}}]
-                                <a href="vtest_show.asp?vtestid=419221" target="_blank" class="lan_12">{{news.title}}</a>
+                                <a class="lan_12" (click)="tabInto(i)">{{news.title}}</a>
 
                             </td>
                             <td class="style_hei_12" style="border-bottom:1px dotted #dedede;">{{news.author}}</td>

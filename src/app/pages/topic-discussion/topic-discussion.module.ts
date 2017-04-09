@@ -9,6 +9,7 @@ import { TopicDiscussionDetailComponent } from './topic-discussion-detail/topic-
 import { TopicDiscussionListComponent } from './topic-discussion-list/topic-discussion-list.component'
 import { topicService } from '../../services/mock.topic'
 import { topicDiscussionService } from './topic-discussion.service';
+import {PercentPipe,Percent2Pipe} from './topic-discussion-detail/topic-discussion-detail.pipe'
 
 
 
@@ -18,8 +19,10 @@ import { topicDiscussionService } from './topic-discussion.service';
         TopicDiscussionComponent,
         TopicDiscussionDetailComponent,
         TopicDiscussionListComponent,
+        PercentPipe,
+        Percent2Pipe
      ],
-  providers:[topicService,topicDiscussionService]
+  providers:[topicService]
 })
 export class TopicDiscussionModule {
 }

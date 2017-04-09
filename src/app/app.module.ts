@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { DropdownModule,AlertModule,TabsModule  } from 'ng2-bootstrap';
+import { BsDropdownModule,AlertModule,TabsModule  } from 'ng2-bootstrap';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
@@ -24,7 +24,7 @@ import * as _ from 'lodash';
     HttpModule,
     RouterModule,
     ReactiveFormsModule,
-    DropdownModule.forRoot(),
+    BsDropdownModule.forRoot(),
     AlertModule.forRoot(),
     TabsModule.forRoot(),
     PagesModule,

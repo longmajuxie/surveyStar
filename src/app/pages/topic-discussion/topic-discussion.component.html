@@ -9,32 +9,32 @@
     <div style="float:left; height:31px; line-height:31px;" class="style_shenhui_12">|</div>-->
 
     <div class="tab " [ngClass]="{'currentTab':indextab==0}">
-        <span (click)="changeNewsList(0)" class="hei_12">休闲娱乐</span>
+        <span (click)="changeNewsList(0)" class="hei_12" [routerLink]="['/pages/topic-discussion/list/0']" [routerLinkActive]="['active']">休闲娱乐</span>
     </div>
     <div class="style_shenhui_12">|</div>
 
     <div class="tab" [ngClass]="{'currentTab':indextab==1}">
-        <span (click)="changeNewsList(1)" class="hei_12">社会生活</span>
+        <span (click)="changeNewsList(1)" class="hei_12" [routerLink]="['/pages/topic-discussion/list/1']" [routerLinkActive]="['active']">社会生活</span>
     </div>
     <div class="style_shenhui_12">|</div>
 
     <div class="tab" [ngClass]="{'currentTab':indextab==2}">
-        <span (click)="changeNewsList(2)" class="hei_12">情感世界</span>
+        <span (click)="changeNewsList(2)" class="hei_12" [routerLink]="['/pages/topic-discussion/list/2']" [routerLinkActive]="['active']">情感世界</span>
     </div>
     <div class="style_shenhui_12">|</div>
 
     <div class="tab" [ngClass]="{'currentTab':indextab==3}">
-        <span (click)="changeNewsList(3)" class="hei_12">科技财经</span>
+        <span (click)="changeNewsList(3)" class="hei_12" [routerLink]="['/pages/topic-discussion/list/3']" [routerLinkActive]="['active']">科技财经</span>
     </div>
     <div class="style_shenhui_12">|</div>
 
     <div class="tab" [ngClass]="{'currentTab':indextab==4}">
-        <span (click)="changeNewsList(4)" class="hei_12">热点时事</span>
+        <span (click)="changeNewsList(4)" class="hei_12" [routerLink]="['/pages/topic-discussion/list/4']" [routerLinkActive]="['active']">热点时事</span>
     </div>
     <div class="style_shenhui_12">|</div>
 
     <div class="tab" [ngClass]="{'currentTab':indextab==5}">
-        <span (click)="changeNewsList(5)" class="hei_12">各行各业</span>
+        <span (click)="changeNewsList(5)" class="hei_12" [routerLink]="['/pages/topic-discussion/list/5']" [routerLinkActive]="['active']">各行各业</span>
     </div>
 </div>
 <div class="tableContainer">

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { topicDiscussionService } from './topic-discussion.service';
+
 
 
 @Component({
@@ -8,14 +8,15 @@ import { topicDiscussionService } from './topic-discussion.service';
   styleUrls: ['./topic-discussion.component.scss']
 })
 export class TopicDiscussionComponent implements OnInit {
-   indextab =0;
-  constructor(private _topicService: topicDiscussionService) {
+   indextab;
+  constructor() {
    }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.indextab=0;
+  }
   public changeNewsList(index){
        this.indextab=index;
-       this._topicService.changeTabMission(this.indextab);
   }
 
 }
