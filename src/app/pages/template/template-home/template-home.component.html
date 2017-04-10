@@ -1,21 +1,21 @@
 <div class="Mbdiv">
-    <div class="Mbtab_title" (click)="changeTab(0)" [ngClass]="{'titlebg':tabIndex == 0}">
-        <h2 class="fblue"><a href="/lib">问卷模板</a></h2>
+    <div class="Mbtab_title" (click)="changeTab(0)" [ngClass]="{'titlebg':tabIndex != 0}">
+        <h2 [ngClass]="{'fblue':tabIndex == 0}"><a>问卷模板</a></h2>
     </div>
-    <div class="Mbtab_title titlebg" (click)="changeTab(1)">
-        <h2><a href="/form_lib">表单模板</a></h2>
+    <div class="Mbtab_title" (click)="changeTab(1)" [ngClass]="{'titlebg':tabIndex != 1}">
+        <h2 [ngClass]="{'fblue':tabIndex == 1}"><a>表单模板</a></h2>
     </div>
-    <div class="Mbtab_title titlebg" (click)="changeTab(2)">
-        <h2><a href="/assess_lib">测评模板</a></h2>
+    <div class="Mbtab_title" (click)="changeTab(2)" [ngClass]="{'titlebg':tabIndex != 2}">
+        <h2 [ngClass]="{'fblue':tabIndex == 2}"><a>测评模板</a></h2>
     </div>
     <hr class="Mb_hr">
     <div class="Mbdiv_title w730">
-        <h2>推荐模板</h2><a href="/official/more_official_1" class="Mb_more">更多</a></div>
+        <h2>推荐模板</h2><a [routerLink]="['/pages/template/list']" [routerLinkActive]="['active']" class="Mb_more">更多</a></div>
     <div class="Mbdiv_list_r">
 
         <div class="tem_l">
             <div class="temtitleb">
-                <a href="/lib_detail_full/51dfd6899b9fbe6fc37051e9" target="_blank">
+                <a [routerLink]="['/pages/template/detail']" [routerLinkActive]="['active']" target="_blank">
                     <p>大学生消费观调查</p>
                 </a>
             </div>
@@ -97,7 +97,7 @@
 <div class="Mbdiv">
     <div class="Mbdiv_title">
         <h2>用户共享问卷</h2>
-        <a href="/share/more_share_1" class="Mb_more">更多</a>
+        <a [routerLink]="['/pages/template/list']" [routerLinkActive]="['active']" class="Mb_more">更多</a>
     </div>
     <div class="Mbdiv_list">
 

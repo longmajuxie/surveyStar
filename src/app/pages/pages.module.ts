@@ -11,6 +11,7 @@ import { LayoutsComponent } from './layouts/layouts.component';
 import { AppFooterComponent } from '../widgets/app-footer/app-footer.component';
 import { AppHeaderComponent } from '../widgets/app-header/app-header.component';
 import { HomeComponent } from './home/home.component';
+import { TemplateDetailComponent } from './template/template-detail/template-detail.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { HomeComponent } from './home/home.component';
       LayoutsComponent,
       AppFooterComponent,
       AppHeaderComponent,
-      HomeComponent
+      HomeComponent,
+      TemplateDetailComponent
     ]
 })
 export class PagesModule {

@@ -40,7 +40,6 @@ export class TopicDiscussionDetailComponent implements OnInit,OnDestroy {
                 let Genre=['休闲娱乐','社会生活','情感世界','科技财经','热点时事','各行各业'];
                 this.currentGenre=[this.indextab];
                 this.topicMessage=data[this.indextab][this.index];
-                console.log(this.topicMessage);
               })
       });
   }

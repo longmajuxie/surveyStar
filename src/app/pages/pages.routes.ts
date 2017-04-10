@@ -6,6 +6,7 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { LayoutsComponent } from './layouts/layouts.component';
 import { HomeComponent } from './home/home.component';
+import { TemplateDetailComponent } from './template/template-detail/template-detail.component';
 './service/ga'
 
 // noinspection TypeScriptValidateTypes
@@ -31,7 +32,8 @@ export const routes: Routes = [
       { path: 'questionnaire', loadChildren: 'app/pages/questionnaire/questionnaire.module#QuestionnaireModule' },
       { path: 'report', loadChildren: 'app/pages/report/report.module#ReportModule' },
       { path: 'template', loadChildren: 'app/pages/template/template.module#TemplateModule' },
-      { path: 'measurement', loadChildren: 'app/pages/measurement/measurement.module#MeasurementModule' }
+      { path: 'measurement', loadChildren: 'app/pages/measurement/measurement.module#MeasurementModule' },
+      { path: 'template/detail', component: TemplateDetailComponent}
       // { path: 'no-content', loadChildren: 'app/pages/no-content/no-content.module#NoContentModule' },
     //   { path: 'editors', loadChildren: 'app/pages/editors/editors.module#EditorsModule' },
     //   { path: 'components', loadChildren: 'app/pages/components/components.module#ComponentsModule' },

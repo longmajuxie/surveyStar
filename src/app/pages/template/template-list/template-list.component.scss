@@ -1,0 +1,142 @@
+.mb_con_z {
+    /* width: 820px; */
+    width: 804px;
+    background-color: #fff;
+    /* border: 1px solid #ddd; */
+    border-radius: 2px;
+}
+
+.Mbdiv {
+    /* min-height: 400px; */
+    /* border: 1px solid #DBDBDB; */
+    /* margin-bottom: 20px; */
+    display: inline-block;
+    width: 100%;
+}
+
+.Mbgen_title {
+    height: 49px;
+    line-height: 49px;
+    background: #fff;
+    padding: 0;
+    font-size: 15px;
+    color: #5B5B5B;
+    background-color: #F6F6F6;
+}
+
+.Mbgen_title li {
+    padding-right: 20px;
+}
+
+.Mbgen_title li a,
+.Mbgen_title li {
+    display: inline;
+    position: relative;
+    color: #999;
+}
+
+.arrowr {
+    position: absolute;
+    height: 0;
+    width: 0;
+    top: 6px;
+    right: 9px;
+    float: right;
+    border-top: 5px solid transparent;
+    border-left: 5px solid #989697;
+    border-bottom: 5px solid transparent;
+}
+
+.mh800 {
+    min-height: 800px;
+}
+
+.Mbdiv_list {
+    /* clear: both; */
+    padding: 0px 20px 10px 20px;
+    min-height: 400px;
+}
+
+.tem,
+.tem_r,
+.tem_l,
+.tem_dashed,
+.tem_subj {
+    /* border-bottom: 1px #dbdbdb solid; */
+    /* padding-bottom: 16px; */
+    /* margin-bottom: 14px; */
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.temtitle,
+.temtitleb {
+    position: relative;
+}
+
+.temtitle a,
+.temtitleb a {
+    display: inline-block;
+}
+
+.temtitle span {
+    position: absolute;
+    right: 0px;
+}
+
+.temtitle a {
+    color: #717171;
+}
+
+.content {
+    width: 990px;
+    min-height: 550px;
+    margin: 0 auto;
+    color: #828282;
+    position: relative;
+}
+
+.resume,
+.resume:hover {
+    font-size: 14px;
+    color: #ccc!important;
+    padding-left: 5px;
+}
+
+.temcon {
+    padding-left: 0px;
+}
+
+.temcon span {
+    display: inline-block;
+    padding: 0 5px 0 0;
+}
+
+.text {
+    /* padding: 8px 0; */
+    padding-top: 15px;
+}
+
+.pagenum {
+    height: 40px;
+    line-height: 21px;
+    padding: 2px 32px;
+}
+
+.pagenum .active {
+    background-color: #6FC5FF;
+    color: #fff;
+    margin-left: 8px;
+}
+
+.pagenum span,
+.pagenum a {
+    display: block;
+    padding: 0 10px;
+    float: left;
+}
+
+.pagenum .next {
+    background-image: url(/static/images/cnext.png);
+    background-repeat: no-repeat;
+}

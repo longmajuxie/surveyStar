@@ -483,3 +483,29 @@ h6 {
     text-align: center;
     line-height: 55px;
 }
+
+.createTemplate {
+    position: absolute;
+    font-size: 18px;
+    margin-top: 5px;
+    margin-left: 456px;
+    width: 100px;
+    height: 100px;
+}
+
+.newButton {
+    margin-top: 33px;
+    border: 1px solid #BDCFE4;
+    border-radius: 4px;
+}
+
+.temGenre {
+    position: absolute;
+    margin-top: -54px;
+    margin-left: 43px;
+    display: none;
+}
+
+.newTem {
+    margin-top: 0px;
+}
