@@ -1,10 +1,11 @@
 import { Routes, RouterModule }  from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
 
 import { TemplateComponent } from './template.component';
 import { TemplateListComponent } from './template-list/template-list.component';
 import { TemplateSearchComponent } from './template-search/template-search.component';
 import { TemplateHomeComponent } from './template-home/template-home.component';
-import { ModuleWithProviders } from '@angular/core';
+
 
 // noinspection TypeScriptValidateTypes
 export const routes: Routes = [

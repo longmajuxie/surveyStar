@@ -7,6 +7,8 @@ import { LoginComponent } from './login/login.component';
 import { LayoutsComponent } from './layouts/layouts.component';
 import { HomeComponent } from './home/home.component';
 import { TemplateDetailComponent } from './template/template-detail/template-detail.component';
+import { TopicCreateComponent } from './template/topic-create/topic-create.component';
+import { TemplateCreateOrEditComponent } from './template/template-create-or-edit/template-create-or-edit.component';
 './service/ga'
 
 // noinspection TypeScriptValidateTypes
@@ -33,15 +35,9 @@ export const routes: Routes = [
       { path: 'report', loadChildren: 'app/pages/report/report.module#ReportModule' },
       { path: 'template', loadChildren: 'app/pages/template/template.module#TemplateModule' },
       { path: 'measurement', loadChildren: 'app/pages/measurement/measurement.module#MeasurementModule' },
-      { path: 'template/detail', component: TemplateDetailComponent}
-      // { path: 'no-content', loadChildren: 'app/pages/no-content/no-content.module#NoContentModule' },
-    //   { path: 'editors', loadChildren: 'app/pages/editors/editors.module#EditorsModule' },
-    //   { path: 'components', loadChildren: 'app/pages/components/components.module#ComponentsModule' },
-    //   { path: 'charts', loadChildren: 'app/pages/charts/charts.module#ChartsModule' },
-    //   { path: 'ui', loadChildren: 'app/pages/ui/ui.module#UiModule' },
-    //   { path: 'forms', loadChildren: 'app/pages/forms/forms.module#FormsModule' },
-    //   { path: 'tables', loadChildren: 'app/pages/tables/tables.module#TablesModule' },
-    //   { path: 'maps', loadChildren: 'app/pages/maps/maps.module#MapsModule' }
+      { path: 'template/detail', component: TemplateDetailComponent},
+       { path: 'template/create', component: TopicCreateComponent },
+      { path: 'template/createOrEdit', component: TemplateCreateOrEditComponent }
     ]
   }
 ];

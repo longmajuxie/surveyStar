@@ -1,0 +1,97 @@
+.create_index {
+    width: 100%;
+    margin: 0px auto;
+    padding: 84px 0px 11px 0px;
+}
+
+.create_index ul {
+    width: 100%;
+}
+
+.clearfix {
+    display: block;
+    zoom: 1;
+}
+
+.create_index ul li {
+    width: 357px;
+    float: left;
+    padding-bottom: 101px;
+    background: #fff;
+    overflow: hidden;
+    border-radius: 4px;
+    margin-right: 26px;
+    border-top: 8px solid #fff;
+    position: relative;
+    box-shadow: 0px 0px 6px #ddd;
+}
+
+.create_index ul li .bt {
+    height: 119px;
+    line-height: 116px;
+    text-align: center;
+    font-size: 42px;
+    color: #4e4e50;
+    border-bottom: 1px solid #e3eaf3;
+}
+
+.create_index ul li dl {
+    height: 394px;
+    text-align: center;
+    background: #fcfcfc;
+    padding: 30px 0px;
+}
+
+.create_index ul li dl dd {
+    height: 40px;
+    font-size: 18px;
+    line-height: 40px;
+    overflow: hidden;
+}
+
+.create_index ul li dl dd a {
+    color: #777777;
+}
+
+a {
+    text-decoration: none;
+    color: #444;
+}
+
+.create_index ul li.question .btn {
+    background: #2196f3 url(../../../../assets/img/jia_new.png) no-repeat 140px center;
+}
+
+.create_index ul li .btn {
+    display: block;
+    height: 57px;
+    line-height: 40px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 360px;
+    padding-left: 26px;
+    font-size: 18px;
+    color: #fff;
+}
+
+.create_index ul li {
+    width: 357px;
+    float: left;
+    padding-bottom: 57px;
+    background: #fff;
+    overflow: hidden;
+    border-radius: 4px;
+    margin-right: 26px;
+    border-top: 8px solid #fff;
+    position: relative;
+    box-shadow: 0px 0px 6px #ddd;
+}
+
+.create_index ul li.form .btn {
+    background: #2aad94 url(../../../../assets/img/jia_new.png) no-repeat 140px center;
+}
+
+.create_index ul li.evaluation .btn {
+    background: #5265d1 url(../../../../assets/img/jia_new.png) no-repeat 140px center;
+}

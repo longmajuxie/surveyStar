@@ -12,7 +12,7 @@ export class TemplateComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    let _this=this;
+    /*let _this=this;
     $( ".newButton" ).hover(//为li绑定了鼠标进入和鼠标移开的两个参数  
     function() {  
         $('.temGenre').css('display','block');  
@@ -23,7 +23,7 @@ export class TemplateComponent implements OnInit {
     function() { 
     }, function() {  
       $('.temGenre').css('display','none');  
-    } );
+    } );*/
   }
 
 }

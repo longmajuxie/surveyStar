@@ -12,6 +12,8 @@ import { AppFooterComponent } from '../widgets/app-footer/app-footer.component';
 import { AppHeaderComponent } from '../widgets/app-header/app-header.component';
 import { HomeComponent } from './home/home.component';
 import { TemplateDetailComponent } from './template/template-detail/template-detail.component';
+import { TopicCreateComponent } from './template/topic-create/topic-create.component';
+import { TemplateCreateOrEditComponent } from './template/template-create-or-edit/template-create-or-edit.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { TemplateDetailComponent } from './template/template-detail/template-det
       AppFooterComponent,
       AppHeaderComponent,
       HomeComponent,
-      TemplateDetailComponent
+      TemplateDetailComponent,
+      TopicCreateComponent,
+      TemplateCreateOrEditComponent
     ]
 })
 export class PagesModule {

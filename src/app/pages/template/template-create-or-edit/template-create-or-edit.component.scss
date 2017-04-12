@@ -1,0 +1,308 @@
+@media screen and (max-width: 1450px) {}
+
+.page_edit .editor_sidebar {
+    width: 250px;
+}
+
+.page_edit .editor_sidebar {
+    position: fixed;
+    top: 121px;
+    bottom: 0;
+    left: 0;
+    width: 320px;
+    border-right: 1px solid #e0e0e0;
+    background-color: #fafafa;
+    z-index: 10;
+}
+
+.page_edit .editor_sidebar .tab {
+    margin: 20px;
+    font-size: 0;
+}
+
+.page_edit .editor_sidebar .tab .tab_item.current {
+    background-color: #479de6;
+    color: #fff;
+    border-color: #368cd5;
+    z-index: 1;
+}
+
+.page_edit .editor_sidebar .tab .tab_item {
+    display: inline-block;
+    height: 38px;
+    line-height: 38px;
+    font-size: 14px;
+    width: 50%;
+    text-align: center;
+    background-color: #fff;
+    margin-right: -1px;
+    border: 1px solid #e0e0e0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.page_edit .editor_sidebar .tab_content {
+    position: absolute;
+    top: 78px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    overflow-y: auto;
+}
+
+.page_edit .editor_sidebar .tab_content ul {
+    list-style: none;
+}
+
+.page_edit .editor_sidebar .tab_content li {
+    cursor: pointer;
+}
+
+.page_edit .editor_sidebar .type_item {
+    height: 38px;
+    line-height: 38px;
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    margin-bottom: 3px;
+}
+
+.page_edit .editor_sidebar .type_item a {
+    display: block;
+    height: 100%;
+    font-size: 14px;
+    pointer-events: none;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+.page_edit .editor_sidebar .tab_content .ico {
+    display: inline-block;
+    text-align: center;
+    width: 36px;
+    margin: 0;
+}
+
+.page_edit .ico {
+    display: inline-block;
+    zoom: 1;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+@media screen and (max-width: 1450px) {}
+
+.page_edit .editor_main {
+    left: 252px;
+}
+
+.page_edit .editor_main {
+    position: fixed;
+    top: 121px;
+    bottom: 0;
+    left: 321px;
+    right: 0;
+    overflow: auto;
+    padding: 20px;
+    -webkit-transition: right 0.3s;
+    transition: right 0.3s;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.page_edit .survey_wrap {
+    display: inline-block;
+    zoom: 1;
+    vertical-align: middle;
+    white-space: normal;
+    margin-top: 40px;
+    border: 1px solid #dadada;
+    position: relative;
+    background-color: #fff;
+    padding: 30px 0 30px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.g_survey .survey_wrap,
+.page_stat_recycle .survey_wrap {
+    width: 100%;
+    max-width: 1000px;
+    min-width: 730px;
+    border: 1px solid #dadada;
+    position: relative;
+    background-color: #fff;
+    font-size: 14px;
+    line-height: 1.8em;
+    margin: auto;
+}
+
+.page_edit .survey_pages_tab {
+    position: absolute;
+    top: -40px;
+    left: -1px;
+    right: 100px;
+    font-size: 0;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.page_edit .survey_pages_tab .pages_preview,
+.page_edit .survey_pages_tab .pages_next,
+.page_edit .survey_pages_tab .pages_more {
+    width: 20px;
+}
+
+.page_edit .survey_pages_tab .pages_preview,
+.page_edit .survey_pages_tab .pages_next,
+.page_edit .survey_pages_tab .pages_item,
+.page_edit .survey_pages_tab .pages_more,
+.page_edit .survey_pages_tab .pages_end {
+    vertical-align: middle;
+    display: inline-block;
+    zoom: 1;
+    height: 38px;
+    line-height: 38px;
+    width: 96px;
+    background-color: #fafafa;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.page_edit .survey_pages_tab .pages_wrap {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 88%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.survey_pages_tab .pages_next,
+.page_edit .survey_pages_tab .pages_more {
+    width: 20px;
+}
+
+.page_edit .survey_pages_tab .pages_preview,
+.page_edit .survey_pages_tab .pages_next,
+.page_edit .survey_pages_tab .pages_item,
+.page_edit .survey_pages_tab .pages_more,
+.page_edit .survey_pages_tab .pages_end {
+    vertical-align: middle;
+    display: inline-block;
+    zoom: 1;
+    height: 38px;
+    line-height: 38px;
+    width: 96px;
+    background-color: #fafafa;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.page_edit .survey_pages_tab .pages_more {
+    margin-left: -1px;
+}
+
+.page_edit .survey_pages_tab .pages_preview,
+.page_edit .survey_pages_tab .pages_next,
+.page_edit .survey_pages_tab .pages_more {
+    width: 20px;
+}
+
+.page_edit .survey_pages_tab .pages_preview,
+.page_edit .survey_pages_tab .pages_next,
+.page_edit .survey_pages_tab .pages_item,
+.page_edit .survey_pages_tab .pages_more,
+.page_edit .survey_pages_tab .pages_end {
+    vertical-align: middle;
+    display: inline-block;
+    zoom: 1;
+    height: 38px;
+    line-height: 38px;
+    width: 96px;
+    background-color: #fafafa;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.g_survey .survey_main,
+.page_stat_recycle .survey_main {
+    padding-top: 80px;
+    padding-bottom: 30px;
+}
+
+* {
+    background-repeat: no-repeat;
+}
+
+.page_edit .survey_wrap .survey_title,
+.page_edit .survey_wrap .survey_suffix,
+.page_edit .survey_wrap .survey_prefix {
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    word-break: break-all;
+}
+
+.g_survey .survey_title,
+.page_stat_recycle .survey_title {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    -ms-word-break: break-all;
+    word-break: break-all;
+}
+
+.page_edit .survey_wrap .survey_title,
+.page_edit .survey_wrap .survey_suffix,
+.page_edit .survey_wrap .survey_prefix {
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    word-break: break-all;
+}
+
+.page_edit .survey_wrap .survey_prefix {
+    margin-top: -1px;
+}
+
+.page_edit .g_container {
+    margin-top: 0;
+    background-color: #f0f0f0;
+}
+
+.g_wrapper .g_container {
+    min-height: 100%;
+    margin-bottom: -84px;
+    overflow: hidden;
+    zoom: 1;
+}
+
+.g_container {
+    margin-top: 60px;
+    position: relative;
+}
+
+.g_survey .survey_background_wrap,
+.page_stat_recycle .survey_background_wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    -webkit-transform: translate3d(0px, 0px, 0px);
+    -moz-transform: translate3d(0px, 0px, 0px);
+    -ms-transform: translate3d(0px, 0px, 0px);
+    transform: translate3d(0px, 0px, 0px);
+}
