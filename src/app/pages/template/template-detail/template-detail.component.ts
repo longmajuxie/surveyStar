@@ -13,7 +13,7 @@ export class TemplateDetailComponent implements OnInit {
   ngOnInit() {
     $(document).ready(function(){
       $(".N_view").click(function(event) {
-		    $(".reldiv").wordExport();
+		    $(".reldiv").remove("#describe").remove(".resultbtn").wordExport("导出名");
 	    });
     });
   }
