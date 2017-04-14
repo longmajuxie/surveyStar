@@ -1,4 +1,4 @@
 # surveyStar
 
 npm install
-npm start/  ng serve
+npm start / ng serve
