@@ -11,11 +11,11 @@ export class QuestionnaireComponent implements OnInit {
   constructor(private http:Http) { }
 
   ngOnInit() {
-     /*var newsData = this.http.get('http://localhost:8080/SSH1/initIndex.action').map((res:Response) => res.json());
+     var newsData = this.http.get('http://localhost:8080/oa_maven/dept/test').map((res:Response) => res.json());
      newsData.subscribe(
              data=> { 
-                  console.log(newsData);
-              })*/
+                  console.log(data);
+              })
   }
 
 }

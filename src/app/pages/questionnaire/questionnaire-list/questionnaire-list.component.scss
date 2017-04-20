@@ -504,3 +504,138 @@ a:active {
 .mtc-pagination-wrap li:last-child {
     border-right: 0;
 }
+
+.empty-survey-wrap {
+    background: #fff;
+    border: 1px solid #dce4ea;
+    min-height: 663px;
+}
+
+.empty-survey-title {
+    width: 100%;
+    height: 60px;
+    background: url(/static/home/img/survey/empty_list_title.png) no-repeat center;
+    border-bottom: solid 1px #ddd;
+}
+
+.empty-survey-guide {
+    padding: 0 20px 20px;
+}
+
+.survey-guide-tip {
+    padding-top: 30px;
+    padding-bottom: 15px;
+    font-size: 16px;
+    color: #525f66;
+    font-weight: 600;
+}
+
+.survey-guide-content .survey-tpl-type:first-child {
+    margin-left: 0;
+}
+
+.survey-tpl-type {
+    display: inline-block;
+    width: 185px;
+    height: 280px;
+    border: solid 1px #ddd;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    color: #919ba0;
+    vertical-align: top;
+    padding: 0 16px;
+}
+
+.tpl-type-icon-area {
+    width: 42px;
+    height: 104px;
+    line-height: 144px;
+}
+
+.tpl-type-name {
+    font-size: 18px;
+    color: #525f66;
+}
+
+ol,
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.survey-name-list a,
+.create-empty-survey-area a {
+    color: #919ba0;
+    display: block;
+    text-decoration: none;
+}
+
+a,
+a:hover,
+a:active {
+    text-decoration: none;
+    color: #3291da;
+}
+
+.survey-name-list li {
+    position: relative;
+    height: 30px;
+    line-height: 30px;
+}
+
+.rect-dot {
+    height: 5px;
+    width: 5px;
+    display: inline-block;
+    background-color: #919ba0;
+    position: absolute;
+    top: 50%;
+    margin-top: -2.5px;
+}
+
+.survey-name {
+    display: inline-block;
+    margin-left: 11px;
+}
+
+.create-empty-survey-area {
+    height: 103px;
+    line-height: 70px;
+    color: #919ba0;
+    margin: auto;
+    margin-top: -51.5px;
+    text-align: center;
+    top: 50%;
+    position: relative;
+}
+
+.survey-name-list a,
+.create-empty-survey-area a {
+    color: #919ba0;
+    display: block;
+    text-decoration: none;
+}
+
+.create-empty-survey {
+    width: 75px;
+    height: 75px;
+    line-height: 70px;
+    background-color: #f3f3f3;
+    color: #ccc;
+    font-size: 30px;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.survey-name-list a,
+.create-empty-survey-area a {
+    color: #919ba0;
+    display: block;
+    text-decoration: none;
+}
+
+.survey-name {
+    display: inline-block;
+    margin-left: 11px;
+}
