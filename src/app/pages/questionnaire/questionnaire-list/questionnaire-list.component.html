@@ -1,0 +1,120 @@
+<p class="bce-breadcrumb">
+    <a href="/survey/home/manageSurvey"><span>问卷调研</span></a>
+    <span class="divider">/</span>
+    <span class="active">问卷列表</span>
+</p>
+<div class="bce-list-content" ng-hide="emptyList">
+    <h2>问卷列表 <span class="survey-manage-content-tip"></span></h2>
+    <div class="bce-task-list-head">
+        <a class="bce-create-task-btn" style="text-decoration: none" href="http://mtc.baidu.com/survey/home/createSurvey" target="_blank">
+            <div class="bce-ui-button bce-skin-create-button"><i class="fa fa-plus-square" aria-hidden="true"></i>免费创建</div>
+        </a>
+
+        <div class="bce-ui-group bce-ui-search-group vt">
+            <div class="bce-ui-select" ng-click="expandSelect()" ng-class="{true: 'bce-ui-select-active'}[isExpanded]">
+                <span ng-bind="statusAry[statusFilter]" class="ng-binding">全部状态<i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+                <ul ng-show="isExpanded" class="bce-ui-select-layer ng-hide">
+                    <!-- ngRepeat: (k,v) in statusMap -->
+                    <li ng-repeat="(k,v) in statusMap" ng-bind="statusAry[v]" ng-click="statusChanged(v)" class="bce-ui-select-item ng-binding ng-scope">全部状态</li>
+                    <!-- end ngRepeat: (k,v) in statusMap -->
+                    <li ng-repeat="(k,v) in statusMap" ng-bind="statusAry[v]" ng-click="statusChanged(v)" class="bce-ui-select-item ng-binding ng-scope">创建中</li>
+                    <!-- end ngRepeat: (k,v) in statusMap -->
+                    <li ng-repeat="(k,v) in statusMap" ng-bind="statusAry[v]" ng-click="statusChanged(v)" class="bce-ui-select-item ng-binding ng-scope">待支付</li>
+                    <!-- end ngRepeat: (k,v) in statusMap -->
+                    <li ng-repeat="(k,v) in statusMap" ng-bind="statusAry[v]" ng-click="statusChanged(v)" class="bce-ui-select-item ng-binding ng-scope">审核中</li>
+                    <!-- end ngRepeat: (k,v) in statusMap -->
+                    <li ng-repeat="(k,v) in statusMap" ng-bind="statusAry[v]" ng-click="statusChanged(v)" class="bce-ui-select-item ng-binding ng-scope">审核不通过</li>
+                    <!-- end ngRepeat: (k,v) in statusMap -->
+                    <li ng-repeat="(k,v) in statusMap" ng-bind="statusAry[v]" ng-click="statusChanged(v)" class="bce-ui-select-item ng-binding ng-scope">发布中</li>
+                    <!-- end ngRepeat: (k,v) in statusMap -->
+                    <li ng-repeat="(k,v) in statusMap" ng-bind="statusAry[v]" ng-click="statusChanged(v)" class="bce-ui-select-item ng-binding ng-scope">已完成</li>
+                    <!-- end ngRepeat: (k,v) in statusMap -->
+                </ul>
+            </div>
+            <div class="bce-ui-textbox vt">
+                <input type="text" placeholder="输入标题搜索" ng-model="nameFilter" style="width:160px;" class="ng-pristine ng-untouched ng-valid">
+            </div>
+            <div class="bce-ui-button vt" ng-click="filter()"><i class="fa fa-search" aria-hidden="true"></i></div>
+        </div>
+    </div>
+    <div class="survey-manage-list clearfix">
+        <div class="survey-manage-table-warp">
+            <table class="survey-manage-table">
+                <tbody>
+                    <tr class="survey-manage-table-head" style="font-size: 14px;height: 50px;text-align: left">
+                        <th style="width: 25%">问卷名称/问卷ID</th>
+                        <th style="width: 10%">发布方式</th>
+                        <th style="width: 15%">创建时间</th>
+                        <th style="width: 12%">完成情况</th>
+                        <th style="width: 17%">项目状态</th>
+                        <th id="list-header-operate">操作</th>
+                    </tr>
+                    <!-- ngRepeat: survey in surveyList | offset: currentPage*itemsPerPage | limitTo: itemsPerPage -->
+                    <tr class="survey-manage-table-row ng-scope" ng-repeat="survey in surveyList | offset: currentPage*itemsPerPage | limitTo: itemsPerPage">
+                        <td nowrap="" title="12">
+                            <a ng-bind="survey.survey_name + ' / ' + survey.survey_id" href="http://mtc.baidu.com/survey/home/previewSurvey/from/f6a28909f7a9229a250b7f39cfc1cc29?survey_id=250442" target="_blank" style="color:#0886e9" class="ng-binding">12 / 250442</a>
+                            <!-- ngIf: survey.sample_id > 0 -->
+                            <br>
+                            <!-- ngIf: siteChannelCode=='bce' -->
+                        </td>
+                        <td ng-bind="survey.publish_scene" class="ng-binding">有偿收集</td>
+                        <td ng-bind="survey.create_time" class="ng-binding">2017-04-20 10:46:16</td>
+                        <td><span ng-bind="survey.survey_count" class="ng-binding">0</span>/<span ng-bind="survey.target" class="ng-binding">1000</span></td>
+                        <td ng-bind="survey.statusName" ng-class="{'survey-status-reject':survey.status==1,'survey-status-warning':survey.status==0||survey.status==10||survey.status==3,'survey-status-finish':survey.status==5}" ng-click="showRejectInfo(survey)" class="ng-binding survey-status-warning">创建中</td>
+                        <td class="survey-operation">
+                            <a href="http://mtc.baidu.com/survey/home/viewSurvey?survey_id=250442">查看&nbsp;</a>
+                            <a href="http://mtc.baidu.com/survey/home/edit?survey_id=250442" ng-show="(survey.type==0||survey.type==4) &amp;&amp; survey.status<3&amp;&amp;survey.is_expansion==false">编辑&nbsp;</a>
+                            <a href="http://mtc.baidu.com/survey/home/surveyFilter?survey_id=250442" ng-show="(survey.type==0||survey.type==4) &amp;&amp; survey.status<3">提交&nbsp;</a>
+                            <a href="http://mtc.baidu.com/survey/home/surveyReport?survey_id=250442" ng-show="survey.type != 1 &amp;&amp;(survey.status==4||survey.status==5||survey.status==8)" class="ng-hide">答卷数据&nbsp;</a>
+                            <a href="http://mtc.baidu.com/my/FC/orderPay?order_id=" ng-show="(survey.type==0||survey.type==4) &amp;&amp; survey.status==10" class="ng-hide">支付&nbsp;</a>
+                            <span ng-show="(survey.type==0||survey.type==4) &amp;&amp; survey.status==2" ng-click="submit(survey)" class="ng-hide">提交&nbsp;</span>
+                            <span ng-show="survey.type==0||survey.type==4" ng-click="copy(survey)">复制&nbsp;</span>
+                            <span ng-show="survey.status<3" ng-click="deleteSurvey(survey)">删除&nbsp;</span>
+                            <!-- ngIf: survey.scene==2 && survey.status==4 -->
+                            <!-- ngIf: (survey.type==0||survey.type==4) && survey.scene==1 && survey.status==5 -->
+                        </td>
+                    </tr>
+                    <!-- end ngRepeat: survey in surveyList | offset: currentPage*itemsPerPage | limitTo: itemsPerPage -->
+                    <tr class="survey-manage-table-row ng-scope" ng-repeat="survey in surveyList | offset: currentPage*itemsPerPage | limitTo: itemsPerPage">
+                        <td nowrap="" title="2213">
+                            <a ng-bind="survey.survey_name + ' / ' + survey.survey_id" href="http://mtc.baidu.com/survey/home/previewSurvey/from/e33db3804e2296ea8e025e8dc0e0711b?survey_id=250434" target="_blank" style="color:#0886e9" class="ng-binding">2213 / 250434</a>
+                            <!-- ngIf: survey.sample_id > 0 -->
+                            <br>
+                            <!-- ngIf: siteChannelCode=='bce' -->
+                        </td>
+                        <td ng-bind="survey.publish_scene" class="ng-binding">有偿收集</td>
+                        <td ng-bind="survey.create_time" class="ng-binding">2017-04-20 10:39:17</td>
+                        <td><span ng-bind="survey.survey_count" class="ng-binding">0</span>/<span ng-bind="survey.target" class="ng-binding">0</span></td>
+                        <td ng-bind="survey.statusName" ng-class="{'survey-status-reject':survey.status==1,'survey-status-warning':survey.status==0||survey.status==10||survey.status==3,'survey-status-finish':survey.status==5}" ng-click="showRejectInfo(survey)" class="ng-binding survey-status-warning">创建中</td>
+                        <td class="survey-operation">
+                            <a href="http://mtc.baidu.com/survey/home/viewSurvey?survey_id=250434">查看&nbsp;</a>
+                            <a href="http://mtc.baidu.com/survey/home/edit?survey_id=250434" ng-show="(survey.type==0||survey.type==4) &amp;&amp; survey.status<3&amp;&amp;survey.is_expansion==false">编辑&nbsp;</a>
+                            <a href="http://mtc.baidu.com/survey/home/surveyFilter?survey_id=250434" ng-show="(survey.type==0||survey.type==4) &amp;&amp; survey.status<3">提交&nbsp;</a>
+                            <a href="http://mtc.baidu.com/survey/home/surveyReport?survey_id=250434" ng-show="survey.type != 1 &amp;&amp;(survey.status==4||survey.status==5||survey.status==8)" class="ng-hide">答卷数据&nbsp;</a>
+                            <a href="http://mtc.baidu.com/my/FC/orderPay?order_id=" ng-show="(survey.type==0||survey.type==4) &amp;&amp; survey.status==10" class="ng-hide">支付&nbsp;</a>
+                            <span ng-show="(survey.type==0||survey.type==4) &amp;&amp; survey.status==2" ng-click="submit(survey)" class="ng-hide">提交&nbsp;</span>
+                            <span ng-show="survey.type==0||survey.type==4" ng-click="copy(survey)">复制&nbsp;</span>
+                            <span ng-show="survey.status<3" ng-click="deleteSurvey(survey)">删除&nbsp;</span>
+                            <!-- ngIf: survey.scene==2 && survey.status==4 -->
+                            <!-- ngIf: (survey.type==0||survey.type==4) && survey.scene==1 && survey.status==5 -->
+                        </td>
+                    </tr>
+                    <!-- end ngRepeat: survey in surveyList | offset: currentPage*itemsPerPage | limitTo: itemsPerPage -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mtc-pagination" style="float: left;width: 100%;;float: left;width: 100%;" ng-hide="emptyList">
+            <ul class="mtc-pagination-wrap">
+                <li ng-class="prevPageDisabled()" class="disabled"><a class="pagination-nav-btn" href="" ng-click="setPage(0)">&lt;&lt;</a></li>
+                <li ng-class="prevPageDisabled()" class="disabled"><a class="pagination-nav-btn" href="" ng-click="prevPage()">&lt;</a></li>
+                <!-- ngRepeat: n in pages -->
+                <li ng-repeat="n in pages" ng-class="{active: n == currentPage}" ng-click="setPage(n)" class="ng-scope active"><a href="" ng-bind="1" class="ng-binding">1</a></li>
+                <!-- end ngRepeat: n in pages -->
+                <li ng-class="nextPageDisabled()" class="disabled"><a class="pagination-nav-btn" href="" ng-click="nextPage()">&gt;</a></li>
+                <li ng-class="nextPageDisabled()" class="disabled"><a class="pagination-nav-btn last-pagination-nav-btn" href="" ng-click="setPage(pageCount()-1)">&gt;&gt;</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- ngIf: emptyList -->

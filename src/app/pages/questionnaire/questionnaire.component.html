@@ -1,3 +1,23 @@
-<p style="background-color: red;margin-top: 10rem;">
-    questionnaire works!
-</p>
+<div id="content-wrapper" style="margin-top: 72px;">
+    <input type="hidden" id="project-platform" value="4">
+
+    <div id="bce-main" ng-app="survey" class="ng-scope">
+        <div class="main">
+            <ul class="bce-sidebar" id="bce-sidebar">
+                <li class="bce-menu-header">
+                    问卷调研
+                </li>
+                <li class="bce-menu-item bce-sidebar-qss-list-instance">
+                    <a class="bce-menu-list-item" [routerLink]="['/pages/questionnaire/list']" [routerLinkActive]="['active']"> <i class="fa fa-list-alt fa-1x" aria-hidden="true"></i> 问卷列表</a>
+                </li>
+                <li class="bce-menu-item bce-sidebar-qss-template-instance ">
+                    <a class="bce-menu-list-item" [routerLink]="['/pages/questionnaire/templateList']" [routerLinkActive]="['active']"> <i class="fa fa-bookmark fa-1x" aria-hidden="true"></i>问卷模板</a>
+                </li>
+            </ul>
+            <div ng-controller="SurveyManagement" class="content ng-scope">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+
+</div>

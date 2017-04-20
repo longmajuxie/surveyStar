@@ -1,0 +1,219 @@
+<p class="bce-breadcrumb">
+    <a href="/survey/home/manageSurvey"><span>问卷调研</span></a>
+    <span class="divider">/</span>
+    <span class="active">问卷模板</span>
+</p>
+<div class="survey-template-wrap">
+    <div class="survey-template-nav">
+        <span style="font-size: 18px; color: #333; margin-left: 20px">问卷模板</span>
+    </div>
+    <!-- ngView:  -->
+    <div ng-view="" class="ng-scope">
+        <div class="survey-template-content ng-scope">
+            <div class="survey-template-list">
+                <div class="survey-tpl-list-body">
+                    <div class="survey-tpl-name">
+                        <div class="area-title ng-binding" ng-bind="selectedCategory.name">全部</div>
+                        <div class="template-name-filter">
+                            <div class="bce-ui-textbox vm">
+                                <input type="text" placeholder="问卷名称" ng-model="searchTplName" class="ng-pristine ng-untouched ng-valid">
+                            </div>
+                            <div class="bce-ui-button bce-skin-primary-button vm" ng-click="searchTemplate(searchTplName)">搜索</div>
+                            <div class="div-inline desc-text ng-binding" ng-hide="emptyList">1684个作者，分享1864个模板</div>
+                        </div>
+                        <div class="order-select-area" ng-hide="emptyList">
+                            <div class="select-desc">排序</div>
+                            <div class="bce-ui-select-wrap">
+                                <div class="bce-ui-select" ng-click="expandSelect()" ng-class="{true: 'bce-ui-select-active'}[isExpanded]">
+                                    <span ng-bind="orderAry[filter.display_order_attr]" class="ng-binding">按使用次数 <i aria-hidden="true" class="fa fa-chevron-down"></i></span>
+                                    <ul ng-show="isExpanded" class="bce-ui-select-layer ng-hide">
+                                        <!-- ngRepeat: (k,v) in orderMap -->
+                                        <li class="bce-ui-select-item ng-binding ng-scope" ng-repeat="(k,v) in orderMap" ng-bind="orderAry[v]" ng-click="orderChanged(v)">按使用次数</li>
+                                        <!-- end ngRepeat: (k,v) in orderMap -->
+                                        <li class="bce-ui-select-item ng-binding ng-scope" ng-repeat="(k,v) in orderMap" ng-bind="orderAry[v]" ng-click="orderChanged(v)">按作者姓名</li>
+                                        <!-- end ngRepeat: (k,v) in orderMap -->
+                                        <li class="bce-ui-select-item ng-binding ng-scope" ng-repeat="(k,v) in orderMap" ng-bind="orderAry[v]" ng-click="orderChanged(v)">按问卷名称</li>
+                                        <!-- end ngRepeat: (k,v) in orderMap -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="survey-tpl-name-list" ng-hide="emptyList">
+                            <!-- ngRepeat: template in templateList -->
+                            <li ng-repeat=" template in templateList" nowrap="" title="市场调查" ng-click="selectTemplate(template,$event)" ng-class="{selectedsurvey: template.id==selectedTemplate.id}" class="ng-scope">
+                                <div ng-bind="template.name" class="template-name ng-binding">市场调查</div>
+                                <div class="template-info">
+                                    <div class="template-info-item ng-binding">类别：产品调研阶段</div>
+                                    <div class="template-info-item ng-binding">作者：a*n</div>
+                                    <div class="template-info-item ng-binding">使用次数：9040</div>
+                                    <div class="template-info-item ng-binding">题目数：18</div>
+                                </div>
+                            </li>
+                            <!-- end ngRepeat: template in templateList -->
+                            <li ng-repeat=" template in templateList" nowrap="" title="大学生消费情况调查" ng-click="selectTemplate(template,$event)" ng-class="{selectedsurvey: template.id==selectedTemplate.id}" class="ng-scope">
+                                <div ng-bind="template.name" class="template-name ng-binding">大学生消费情况调查</div>
+                                <div class="template-info">
+                                    <div class="template-info-item ng-binding">类别：其他</div>
+                                    <div class="template-info-item ng-binding">作者：王*凯</div>
+                                    <div class="template-info-item ng-binding">使用次数：2531</div>
+                                    <div class="template-info-item ng-binding">题目数：18</div>
+                                </div>
+                            </li>
+                            <!-- end ngRepeat: template in templateList -->
+                            <li ng-repeat=" template in templateList" nowrap="" title="网购消费者行为调查" ng-click="selectTemplate(template,$event)" ng-class="{selectedsurvey: template.id==selectedTemplate.id}" class="ng-scope">
+                                <div ng-bind="template.name" class="template-name ng-binding">网购消费者行为调查</div>
+                                <div class="template-info">
+                                    <div class="template-info-item ng-binding">类别：产品调研阶段</div>
+                                    <div class="template-info-item ng-binding">作者：a*n</div>
+                                    <div class="template-info-item ng-binding">使用次数：2218</div>
+                                    <div class="template-info-item ng-binding">题目数：6</div>
+                                </div>
+                            </li>
+                            <!-- end ngRepeat: template in templateList -->
+                            <li ng-repeat=" template in templateList" nowrap="" title="App使用习惯调查" ng-click="selectTemplate(template,$event)" ng-class="{selectedsurvey: template.id==selectedTemplate.id}" class="ng-scope">
+                                <div ng-bind="template.name" class="template-name ng-binding">App使用习惯调查</div>
+                                <div class="template-info">
+                                    <div class="template-info-item ng-binding">类别：产品调研阶段</div>
+                                    <div class="template-info-item ng-binding">作者：a*n</div>
+                                    <div class="template-info-item ng-binding">使用次数：1268</div>
+                                    <div class="template-info-item ng-binding">题目数：13</div>
+                                </div>
+                            </li>
+                            <!-- end ngRepeat: template in templateList -->
+                            <li ng-repeat=" template in templateList" nowrap="" title="新产品上市前调研" ng-click="selectTemplate(template,$event)" ng-class="{selectedsurvey: template.id==selectedTemplate.id}" class="ng-scope">
+                                <div ng-bind="template.name" class="template-name ng-binding">新产品上市前调研</div>
+                                <div class="template-info">
+                                    <div class="template-info-item ng-binding">类别：产品调研阶段</div>
+                                    <div class="template-info-item ng-binding">作者：杨*毅</div>
+                                    <div class="template-info-item ng-binding">使用次数：1225</div>
+                                    <div class="template-info-item ng-binding">题目数：10</div>
+                                </div>
+                            </li>
+                            <!-- end ngRepeat: template in templateList -->
+                            <li ng-repeat=" template in templateList" nowrap="" title="网购用户满意度调查" ng-click="selectTemplate(template,$event)" ng-class="{selectedsurvey: template.id==selectedTemplate.id}" class="ng-scope">
+                                <div ng-bind="template.name" class="template-name ng-binding">网购用户满意度调查</div>
+                                <div class="template-info">
+                                    <div class="template-info-item ng-binding">类别：产品发布后</div>
+                                    <div class="template-info-item ng-binding">作者：a*n</div>
+                                    <div class="template-info-item ng-binding">使用次数：1084</div>
+                                    <div class="template-info-item ng-binding">题目数：13</div>
+                                </div>
+                            </li>
+                            <!-- end ngRepeat: template in templateList -->
+                            <li ng-repeat=" template in templateList" nowrap="" title="旅游市场调查" ng-click="selectTemplate(template,$event)" ng-class="{selectedsurvey: template.id==selectedTemplate.id}" class="ng-scope">
+                                <div ng-bind="template.name" class="template-name ng-binding">旅游市场调查</div>
+                                <div class="template-info">
+                                    <div class="template-info-item ng-binding">类别：其他</div>
+                                    <div class="template-info-item ng-binding">作者：陈*硒</div>
+                                    <div class="template-info-item ng-binding">使用次数：975</div>
+                                    <div class="template-info-item ng-binding">题目数：17</div>
+                                </div>
+                            </li>
+                            <!-- end ngRepeat: template in templateList -->
+                            <li ng-repeat=" template in templateList" nowrap="" title="手游用户偏好调研" ng-click="selectTemplate(template,$event)" ng-class="{selectedsurvey: template.id==selectedTemplate.id}" class="ng-scope">
+                                <div ng-bind="template.name" class="template-name ng-binding">手游用户偏好调研</div>
+                                <div class="template-info">
+                                    <div class="template-info-item ng-binding">类别：产品调研阶段</div>
+                                    <div class="template-info-item ng-binding">作者：a*n</div>
+                                    <div class="template-info-item ng-binding">使用次数：596</div>
+                                    <div class="template-info-item ng-binding">题目数：22</div>
+                                </div>
+                            </li>
+                            <!-- end ngRepeat: template in templateList -->
+                            <li ng-repeat=" template in templateList" nowrap="" title="网站性能体验调研" ng-click="selectTemplate(template,$event)" ng-class="{selectedsurvey: template.id==selectedTemplate.id}" class="ng-scope">
+                                <div ng-bind="template.name" class="template-name ng-binding">网站性能体验调研</div>
+                                <div class="template-info">
+                                    <div class="template-info-item ng-binding">类别：产品研发阶段</div>
+                                    <div class="template-info-item ng-binding">作者：a*n</div>
+                                    <div class="template-info-item ng-binding">使用次数：541</div>
+                                    <div class="template-info-item ng-binding">题目数：13</div>
+                                </div>
+                            </li>
+                            <!-- end ngRepeat: template in templateList -->
+                            <li ng-repeat=" template in templateList" nowrap="" title="阅读类App调研" ng-click="selectTemplate(template,$event)" ng-class="{selectedsurvey: template.id==selectedTemplate.id}" class="ng-scope">
+                                <div ng-bind="template.name" class="template-name ng-binding">阅读类App调研</div>
+                                <div class="template-info">
+                                    <div class="template-info-item ng-binding">类别：其他</div>
+                                    <div class="template-info-item ng-binding">作者：a*n</div>
+                                    <div class="template-info-item ng-binding">使用次数：526</div>
+                                    <div class="template-info-item ng-binding">题目数：10</div>
+                                </div>
+                            </li>
+                            <!-- end ngRepeat: template in templateList -->
+                        </ul>
+                        <!-- ngIf: emptyList -->
+                    </div>
+                    <div class="survey-tpl-type">
+                        <div class="survey-tpl-type-head ng-binding" ng-bind="categoryParent.name">行业分类</div>
+                        <ul>
+                            <!-- ngRepeat: category in tplCategorys -->
+                            <li ng-repeat="category in tplCategorys" nowrap="" title="全部" ng-click="selectTplCategory(category,$event)" ng-class="{selectedtype: category.id==selectedCategory.id}" class="ng-scope selectedtype">
+                                <div ng-bind="category.name" class="ng-binding">全部</div>
+                            </li>
+                            <!-- end ngRepeat: category in tplCategorys -->
+                            <li ng-repeat="category in tplCategorys" nowrap="" title="产品调研阶段" ng-click="selectTplCategory(category,$event)" ng-class="{selectedtype: category.id==selectedCategory.id}" class="ng-scope">
+                                <div ng-bind="category.name" class="ng-binding">产品调研阶段</div>
+                            </li>
+                            <!-- end ngRepeat: category in tplCategorys -->
+                            <li ng-repeat="category in tplCategorys" nowrap="" title="产品研发阶段" ng-click="selectTplCategory(category,$event)" ng-class="{selectedtype: category.id==selectedCategory.id}" class="ng-scope">
+                                <div ng-bind="category.name" class="ng-binding">产品研发阶段</div>
+                            </li>
+                            <!-- end ngRepeat: category in tplCategorys -->
+                            <li ng-repeat="category in tplCategorys" nowrap="" title="产品发布前" ng-click="selectTplCategory(category,$event)" ng-class="{selectedtype: category.id==selectedCategory.id}" class="ng-scope">
+                                <div ng-bind="category.name" class="ng-binding">产品发布前</div>
+                            </li>
+                            <!-- end ngRepeat: category in tplCategorys -->
+                            <li ng-repeat="category in tplCategorys" nowrap="" title="产品发布后" ng-click="selectTplCategory(category,$event)" ng-class="{selectedtype: category.id==selectedCategory.id}" class="ng-scope">
+                                <div ng-bind="category.name" class="ng-binding">产品发布后</div>
+                            </li>
+                            <!-- end ngRepeat: category in tplCategorys -->
+                            <li ng-repeat="category in tplCategorys" nowrap="" title="其他" ng-click="selectTplCategory(category,$event)" ng-class="{selectedtype: category.id==selectedCategory.id}" class="ng-scope">
+                                <div ng-bind="category.name" class="ng-binding">其他</div>
+                            </li>
+                            <!-- end ngRepeat: category in tplCategorys -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="survey-tpl-feedback" ng-click="feedback($event)">
+                    <img src="/static/home/img/survey/feedback_icon.png">
+                    <span>模板不够用？告诉小编来加料</span>
+                </div>
+            </div>
+            <div class="mtc-pagination" style="float: left;width: 100%;;float: left;width: 100%;" ng-hide="emptyList">
+                <ul class="mtc-pagination-wrap">
+                    <li ng-class="prevPageDisabled()" class="disabled"><a class="pagination-nav-btn" href="" ng-click="setPage(0)">&lt;&lt;</a></li>
+                    <li ng-class="prevPageDisabled()" class="disabled"><a class="pagination-nav-btn" href="" ng-click="prevPage()">&lt;</a></li>
+                    <!-- ngRepeat: n in pages -->
+                    <li ng-repeat="n in pages" ng-class="{active: n == currentPage}" ng-click="setPage(n)" class="ng-scope active"><a href="" ng-bind="1" class="ng-binding">1</a></li>
+                    <!-- end ngRepeat: n in pages -->
+                    <li ng-repeat="n in pages" ng-class="{active: n == currentPage}" ng-click="setPage(n)" class="ng-scope"><a href="" ng-bind="2" class="ng-binding">2</a></li>
+                    <!-- end ngRepeat: n in pages -->
+                    <li ng-repeat="n in pages" ng-class="{active: n == currentPage}" ng-click="setPage(n)" class="ng-scope"><a href="" ng-bind="3" class="ng-binding">3</a></li>
+                    <!-- end ngRepeat: n in pages -->
+                    <li ng-repeat="n in pages" ng-class="{active: n == currentPage}" ng-click="setPage(n)" class="ng-scope"><a href="" ng-bind="4" class="ng-binding">4</a></li>
+                    <!-- end ngRepeat: n in pages -->
+                    <li ng-repeat="n in pages" ng-class="{active: n == currentPage}" ng-click="setPage(n)" class="ng-scope"><a href="" ng-bind="5" class="ng-binding">5</a></li>
+                    <!-- end ngRepeat: n in pages -->
+                    <li ng-class="nextPageDisabled()"><a class="pagination-nav-btn" href="" ng-click="nextPage()">&gt;</a></li>
+                    <li ng-class="nextPageDisabled()"><a class="pagination-nav-btn last-pagination-nav-btn" href="" ng-click="setPage(pageCount()-1)">&gt;&gt;</a></li>
+                </ul>
+            </div>
+            <div class="survey-tpl-detail" id="slider" style="position: fixed; width: 800px; transition: all 700ms ease; height: 100%; top: 0px; right: -800px;">
+                <!-- ngInclude: includeDetailUrl() -->
+                <div ng-include="includeDetailUrl()" class="ng-scope">
+                    <div class="survey-preview ng-scope">
+                        <div class="survey-preview-header">
+                            <div class="tpl-button" ng-click="copy(selectedSurvey,$event)">引用模板</div>
+                            <a class="tpl-button" href="" target="_blank">试填问卷</a>
+                            <span class="survey-close" ng-click="closeSurveyTplDedtail($event)">×</span>
+                        </div>
+                        <div class="survey-name ng-binding" ng-bind="surveyName"></div>
+                        <div class="survey-preview-content">
+                            <!-- ngRepeat: page in surveyPages -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
