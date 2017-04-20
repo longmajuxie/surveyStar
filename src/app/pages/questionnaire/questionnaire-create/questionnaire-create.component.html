@@ -1,3 +1,198 @@
-<p>
-  questionnaire-create works!
-</p>
+<div id="content-wrapper">
+    <input type="hidden" id="project-platform" value="4">
+
+    <div id="bce-main">
+        <div class="main" style="position: relative">
+            <div class="content common-task-content">
+                <p class="bce-breadcrumb">
+                    <a href="/survey/home/manageSurvey"><span>问卷调研</span></a>
+                    <span class="divider">/</span>
+                    <span class="active">编辑问卷</span>
+                </p>
+                <div class="edit-survey-wrap" id="edit-survey-wrap">
+                    <div class="edit-survey-content">
+                        <div class="navigation after-clear" id="navigation">
+                            <div class="navigation-feedback-wrap">
+                                <div class="navigation-feedback"><img src="/static/home/img/survey/feedback_icon.png"><a>请说出您的期待，我们为您设计</a></div>
+                            </div>
+
+
+                            <ul class="survey-nav">
+                                <li class="active">
+                                    <div class="survey-nav-icon">1</div>
+                                    <div class="survey-nav-name">设计问卷</div>
+                                    <div class="survey-nav-line"></div>
+                                </li>
+                                <li>
+                                    <div class="survey-nav-icon">2</div>
+                                    <div class="survey-nav-name">收集设置</div>
+                                    <div class="survey-nav-line"></div>
+                                </li>
+                                <li>
+                                    <div class="survey-nav-icon">3</div>
+                                    <div class="survey-nav-name">完成支付</div>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="survey-hide edit-img" contenteditable="false" style="display:none">
+                    <ul>
+                        <li class="upload-element-img">
+                            <form class="upload-form" enctype="multipart/form-data" action="http://mtc.baidu.com/survey/home/uploadImg" method="post">
+                                <input type="file" class="upload-img" name="upload_img" title="图片" onchange="edit.uploadImg()">
+                                <div class="visibility-btn" title="图片"></div>
+                            </form>
+                        </li>
+                        <li class="handle-element handle-child-element" title="操作" onclick="edit.handleChildElement()"></li>
+                        <li class="handle-element remove-child-element" title="删除" onclick="edit.removeChildElement()"></li>
+                        <li class="handle-element up-child-element" title="上移" onclick="edit.upChildElement()"></li>
+                        <li class="handle-element down-child-element" title="下移" onclick="edit.downChildElement()"></li>
+                    </ul>
+                </div>
+
+                <div class="survey-hide time-save survey-dialog">已实时保存</div>
+
+                <div class="edit-survey-wrap">
+                    <div class="edit-survey-content">
+                        <div class="navigation after-clear">
+                            <div class="handle-survey after-clear">
+                                <input type="button" class="bce-ui-button" value="预览问卷" onclick="previewSurvey()">
+                            </div>
+                        </div>
+                        <div id="edit-survey-content">
+                            <div class="rows1">
+                                <div class="sur-sidebar">
+                                    <div class="select-question">
+                                        <div class="classify-title select-question-title">题型选择</div>
+                                        <ul>
+                                            <li class="module ui-draggable" name="radio" style="background-position: 0px -4px;">单选题</li>
+                                            <li class="module ui-draggable" name="select" style="background-position: 0px -40px;">下拉选择题</li>
+                                            <li class="module ui-draggable" name="checkbox" style="background-position: 0px -76px;">多选题</li>
+                                            <li class="module ui-draggable" name="input" style="background-position: 0px -112px;">单行填空题</li>
+                                            <li class="module ui-draggable" name="multi-input" style="background-position: 0px -148px;">多行填空题</li>
+                                            <li class="module ui-draggable" name="radio-matrix" style="background-position: 0px -184px;">矩阵单选题</li>
+                                            <li class="module ui-draggable" name="checkbox-matrix" style="background-position: 0px -368px;">矩阵多选题</li>
+                                            <li class="module ui-draggable radio-img" name="radio-img">图片单选</li>
+                                            <li class="module ui-draggable checkbox-img" name="checkbox-img">图片多选</li>
+                                            <li class="module ui-draggable" name="desc" style="background-position: 0px -222px;">描述说明</li>
+                                            <li class="module ui-draggable" name="page" style="background-position: 0px -328px;">分页符</li>
+                                        </ul>
+                                    </div>
+                                    <div class="common-questions">
+                                        <div class="classify-title common-questions-title">常规问题</div>
+                                        <ul style="display: none;">
+                                            <li class="ui-draggable common_question" index="0">您的性别</li>
+                                            <li class="ui-draggable common_question" index="1">您的年龄</li>
+                                            <li class="ui-draggable common_question" index="2">您的职业</li>
+                                            <li class="ui-draggable common_question" index="3">工作年限</li>
+                                            <li class="ui-draggable common_question" index="4">教育程度</li>
+                                            <li class="ui-draggable common_question" index="5">个人月收入</li>
+                                            <li class="ui-draggable common_question" index="6">婚姻状况</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rows2">
+                                <div class="survey-title">
+                                    <div class="title-content edit-area" contenteditable="true" tabindex="1" style="background: rgb(255, 255, 255);">qweq</div>
+                                    <div class="error-tips error"></div>
+                                </div>
+                                <div class="survey-desc">
+                                    <div class="position-relative" style="width:100%">
+                                        <div class="desc-content edit-area" contenteditable="true" style="background: rgb(255, 255, 255);">欢迎参加调查！答卷数据仅用于统计分析，请放心填写。题目选项无对错之分，按照实际情况选择即可。感谢您的帮助！</div>
+                                        <div class="error-tips"></div>
+                                    </div>
+                                </div>
+                                <div id="question-box" class="ui-sortable">
+                                    <div class="question-box-init">点击左侧题型，以添加题目到此空白区域</div>
+                                </div>
+                                <div id="survey-tail">
+                                    <ul>
+                                        <li>
+                                            <div id="page-tail">页码：1/1</div>
+                                        </li>
+                                        <li style="height: 40px;">
+                                            <div id="survey-op" class="after-clear">
+                                                <div class="preview-survey dib vm mr10">
+                                                    <input type="button" class="bce-ui-button btn-lg" value="预览问卷" onclick="previewSurvey()">
+                                                </div>
+                                                <div class="bce-ui-button btn-lg bce-skin-primary-button op-next vm">下一步</div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="attach-layer attach-left"></div>
+                <div class="attach-layer attach-right"></div>
+
+
+                <script type="text/template" id="static_edit_logic_pop">
+                    <div class="logic-popup" id="elp" ng-app="ELPApp" ng-controller="ELPCtrl">
+                        <div class="logic-area">
+                            <div class="logic-area-title" ng-click="show_logic_items()">
+                                逻辑设置
+                                <span class="close">&times;</span>
+                            </div>
+                            <div class="logic-area-content">
+                                <div class="logic-relation-input-item" ng-repeat="logic_item in logic_items" style="margin: 10px 0 40px 0;">
+                                    <div style="margin: 20px 0; line-height: 30px;" ng-repeat="source_item in logic_item.source">
+                                        <span ng-show="$first" style="margin-left:15px;">如果 本题</span>
+                                        <select class="join-type-select logic_select" style="width: 77px;" ng-hide="$first" ng-model="source_item.join_type" ng-options="jtc.value as jtc.name for jtc in join_type_choices">
+                        </select>
+                                        <span style="width: 45px; display: inline-block;" ng-hide="$first">&nbsp;</span>
+                                        <select class="logic-question-select logic_select" style="width: 100px;margin: 0  0 0 10px;" ng-hide="$first" ng-model="source_item.question_id" ng-options="question.absolute_id as question.title for question in source_question_list | orderBy:'order' | rmBlankQuestion"
+                                            ng-change="source_question_change(source_item,logic_item)">
+                        </select>
+                                        <span class="logic-add-button" ng-show="$last && logic_item.source.length < MAX_SOURCE_COUNT && not_common_any_choice(source_item)" ng-click="add_logic_source(logic_item)"></span>
+                                        <span class="logic-empty-button" ng-hide="$last && logic_item.source.length < MAX_SOURCE_COUNT && not_common_any_choice(source_item)">&nbsp;</span>
+                                        <span class="logic-delete-button" ng-hide="$first" ng-click="del_logic_source(logic_item,source_item)"></span>
+                                        <span class="logic-empty-button" ng-show="$first">&nbsp;</span>
+                                        <span ng-hide="$first">&nbsp;</span>
+                                        <select class="logic-answer-select logic_select" style="float: right; width: 70px;" ng-model="source_item.select_type" ng-options="stc.value as stc.name for stc in source_item.select_types" ng-change="update_source_options(logic_item)">
+                        </select>
+                                        <span style="float: right;">为</span>
+                                        <select ng-show="$first" class="logic-choice-select logic_select" style="float: right; width: 215px;" ng-model="source_item.choice_id" ng-options="choice.choice_absolute_id as choice.content for choice in questions[source_item.question_id].choice | rmAnyChoice:source_item:logic_item:logic_items:questions"
+                                            ng-change="update_source_options(logic_item)">
+                        </select>
+                                        <select ng-hide="$first" class="logic-choice-select logic_select" style="float: right; width: 100px;margin: 0 10px 0 0;" ng-model="source_item.choice_id" ng-options="choice.choice_absolute_id as choice.content for choice in questions[source_item.question_id].choice | rmAnyChoice:source_item:logic_item:logic_items:questions"
+                                            ng-change="update_source_options(logic_item)">
+                        </select>
+                                    </div>
+                                    <span style="width: 30px; display: inline-block; margin-left: 160px; float: left;line-height: 30px;">则</span>
+                                    <select class="logic-tyoe-select logic_select" style="width: 100px; float: left;margin: 0 0 0 10px;" ng-model="logic_item.logic_type" ng-options="ltc.value as ltc.name for ltc in logic_item.logic_types" ng-change="update_logic_types(logic_item)">
+                    </select>
+                                    <div style="margin: 10px 0; line-height: 30px;" ng-repeat="target_question in logic_item.target">
+                                        <span style="display: inline-block;">&nbsp;</span>
+                                        <span class="logic-add-button" ng-show="$last && logic_item.target.length < MAX_TARGET_COUNT && logic_item.logic_type==2 && target_question.question_id>=0" ng-click="add_logic_target(logic_item)"> </span>
+                                        <span class="logic-empty-button" ng-hide="$last && logic_item.target.length < MAX_TARGET_COUNT && logic_item.logic_type==2 && target_question.question_id>=0"> &nbsp; </span>
+                                        <span class="logic-delete-button" style="float: right; width: 16px; height: 16px;" ng-click="del_logic_target(logic_item,target_question)"> </span>
+                                        <select class="logic-question-select logic_select" style="width: 170px; float: right;margin: 0 10px 0 0;" ng-model="target_question.question_id" ng-change="update_target_options(logic_item)" ng-options="question.absolute_id as question.title for question in target_question.questions | orderBy:'order' | rmEndTargetQuestion:logic_item:target_question">
+                        </select>
+                                    </div>
+                                </div>
+                                <div class="logic-add-button-area">
+                                    <span style="margin: 0; cursor: pointer; color: #3333bb;" ng-click="add_logic_item()" ng-show="logic_items.length < MAX_LOGIC_COUNT && logic_items[0].source[0].choice_id !== 0">+点击添加新逻辑</span>
+                                </div>
+                            </div>
+                            <div class="logic-area-button">
+                                <input type="button" class="dialog-button-survey button-confirm" value="确定" ng-click="saveLogic()"> &nbsp;
+                                <input type="button" class="dialog-button-survey button-cancel" value="取消">
+                            </div>
+                        </div>
+                        <div class="survey-mask"></div>
+                    </div>
+                </script>
+
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
