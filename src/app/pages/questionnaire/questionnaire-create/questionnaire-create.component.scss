@@ -114,7 +114,7 @@ img {
 .survey-nav-icon {
     width: 26px;
     height: 26px;
-    background: url(/static/home/img/survey/nav_step.png) no-repeat;
+    //background: url(/static/home/img/survey/nav_step.png) no-repeat;
     margin: 16px 5px 10px;
     text-align: center;
     line-height: 25px;
@@ -132,7 +132,7 @@ img {
     height: 2px;
     float: right;
     margin: 28px 0 0 5px;
-    background: url(/static/home/img/survey/nav_separator.png) no-repeat;
+    //background: url(/static/home/img/survey/nav_separator.png) no-repeat;
 }
 
 .after-clear:after {
@@ -178,14 +178,6 @@ img {
     position: relative;
 }
 
-.time-save {
-    background: #fdf9cd;
-    width: 150px;
-    height: 40px;
-    text-align: center;
-    line-height: 40px;
-}
-
 button,
 html input[type=button],
 input[type=reset],
@@ -216,7 +208,7 @@ input[type=submit] {
 }
 
 .select-question-title {
-    background: url(/static/home/img/survey/side_bar_show.png) no-repeat;
+    //background: url(/static/home/img/survey/side_bar_show.png) no-repeat;
 }
 
 .classify-title {
@@ -235,7 +227,7 @@ input[type=submit] {
     height: 36px;
     text-align: left;
     line-height: 36px;
-    background: url(/static/home/img/survey/question_logo.png) no-repeat;
+    //background: url(/static/home/img/survey/question_logo.png) no-repeat;
     padding-left: 15px;
 }
 
@@ -244,7 +236,7 @@ input[type=submit] {
 }
 
 .common-questions-title {
-    background: url(/static/home/img/survey/side_bar_hide.png) no-repeat;
+    //background: url(/static/home/img/survey/side_bar_hide.png) no-repeat;
     border-bottom: 0;
 }
 
