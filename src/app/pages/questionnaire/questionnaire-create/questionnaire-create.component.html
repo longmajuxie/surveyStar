@@ -401,6 +401,93 @@
                                         </div>
                                     </div>
                                     <!--矩阵多选题结束-->
+
+                                    <!--图片单选开始-->
+                                    <div class="topic-type-content topic-type-question after-clear">
+                                        <div class="question-title" type="14" name="radio-question"><span class="required">*</span><span class="question-id" order="10" page="1" index="9" absolute_id="13" question-required="Y" has_other="N" title-quote="N" choice-quote="0">Q9</span>
+                                            <div class="position-relative">
+                                                <div class="qs-content edit-area edit-title edit-area-active" tabindex="0" contenteditable="true" content-default="1" data-value="图片单选题" style="background: rgb(253, 249, 205); border: 1px solid rgb(51, 51, 51);">图片单选题</div>
+                                                <div class="survey-hide edit-img" contenteditable="false" style="width: 30px; display: block;">
+                                                    <ul>
+                                                        <li class="upload-element-img">
+                                                            <form class="upload-form" enctype="multipart/form-data" action="http://mtc.baidu.com/survey/home/uploadImg" method="post">
+                                                                <input type="file" class="upload-img" name="upload_img" title="图片" onchange="edit.uploadImg()">
+                                                                <div class="visibility-btn" title="图片"></div>
+                                                            </form>
+                                                        </li>
+                                                        <li class="handle-element handle-child-element" title="操作" onclick="edit.handleChildElement()" style="display: none;"></li>
+                                                        <li class="handle-element remove-child-element" title="删除" onclick="edit.removeChildElement()" style="display: none;"></li>
+                                                        <li class="handle-element up-child-element" title="上移" onclick="edit.upChildElement()" style="display: none;"></li>
+                                                        <li class="handle-element down-child-element" title="下移" onclick="edit.downChildElement()" style="display: none;"></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <ul class="question-choice"></ul>
+                                        <div class="add-area survey-question-upload-img-wrap" style="position: relative; left: 0px; top: 0px;">
+                                            <div class="survey-question-upload-img-btn">
+                                                <div class="survey-question-upload-img-inner"> <img src="/static/home/img/survey/template/upload-img-icon.png">
+                                                    <div class="survey-question-upload-img-inner-title">点击上传图片</div>
+                                                    <div class="survey-question-upload-img-inner-desc">最多可上传50张图片</div>
+                                                </div> <input type="file" class="survey-question-upload-img-file" name="upload_img" multiple=""> </div>
+                                        </div>
+                                        <div class="operate visible-show">
+                                            <ul>
+                                                <li class="drag-area" title="移动"></li>
+                                                <li class="set-logic" title="逻辑设置" onclick="setLogic(this)"></li>
+                                                <li class="question-copy" title="复制" onclick="edit.questionCopy(this)"></li>
+                                                <li class="question-handle" title="操作" onclick="edit.questionHandle(this)"></li>
+                                                <li class="question-delete" title="删除" onclick="edit.questionDelete(this)"></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!--图片单选结束-->
+
+                                    <!--图片多选开始-->
+                                    <div class="topic-type-content topic-type-question after-clear">
+                                        <div class="question-title" type="15" name="checkbox-question">
+                                            <span class="required">*</span><span class="question-id" order="10" page="1" index="10" absolute_id="14" question-required="Y" has_other="N" title-quote="N" choice-quote="0" min="" max="">Q10</span>
+                                            <div class="position-relative">
+                                                <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">图片多选题</div>
+                                            </div>
+                                        </div>
+                                        <ul class="question-choice"></ul>
+                                        <div class="add-area survey-question-upload-img-wrap" style="position: relative; left: 0px; top: 0px;">
+                                            <div class="survey-question-upload-img-btn">
+                                                <div class="survey-question-upload-img-inner"> <img src="/static/home/img/survey/template/upload-img-icon.png">
+                                                    <div class="survey-question-upload-img-inner-title">点击上传图片</div>
+                                                    <div class="survey-question-upload-img-inner-desc">最多可上传50张图片</div>
+                                                </div> <input type="file" class="survey-question-upload-img-file" name="upload_img" multiple=""> </div>
+                                        </div>
+                                        <div class="operate visible-show">
+                                            <ul>
+                                                <li class="drag-area" title="移动"></li>
+                                                <li class="set-logic" title="逻辑设置" onclick="setLogic(this)"></li>
+                                                <li class="question-copy" title="复制" onclick="edit.questionCopy(this)"></li>
+                                                <li class="question-handle" title="操作" onclick="edit.questionHandle(this)"></li>
+                                                <li class="question-delete" title="删除" onclick="edit.questionDelete(this)"></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!--图片多选结束-->
+
+                                    <!--描述说明开始-->
+                                    <div class="topic-type-content topic-type-question after-clear">
+                                        <div class="question-title" type="10" name="description"><span class="question-id" order="11" page="1" index="0" absolute_id="15" question-required="N" has_other="N"></span>
+                                            <div class="position-relative">
+                                                <div class="qs-content qs-high-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">描述说明</div>
+                                            </div>
+                                        </div>
+                                        <div class="operate visible-show" style="width: 141px;">
+                                            <ul>
+                                                <li class="drag-area" title="移动"></li>
+                                                <li class="question-copy" title="复制" onclick="edit.questionCopy(this)"></li>
+                                                <li class="question-delete" title="删除" onclick="edit.questionDelete(this)"></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!--描述说明结束-->
+
                                     <!--题目区域结束-->
                                 </div>
                                 <div id="survey-tail">
