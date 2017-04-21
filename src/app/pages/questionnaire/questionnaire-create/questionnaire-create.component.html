@@ -37,20 +37,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="survey-hide edit-img" contenteditable="false" style="display:none">
-                    <ul>
-                        <li class="upload-element-img">
-                            <form class="upload-form" enctype="multipart/form-data" action="http://mtc.baidu.com/survey/home/uploadImg" method="post">
-                                <input type="file" class="upload-img" name="upload_img" title="图片" onchange="edit.uploadImg()">
-                                <div class="visibility-btn" title="图片"></div>
-                            </form>
-                        </li>
-                        <li class="handle-element handle-child-element" title="操作" onclick="edit.handleChildElement()"></li>
-                        <li class="handle-element remove-child-element" title="删除" onclick="edit.removeChildElement()"></li>
-                        <li class="handle-element up-child-element" title="上移" onclick="edit.upChildElement()"></li>
-                        <li class="handle-element down-child-element" title="下移" onclick="edit.downChildElement()"></li>
-                    </ul>
-                </div>
 
                 <div class="survey-hide time-save survey-dialog">已实时保存</div>
 
@@ -67,16 +53,16 @@
                                     <div class="select-question">
                                         <div class="classify-title select-question-title">题型选择</div>
                                         <ul>
-                                            <li class="module ui-draggable" name="radio" style="background-position: 0px -4px;">单选题</li>
-                                            <li class="module ui-draggable" name="select" style="background-position: 0px -40px;">下拉选择题</li>
-                                            <li class="module ui-draggable" name="checkbox" style="background-position: 0px -76px;">多选题</li>
-                                            <li class="module ui-draggable" name="input" style="background-position: 0px -112px;">单行填空题</li>
-                                            <li class="module ui-draggable" name="multi-input" style="background-position: 0px -148px;">多行填空题</li>
-                                            <li class="module ui-draggable" name="radio-matrix" style="background-position: 0px -184px;">矩阵单选题</li>
-                                            <li class="module ui-draggable" name="checkbox-matrix" style="background-position: 0px -368px;">矩阵多选题</li>
-                                            <li class="module ui-draggable radio-img" name="radio-img">图片单选</li>
-                                            <li class="module ui-draggable checkbox-img" name="checkbox-img">图片多选</li>
-                                            <li class="module ui-draggable" name="desc" style="background-position: 0px -222px;">描述说明</li>
+                                            <li class="module ui-draggable" name="radio" style="background-position: 0px -4px;" (click)="addQuestion(0)">单选题</li>
+                                            <li class="module ui-draggable" name="select" style="background-position: 0px -40px;" (click)="addQuestion(1)">下拉选择题</li>
+                                            <li class="module ui-draggable" name="checkbox" style="background-position: 0px -76px;" (click)="addQuestion(2)">多选题</li>
+                                            <li class="module ui-draggable" name="input" style="background-position: 0px -112px;" (click)="addQuestion(3)">单行填空题</li>
+                                            <li class="module ui-draggable" name="multi-input" style="background-position: 0px -148px;" (click)="addQuestion(4)">多行填空题</li>
+                                            <li class="module ui-draggable" name="radio-matrix" style="background-position: 0px -184px;" (click)="addQuestion(5)">矩阵单选题</li>
+                                            <li class="module ui-draggable" name="checkbox-matrix" style="background-position: 0px -368px;" (click)="addQuestion(6)">矩阵多选题</li>
+                                            <li class="module ui-draggable radio-img" name="radio-img" (click)="addQuestion(7)">图片单选</li>
+                                            <li class="module ui-draggable checkbox-img" name="checkbox-img" (click)="addQuestion(8)">图片多选</li>
+                                            <li class="module ui-draggable" name="desc" style="background-position: 0px -222px;" (click)="addQuestion(9)">描述说明</li>
                                             <li class="module ui-draggable" name="page" style="background-position: 0px -328px;">分页符</li>
                                         </ul>
                                     </div>
@@ -96,7 +82,7 @@
                             </div>
                             <div class="rows2">
                                 <div class="survey-title">
-                                    <div class="title-content edit-area" contenteditable="true" tabindex="1" style="background: rgb(255, 255, 255);">qweq</div>
+                                    <input type="text" class="title-content edit-area" [(ngModel)]="qustionnaire.questionnaireTitle" placeholder="请输入问卷名" />{{ngModel}}
                                     <div class="error-tips error"></div>
                                 </div>
                                 <div class="survey-desc">
@@ -106,7 +92,7 @@
                                     </div>
                                 </div>
                                 <div id="question-box" class="ui-sortable">
-                                    <div class="question-box-init">点击左侧题型，以添加题目到此空白区域</div>
+                                    <div class="question-box-init" style="display:none">点击左侧题型，以添加题目到此空白区域</div>
                                     <!--题目区域开始-->
 
                                     <!--单选题开始-->

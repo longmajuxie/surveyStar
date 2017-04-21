@@ -1,7 +1,7 @@
 import { NgModule }      from '@angular/core';
 
 import { CommonModule }  from '@angular/common';
-
+import { FormsModule }    from '@angular/forms';
 import { routing }       from './questionnaire.routes';
 
 import { QuestionnaireComponent } from './questionnaire.component';
@@ -12,7 +12,7 @@ import { QuestionnaireCreateComponent } from './questionnaire-create/questionnai
 
 
 @NgModule({
-  imports: [CommonModule, routing],
+  imports: [CommonModule,FormsModule, routing],
   declarations: [
         QuestionnaireComponent,
         QuestionnaireListComponent,
