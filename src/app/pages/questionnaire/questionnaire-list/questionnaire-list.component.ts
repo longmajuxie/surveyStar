@@ -10,6 +10,7 @@ export class QuestionnaireListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }
