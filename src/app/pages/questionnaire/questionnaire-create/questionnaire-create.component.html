@@ -44,7 +44,7 @@
                     <div class="edit-survey-content">
                         <div class="navigation after-clear">
                             <div class="handle-survey after-clear">
-                                <input type="button" class="bce-ui-button" value="预览问卷" onclick="previewSurvey()">
+                                <input type="button" class="bce-ui-button" value="预览问卷" click="previewSurvey()">
                             </div>
                         </div>
                         <div id="edit-survey-content">
@@ -91,389 +91,371 @@
                                         <div class="error-tips"></div>
                                     </div>
                                 </div>
-                                <div id="question-box" class="ui-sortable">
-                                    <div class="question-box-init" style="display:none">点击左侧题型，以添加题目到此空白区域</div>
+                                <div class="question-box-init" [hidden]="qustionnaire.questionList.length!=0">点击左侧题型，以添加题目到此空白区域</div>
+                                <div id="question-box" class="ui-sortable" [dragula]='"another-bag"' [dragulaModel]='qustionnaire.questionList' [hidden]="qustionnaire.questionList.length==0">
                                     <!--题目区域开始-->
-
-                                    <!--单选题开始-->
-                                    <div class="topic-type-content topic-type-question after-clear">
-                                        <div class="question-title" type="6" name="radio-question"><span class="required">*</span><span class="question-id" order="2" page="1" index="1" absolute_id="5" question-required="Y" has_other="N" title-quote="N" choice-quote="0">Q1</span>
-                                            <div class="position-relative">
-                                                <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">单选题</div>
+                                    <div class="topic-type-content topic-type-question after-clear" *ngFor="let item of qustionnaire.questionList;let i = index;">
+                                        <!--单选题开始-->
+                                        <div *ngIf="item.questionGenre==0">
+                                            <div class="question-title" type="6" name="radio-question"><span class="required">*</span><span class="question-id" order="2" page="1" index="1" absolute_id="5" question-required="Y" has_other="N" title-quote="N" choice-quote="0">Q{{i+1}}</span>
+                                                <div class="position-relative">
+                                                    <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">单选题</div>
+                                                </div>
+                                            </div>
+                                            <ul class="question-choice">
+                                                <li class="choice" has_other="N" choice_absolute_id="1"><input type="radio" name="radio">
+                                                    <div class="position-relative">
+                                                        <div class="edit-area edit-child-element" contenteditable="true" content-default="1">选项1 </div>
+                                                    </div>
+                                                    <div class="option-tips"></div>
+                                                </li>
+                                                <li class="choice" has_other="N" choice_absolute_id="2"><input type="radio" name="radio">
+                                                    <div class="position-relative">
+                                                        <div class="edit-area edit-child-element" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">选项2 </div>
+                                                    </div>
+                                                    <div class="option-tips"></div>
+                                                </li>
+                                            </ul>
+                                            <div class="add-area visible-show">
+                                                <ul>
+                                                    <li class="add-choice" title="增加" click="edit.addQuestion(this)"><i class="fa fa-plus-square-o" aria-hidden="true"></i></li>
+                                                </ul>
+                                            </div>
+                                            <div class="operate visible-show">
+                                                <ul>
+                                                    <li class="drag-area" title="移动" (click)="questionDrag(this)"><i class="fa fa-arrows-alt" aria-hidden="true"></i></li>
+                                                    <li class="question-handle" title="操作" (click)="questionHandle(i)"><i class="fa fa-align-justify" aria-hidden="true"></i></li>
+                                                    <li class="question-delete" title="删除" (click)="questionDelete(i)"><i class="fa fa-trash" aria-hidden="true"></i></li>
+                                                </ul>
                                             </div>
                                         </div>
-                                        <ul class="question-choice">
-                                            <li class="choice" has_other="N" choice_absolute_id="1"><input type="radio" name="radio">
-                                                <div class="position-relative">
-                                                    <div class="edit-area edit-child-element" contenteditable="true" content-default="1">选项1 </div>
-                                                </div>
-                                                <div class="option-tips"></div>
-                                            </li>
-                                            <li class="choice" has_other="N" choice_absolute_id="2"><input type="radio" name="radio">
-                                                <div class="position-relative">
-                                                    <div class="edit-area edit-child-element" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">选项2 </div>
-                                                </div>
-                                                <div class="option-tips"></div>
-                                            </li>
-                                        </ul>
-                                        <div class="add-area visible-show">
-                                            <ul>
-                                                <li class="add-choice" title="增加" onclick="edit.addQuestion(this)"></li>
-                                                <li class="batch-add-choice" title="批量增加" onclick="edit.batchAddChoice(this)"></li>
-                                            </ul>
-                                        </div>
-                                        <div class="operate visible-show">
-                                            <ul>
-                                                <li class="drag-area" title="移动"></li>
-                                                <li class="set-logic" title="逻辑设置" onclick="setLogic(this)"></li>
-                                                <li class="question-copy" title="复制" onclick="edit.questionCopy(this)"></li>
-                                                <li class="question-handle" title="操作" onclick="edit.questionHandle(this)"></li>
-                                                <li class="question-delete" title="删除" onclick="edit.questionDelete(this)"></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!--单选题结束-->
+                                        <!--单选题结束-->
 
-                                    <!--下拉选择题开始-->
-                                    <div class="topic-type-content topic-type-question after-clear">
-                                        <div class="question-title" type="7" name="select-question">
-                                            <span class="required">*</span>
-                                            <span class="question-id" order="3" page="1" index="2" absolute_id="6" question-required="Y" has_other="N" title-quote="N" choice-quote="0">Q2</span>
-                                            <div class="position-relative">
-                                                <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true">选择列表</div>
+                                        <!--下拉选择题开始-->
+                                        <div *ngIf="item.questionGenre==1">
+                                            <div class="question-title" type="7" name="select-question">
+                                                <span class="required">*</span>
+                                                <span class="question-id" order="3" page="1" index="2" absolute_id="6" question-required="Y" has_other="N" title-quote="N" choice-quote="0">Q{{i+1}}</span>
+                                                <div class="position-relative">
+                                                    <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true">选择列表</div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <select class="question-choice" style="  padding: 0;margin: 15px 0 20px 35px;">
-                                        <option class="choice" has_other="N" choice_absolute_id="1">选项1</option>
+                                            <select class="question-choice" style="  padding: 0;margin: 15px 0 20px 35px;">
+                                             <option class="choice" has_other="N" choice_absolute_id="1">选项1</option>
                                             <option class="choice" has_other="N" choice_absolute_id="2">选项2</option>
                                             <option class="choice" has_other="N" choice_absolute_id="3">选项3</option></select>
-                                        <span class="edit-select" style="  width: 60%;display: inline-block;line-height: 30px;" onclick="edit.editSelect(this)">编辑选项</span>
-                                        <div class="operate visible-hide">
-                                            <ul>
-                                                <li class="drag-area" title="移动"></li>
-                                                <li class="set-logic" title="逻辑设置" onclick="setLogic(this)"></li>
-                                                <li class="question-copy" title="复制" onclick="edit.questionCopy(this)"></li>
-                                                <li class="question-handle" title="操作" onclick="edit.questionHandle(this)"></li>
-                                                <li class="question-delete" title="删除" onclick="edit.questionDelete(this)"></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!--下拉选择题结束-->
-
-                                    <!--多选题开始-->
-                                    <div class="topic-type-content topic-type-question after-clear">
-                                        <div class="question-title" type="8" name="checkbox-question"><span class="required">*</span>
-                                            <span class="question-id" order="4" page="1" index="3" absolute_id="7" question-required="Y" has_other="N" title-quote="N" choice-quote="0" min="" max="" exclusive-options="">Q3</span>
-                                            <div class="position-relative">
-                                                <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">多选题</div>
+                                            <span class="edit-select" style="  width: 60%;display: inline-block;line-height: 30px;" click="edit.editSelect(this)">编辑选项</span>
+                                            <div class="operate visible-show">
+                                                <ul>
+                                                    <li class="drag-area" title="移动"><i class="fa fa-arrows-alt" aria-hidden="true"></i></li>
+                                                    <li class="question-handle" title="操作" (click)="questionHandle(i)"><i class="fa fa-align-justify" aria-hidden="true"></i></li>
+                                                    <li class="question-delete" title="删除" (click)="questionDelete(i)"><i class="fa fa-trash" aria-hidden="true"></i></li>
+                                                </ul>
                                             </div>
                                         </div>
-                                        <ul class="question-choice">
-                                            <li class="choice" has_other="N" choice_absolute_id="1"><input type="checkbox" name="checkbox">
+                                        <!--下拉选择题结束-->
+
+                                        <!--多选题开始-->
+                                        <div *ngIf="item.questionGenre==2">
+                                            <div class="question-title" type="8" name="checkbox-question"><span class="required">*</span>
+                                                <span class="question-id" order="4" page="1" index="3" absolute_id="7" question-required="Y" has_other="N" title-quote="N" choice-quote="0" min="" max="" exclusive-options="">Q{{i+1}}</span>
                                                 <div class="position-relative">
-                                                    <div class="edit-area edit-child-element" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">选项1 </div>
+                                                    <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">多选题</div>
                                                 </div>
-                                                <div class="option-tips"></div>
-                                            </li>
-                                            <li class="choice" has_other="N" choice_absolute_id="2"><input type="checkbox" name="checkbox">
+                                            </div>
+                                            <ul class="question-choice">
+                                                <li class="choice" has_other="N" choice_absolute_id="1"><input type="checkbox" name="checkbox">
+                                                    <div class="position-relative">
+                                                        <div class="edit-area edit-child-element" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">选项1 </div>
+                                                    </div>
+                                                    <div class="option-tips"></div>
+                                                </li>
+                                                <li class="choice" has_other="N" choice_absolute_id="2"><input type="checkbox" name="checkbox">
+                                                    <div class="position-relative">
+                                                        <div class="edit-area edit-child-element" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">选项2 </div>
+                                                    </div>
+                                                    <div class="option-tips"></div>
+                                                </li>
+                                            </ul>
+                                            <div class="add-area visible-show">
+                                                <ul>
+                                                    <li class="add-choice" title="增加" click="edit.addQuestion(this)">
+                                                        <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="operate visible-show">
+                                                <ul>
+                                                    <li class="drag-area" title="移动"><i class="fa fa-arrows-alt" aria-hidden="true"></i></li>
+                                                    <li class="question-handle" title="操作" (click)="questionHandle(i)"><i class="fa fa-align-justify" aria-hidden="true"></i></li>
+                                                    <li class="question-delete" title="删除" (click)="questionDelete(i)"><i class="fa fa-trash" aria-hidden="true"></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!--多选题结束-->
+
+                                        <!--单行填空题开始-->
+                                        <div *ngIf="item.questionGenre==3">
+                                            <div class="question-title" type="1" name="input-question"><span class="required">*</span>
+                                                <span class="question-id" order="5" page="1" index="4" absolute_id="8" question-required="Y" has_other="N" title-quote="N">Q{{i+1}}</span>
                                                 <div class="position-relative">
-                                                    <div class="edit-area edit-child-element" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">选项2 </div>
-                                                </div>
-                                                <div class="option-tips"></div>
-                                            </li>
-                                        </ul>
-                                        <div class="add-area visible-show">
-                                            <ul>
-                                                <li class="add-choice" title="增加" onclick="edit.addQuestion(this)"></li>
-                                                <li class="batch-add-choice" title="批量增加" onclick="edit.batchAddChoice(this)"></li>
-                                            </ul>
-                                        </div>
-                                        <div class="operate visible-show">
-                                            <ul>
-                                                <li class="drag-area" title="移动"></li>
-                                                <li class="set-logic" title="逻辑设置" onclick="setLogic(this)"></li>
-                                                <li class="question-copy" title="复制" onclick="edit.questionCopy(this)"></li>
-                                                <li class="question-handle" title="操作" onclick="edit.questionHandle(this)"></li>
-                                                <li class="question-delete" title="删除" onclick="edit.questionDelete(this)"></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!--多选题结束-->
-
-                                    <!--单行填空题开始-->
-                                    <div class="topic-type-content topic-type-question after-clear">
-                                        <div class="question-title" type="1" name="input-question"><span class="required">*</span>
-                                            <span class="question-id" order="5" page="1" index="4" absolute_id="8" question-required="Y" has_other="N" title-quote="N">Q4</span>
-                                            <div class="position-relative">
-                                                <div class="qs-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">单行填空题</div>
-                                            </div>
-                                        </div>
-                                        <ul class="question-choice">
-                                            <li><input type="text" name="input" class="input-single"></li>
-                                        </ul>
-                                        <div class="operate visible-show" style="width: 240px;">
-                                            <ul>
-                                                <li class="drag-area" title="移动"></li>
-                                                <li class="set-logic" title="逻辑设置" onclick="setLogic(this)"></li>
-                                                <li class="question-copy" title="复制" onclick="edit.questionCopy(this)"></li>
-                                                <li class="question-handle" title="操作" onclick="edit.questionHandle(this)"></li>
-                                                <li class="question-delete" title="删除" onclick="edit.questionDelete(this)"></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!--单行填空题结束-->
-
-                                    <!--多行填空题开始-->
-                                    <div class="topic-type-content topic-type-question after-clear">
-                                        <div class="question-title" type="1" name="input-question">
-                                            <span class="required">*</span>
-                                            <span class="question-id" order="5" page="1" index="4" absolute_id="8" question-required="Y" has_other="N" title-quote="N">Q4</span>
-                                            <div class="position-relative">
-                                                <div class="qs-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">单行填空题</div>
-                                            </div>
-                                        </div>
-                                        <ul class="question-choice">
-                                            <li><input type="text" name="input" class="input-single"></li>
-                                        </ul>
-                                        <div class="operate visible-show" style="width: 240px;">
-                                            <ul>
-                                                <li class="drag-area" title="移动"></li>
-                                                <li class="set-logic" title="逻辑设置" onclick="setLogic(this)"></li>
-                                                <li class="question-copy" title="复制" onclick="edit.questionCopy(this)"></li>
-                                                <li class="question-handle" title="操作" onclick="edit.questionHandle(this)"></li>
-                                                <li class="question-delete" title="删除" onclick="edit.questionDelete(this)"></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!--多行填空题结束-->
-
-                                    <!--矩阵单选题开始-->
-                                    <div class="topic-type-content topic-type-question after-clear">
-                                        <div class="question-title" type="9" name="radio-matrix-question"><span class="required">*</span><span class="question-id" order="8" page="1" index="7" absolute_id="11" question-required="Y" has_other="N" title-quote="N">Q7</span>
-                                            <div class="position-relative">
-                                                <div class="qs-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">矩阵单选题</div>
-                                            </div>
-                                        </div>
-                                        <ul class="question-choice" style="float:left;width: 700px;">
-                                            <li class="auto-height">
-                                                <table style="border-collapse: collapse;">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>&nbsp;</td>
-                                                            <td name="radio-matrix-choice">
-                                                                <div class="position-relative" style="width:100%">
-                                                                    <li class="choice edit-area matrix-choice" has_other="N" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">选项1</li>
-                                                                </div>
-                                                            </td>
-                                                            <td name="radio-matrix-choice">
-                                                                <div class="position-relative" style="width:100%">
-                                                                    <li class="choice edit-area matrix-choice" has_other="N" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">选项2</li>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="radio_array_title" name="radio-matrix">
-                                                                <div class="position-relative" style="width:100%">
-                                                                    <div class="edit-area edit-child-element" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">矩阵行1</div>
-                                                                </div>
-                                                            </td>
-                                                            <td><input type="radio"></td>
-                                                            <td><input type="radio"></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="radio_array_title" name="radio-matrix">
-                                                                <div class="position-relative" style="width:100%">
-                                                                    <div class="edit-area edit-child-element" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">矩阵行2</div>
-                                                                </div>
-                                                            </td>
-                                                            <td><input type="radio"></td>
-                                                            <td><input type="radio"></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </li>
-                                        </ul>
-                                        <div class="add-area visible-hide" style="width: 34px; margin: 0px 0 0 46px;" choice="Y">
-                                            <ul>
-                                                <li class="add-choice" onclick="edit.addQuestion(this)"></li>
-                                                <li class="batch-add-choice" style="margin-top: 14px;" onclick="edit.batchAddChoice(this)"></li>
-                                            </ul>
-                                        </div>
-                                        <div class="add-area visible-hide" choice="N">
-                                            <ul>
-                                                <li class="add-choice" onclick="edit.addQuestion(this)"></li>
-                                                <li class="batch-add-choice" onclick="edit.batchAddChoice(this)"></li>
-                                            </ul>
-                                        </div>
-                                        <div class="operate visible-hide" style="width: 240px;">
-                                            <ul>
-                                                <li class="drag-area" title="移动"></li>
-                                                <li class="set-logic" title="逻辑设置" onclick="setLogic(this)"></li>
-                                                <li class="question-copy" title="复制" onclick="edit.questionCopy(this)"></li>
-                                                <li class="question-handle" title="操作" onclick="edit.questionHandle(this)"></li>
-                                                <li class="question-delete" title="删除" onclick="edit.questionDelete(this)"></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!--矩阵单选题结束-->
-
-                                    <!--矩阵多选题开始-->
-                                    <div class="topic-type-content topic-type-question after-clear">
-                                        <div class="question-title" type="13" name="checkbox-matrix-question"><span class="required">*</span>
-                                            <span class="question-id" order="9" page="1" index="8" absolute_id="12" question-required="Y" has_other="N" title-quote="N">Q8</span>
-                                            <div class="position-relative">
-                                                <div class="qs-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">矩阵多选题</div>
-                                            </div>
-                                        </div>
-                                        <ul class="question-choice" style="float:left;width: 700px;">
-                                            <li class="auto-height">
-                                                <table style="border-collapse: collapse;">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>&nbsp;</td>
-                                                            <td name="checkbox-matrix-choice">
-                                                                <div class="position-relative" style="width:100%">
-                                                                    <li class="choice edit-area matrix-choice" has_other="N" contenteditable="true" content-default="1">选项1</li>
-                                                                </div>
-                                                            </td>
-                                                            <td name="checkbox-matrix-choice">
-                                                                <div class="position-relative" style="width:100%">
-                                                                    <li class="choice edit-area matrix-choice" has_other="N" contenteditable="true" content-default="1">选项2</li>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="checkbox_array_title" name="checkbox-matrix">
-                                                                <div class="position-relative" style="width:100%">
-                                                                    <div class="edit-area edit-child-element" contenteditable="true" content-default="1">矩阵行1</div>
-                                                                </div>
-                                                            </td>
-                                                            <td><input type="checkbox"></td>
-                                                            <td><input type="checkbox"></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="checkbox_array_title" name="checkbox-matrix">
-                                                                <div class="position-relative" style="width:100%">
-                                                                    <div class="edit-area edit-child-element" contenteditable="true" content-default="1">矩阵行2</div>
-                                                                </div>
-                                                            </td>
-                                                            <td><input type="checkbox"></td>
-                                                            <td><input type="checkbox"></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </li>
-                                        </ul>
-                                        <div class="add-area visible-show" style="width: 34px; margin: 0px 0 0 46px;" choice="Y">
-                                            <ul>
-                                                <li class="add-choice" onclick="edit.addQuestion(this)"></li>
-                                                <li class="batch-add-choice" style="margin-top: 14px;" onclick="edit.batchAddChoice(this)"></li>
-                                            </ul>
-                                        </div>
-                                        <div class="add-area visible-show" choice="N">
-                                            <ul>
-                                                <li class="add-choice" onclick="edit.addQuestion(this)"></li>
-                                                <li class="batch-add-choice" onclick="edit.batchAddChoice(this)"></li>
-                                            </ul>
-                                        </div>
-                                        <div class="operate visible-show" style="width: 240px;">
-                                            <ul>
-                                                <li class="drag-area" title="移动"></li>
-                                                <li class="set-logic" title="逻辑设置" onclick="setLogic(this)"></li>
-                                                <li class="question-copy" title="复制" onclick="edit.questionCopy(this)"></li>
-                                                <li class="question-handle" title="操作" onclick="edit.questionHandle(this)"></li>
-                                                <li class="question-delete" title="删除" onclick="edit.questionDelete(this)"></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!--矩阵多选题结束-->
-
-                                    <!--图片单选开始-->
-                                    <div class="topic-type-content topic-type-question after-clear">
-                                        <div class="question-title" type="14" name="radio-question"><span class="required">*</span><span class="question-id" order="10" page="1" index="9" absolute_id="13" question-required="Y" has_other="N" title-quote="N" choice-quote="0">Q9</span>
-                                            <div class="position-relative">
-                                                <div class="qs-content edit-area edit-title edit-area-active" tabindex="0" contenteditable="true" content-default="1" data-value="图片单选题" style="background: rgb(253, 249, 205); border: 1px solid rgb(51, 51, 51);">图片单选题</div>
-                                                <div class="survey-hide edit-img" contenteditable="false" style="width: 30px; display: block;">
-                                                    <ul>
-                                                        <li class="upload-element-img">
-                                                            <form class="upload-form" enctype="multipart/form-data" action="http://mtc.baidu.com/survey/home/uploadImg" method="post">
-                                                                <input type="file" class="upload-img" name="upload_img" title="图片" onchange="edit.uploadImg()">
-                                                                <div class="visibility-btn" title="图片"></div>
-                                                            </form>
-                                                        </li>
-                                                        <li class="handle-element handle-child-element" title="操作" onclick="edit.handleChildElement()" style="display: none;"></li>
-                                                        <li class="handle-element remove-child-element" title="删除" onclick="edit.removeChildElement()" style="display: none;"></li>
-                                                        <li class="handle-element up-child-element" title="上移" onclick="edit.upChildElement()" style="display: none;"></li>
-                                                        <li class="handle-element down-child-element" title="下移" onclick="edit.downChildElement()" style="display: none;"></li>
-                                                    </ul>
+                                                    <div class="qs-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">单行填空题</div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <ul class="question-choice"></ul>
-                                        <div class="add-area survey-question-upload-img-wrap" style="position: relative; left: 0px; top: 0px;">
-                                            <div class="survey-question-upload-img-btn">
-                                                <div class="survey-question-upload-img-inner"> <img src="/static/home/img/survey/template/upload-img-icon.png">
-                                                    <div class="survey-question-upload-img-inner-title">点击上传图片</div>
-                                                    <div class="survey-question-upload-img-inner-desc">最多可上传50张图片</div>
-                                                </div> <input type="file" class="survey-question-upload-img-file" name="upload_img" multiple=""> </div>
-                                        </div>
-                                        <div class="operate visible-show">
-                                            <ul>
-                                                <li class="drag-area" title="移动"></li>
-                                                <li class="set-logic" title="逻辑设置" onclick="setLogic(this)"></li>
-                                                <li class="question-copy" title="复制" onclick="edit.questionCopy(this)"></li>
-                                                <li class="question-handle" title="操作" onclick="edit.questionHandle(this)"></li>
-                                                <li class="question-delete" title="删除" onclick="edit.questionDelete(this)"></li>
+                                            <ul class="question-choice">
+                                                <li><input type="text" name="input" class="input-single"></li>
                                             </ul>
-                                        </div>
-                                    </div>
-                                    <!--图片单选结束-->
-
-                                    <!--图片多选开始-->
-                                    <div class="topic-type-content topic-type-question after-clear">
-                                        <div class="question-title" type="15" name="checkbox-question">
-                                            <span class="required">*</span><span class="question-id" order="10" page="1" index="10" absolute_id="14" question-required="Y" has_other="N" title-quote="N" choice-quote="0" min="" max="">Q10</span>
-                                            <div class="position-relative">
-                                                <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">图片多选题</div>
+                                            <div class="operate visible-show">
+                                                <ul>
+                                                    <li class="drag-area" title="移动"><i class="fa fa-arrows-alt" aria-hidden="true"></i></li>
+                                                    <li class="question-handle" title="操作" (click)="questionHandle(i)"><i class="fa fa-align-justify" aria-hidden="true"></i></li>
+                                                    <li class="question-delete" title="删除" (click)="questionDelete(i)"><i class="fa fa-trash" aria-hidden="true"></i></li>
+                                                </ul>
                                             </div>
                                         </div>
-                                        <ul class="question-choice"></ul>
-                                        <div class="add-area survey-question-upload-img-wrap" style="position: relative; left: 0px; top: 0px;">
-                                            <div class="survey-question-upload-img-btn">
-                                                <div class="survey-question-upload-img-inner"> <img src="/static/home/img/survey/template/upload-img-icon.png">
-                                                    <div class="survey-question-upload-img-inner-title">点击上传图片</div>
-                                                    <div class="survey-question-upload-img-inner-desc">最多可上传50张图片</div>
-                                                </div> <input type="file" class="survey-question-upload-img-file" name="upload_img" multiple=""> </div>
-                                        </div>
-                                        <div class="operate visible-show">
-                                            <ul>
-                                                <li class="drag-area" title="移动"></li>
-                                                <li class="set-logic" title="逻辑设置" onclick="setLogic(this)"></li>
-                                                <li class="question-copy" title="复制" onclick="edit.questionCopy(this)"></li>
-                                                <li class="question-handle" title="操作" onclick="edit.questionHandle(this)"></li>
-                                                <li class="question-delete" title="删除" onclick="edit.questionDelete(this)"></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!--图片多选结束-->
+                                        <!--单行填空题结束-->
 
-                                    <!--描述说明开始-->
-                                    <div class="topic-type-content topic-type-question after-clear">
-                                        <div class="question-title" type="10" name="description"><span class="question-id" order="11" page="1" index="0" absolute_id="15" question-required="N" has_other="N"></span>
-                                            <div class="position-relative">
-                                                <div class="qs-content qs-high-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">描述说明</div>
+                                        <!--多行填空题开始-->
+                                        <div *ngIf="item.questionGenre==4">
+                                            <div class="question-title" type="1" name="input-question">
+                                                <span class="required">*</span>
+                                                <span class="question-id" order="5" page="1" index="4" absolute_id="8" question-required="Y" has_other="N" title-quote="N">Q{{i+1}}</span>
+                                                <div class="position-relative">
+                                                    <div class="qs-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">多行填空题</div>
+                                                </div>
+                                            </div>
+                                            <ul class="question-choice">
+                                                <li class="auto-height"><textarea name="multi-input" class="multi-input"></textarea></li>
+                                            </ul>
+                                            <div class="operate visible-show">
+                                                <ul>
+                                                    <li class="drag-area" title="移动"><i class="fa fa-arrows-alt" aria-hidden="true"></i></li>
+                                                    <li class="question-handle" title="操作" (click)="questionHandle(i)"><i class="fa fa-align-justify" aria-hidden="true"></i></li>
+                                                    <li class="question-delete" title="删除" (click)="questionDelete(i)"><i class="fa fa-trash" aria-hidden="true"></i></li>
+                                                </ul>
                                             </div>
                                         </div>
-                                        <div class="operate visible-show" style="width: 141px;">
-                                            <ul>
-                                                <li class="drag-area" title="移动"></li>
-                                                <li class="question-copy" title="复制" onclick="edit.questionCopy(this)"></li>
-                                                <li class="question-delete" title="删除" onclick="edit.questionDelete(this)"></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!--描述说明结束-->
+                                        <!--多行填空题结束-->
 
+                                        <!--矩阵单选题开始-->
+                                        <div *ngIf="item.questionGenre==5">
+                                            <div class="question-title" type="9" name="radio-matrix-question"><span class="required">*</span><span class="question-id" order="8" page="1" index="7" absolute_id="11" question-required="Y" has_other="N" title-quote="N">Q{{i+1}}</span>
+                                                <div class="position-relative">
+                                                    <div class="qs-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">矩阵单选题</div>
+                                                </div>
+                                            </div>
+                                            <ul class="question-choice" style="float:left;width: 700px;">
+                                                <li class="auto-height">
+                                                    <table style="border-collapse: collapse;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>&nbsp;</td>
+                                                                <td name="radio-matrix-choice">
+                                                                    <div class="position-relative" style="width:100%">
+                                                                        <li class="choice edit-area matrix-choice" has_other="N" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">选项1</li>
+                                                                    </div>
+                                                                </td>
+                                                                <td name="radio-matrix-choice">
+                                                                    <div class="position-relative" style="width:100%">
+                                                                        <li class="choice edit-area matrix-choice" has_other="N" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">选项2</li>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="radio_array_title" name="radio-matrix">
+                                                                    <div class="position-relative" style="width:100%">
+                                                                        <div class="edit-area edit-child-element" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">矩阵行1</div>
+                                                                    </div>
+                                                                </td>
+                                                                <td><input type="radio"></td>
+                                                                <td><input type="radio"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="radio_array_title" name="radio-matrix">
+                                                                    <div class="position-relative" style="width:100%">
+                                                                        <div class="edit-area edit-child-element" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">矩阵行2</div>
+                                                                    </div>
+                                                                </td>
+                                                                <td><input type="radio"></td>
+                                                                <td><input type="radio"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </li>
+                                            </ul>
+                                            <div class="add-area visible-hide" style="width: 34px; margin: 0px 0 0 46px;" choice="Y">
+                                                <ul>
+                                                    <li class="add-choice" click="edit.addQuestion(this)"></li>
+                                                    <li class="batch-add-choice" style="margin-top: 14px;" click="edit.batchAddChoice(this)"></li>
+                                                </ul>
+                                            </div>
+                                            <div class="add-area visible-hide" choice="N">
+                                                <ul>
+                                                    <li class="add-choice" click="edit.addQuestion(this)"></li>
+                                                    <li class="batch-add-choice" click="edit.batchAddChoice(this)"></li>
+                                                </ul>
+                                            </div>
+                                            <div class="operate visible-show">
+                                                <ul>
+                                                    <li class="drag-area" title="移动"><i class="fa fa-arrows-alt" aria-hidden="true"></i></li>
+                                                    <li class="question-handle" title="操作" (click)="questionHandle(i)"><i class="fa fa-align-justify" aria-hidden="true"></i></li>
+                                                    <li class="question-delete" title="删除" (click)="questionDelete(i)"><i class="fa fa-trash" aria-hidden="true"></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!--矩阵单选题结束-->
+
+                                        <!--矩阵多选题开始-->
+                                        <div *ngIf="item.questionGenre==6">
+                                            <div class="question-title" type="13" name="checkbox-matrix-question"><span class="required">*</span>
+                                                <span class="question-id" order="9" page="1" index="8" absolute_id="12" question-required="Y" has_other="N" title-quote="N">Q{{i+1}}</span>
+                                                <div class="position-relative">
+                                                    <div class="qs-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">矩阵多选题</div>
+                                                </div>
+                                            </div>
+                                            <ul class="question-choice" style="float:left;width: 700px;">
+                                                <li class="auto-height">
+                                                    <table style="border-collapse: collapse;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>&nbsp;</td>
+                                                                <td name="checkbox-matrix-choice">
+                                                                    <div class="position-relative" style="width:100%">
+                                                                        <li class="choice edit-area matrix-choice" has_other="N" contenteditable="true" content-default="1">选项1</li>
+                                                                    </div>
+                                                                </td>
+                                                                <td name="checkbox-matrix-choice">
+                                                                    <div class="position-relative" style="width:100%">
+                                                                        <li class="choice edit-area matrix-choice" has_other="N" contenteditable="true" content-default="1">选项2</li>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="checkbox_array_title" name="checkbox-matrix">
+                                                                    <div class="position-relative" style="width:100%">
+                                                                        <div class="edit-area edit-child-element" contenteditable="true" content-default="1">矩阵行1</div>
+                                                                    </div>
+                                                                </td>
+                                                                <td><input type="checkbox"></td>
+                                                                <td><input type="checkbox"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="checkbox_array_title" name="checkbox-matrix">
+                                                                    <div class="position-relative" style="width:100%">
+                                                                        <div class="edit-area edit-child-element" contenteditable="true" content-default="1">矩阵行2</div>
+                                                                    </div>
+                                                                </td>
+                                                                <td><input type="checkbox"></td>
+                                                                <td><input type="checkbox"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </li>
+                                            </ul>
+                                            <div class="add-area visible-show" style="width: 34px; margin: 0px 0 0 46px;" choice="Y">
+                                                <ul>
+                                                    <li class="add-choice" click="edit.addQuestion(this)"></li>
+                                                    <li class="batch-add-choice" style="margin-top: 14px;" click="edit.batchAddChoice(this)"></li>
+                                                </ul>
+                                            </div>
+                                            <div class="add-area visible-show" choice="N">
+                                                <ul>
+                                                    <li class="add-choice" click="edit.addQuestion(this)"></li>
+                                                    <li class="batch-add-choice" click="edit.batchAddChoice(this)"></li>
+                                                </ul>
+                                            </div>
+                                            <div class="operate visible-show">
+                                                <ul>
+                                                    <li class="drag-area" title="移动"><i class="fa fa-arrows-alt" aria-hidden="true"></i></li>
+                                                    <li class="question-handle" title="操作" (click)="questionHandle(i)"><i class="fa fa-align-justify" aria-hidden="true"></i></li>
+                                                    <li class="question-delete" title="删除" (click)="questionDelete(i)"><i class="fa fa-trash" aria-hidden="true"></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!--矩阵多选题结束-->
+
+                                        <!--图片单选开始-->
+                                        <div *ngIf="item.questionGenre==7">
+                                            <div class="question-title" type="14" name="radio-question"><span class="required">*</span><span class="question-id" order="10" page="1" index="9" absolute_id="13" question-required="Y" has_other="N" title-quote="N" choice-quote="0">Q{{i+1}}</span>
+                                                <div class="position-relative">
+                                                    <div class="qs-content edit-area edit-title edit-area-active" tabindex="0" contenteditable="true" content-default="1" data-value="图片单选题" style="background: rgb(253, 249, 205); border: 1px solid rgb(51, 51, 51);">图片单选题</div>
+                                                    <div class="survey-hide edit-img" contenteditable="false" style="width: 30px; display: block;">
+                                                        <ul>
+                                                            <li class="upload-element-img">
+                                                                <form class="upload-form" enctype="multipart/form-data" action="http://mtc.baidu.com/survey/home/uploadImg" method="post">
+                                                                    <input type="file" class="upload-img" name="upload_img" title="图片" onchange="edit.uploadImg()">
+                                                                    <div class="visibility-btn" title="图片"></div>
+                                                                </form>
+                                                            </li>
+                                                            <li class="handle-element handle-child-element" title="操作" click="edit.handleChildElement()" style="display: none;"></li>
+                                                            <li class="handle-element remove-child-element" title="删除" click="edit.removeChildElement()" style="display: none;"></li>
+                                                            <li class="handle-element up-child-element" title="上移" click="edit.upChildElement()" style="display: none;"></li>
+                                                            <li class="handle-element down-child-element" title="下移" click="edit.downChildElement()" style="display: none;"></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <ul class="question-choice"></ul>
+                                            <div class="add-area survey-question-upload-img-wrap" style="position: relative; left: 0px; top: 0px;">
+                                                <div class="survey-question-upload-img-btn">
+                                                    <div class="survey-question-upload-img-inner"> <img src="/static/home/img/survey/template/upload-img-icon.png">
+                                                        <div class="survey-question-upload-img-inner-title">点击上传图片</div>
+                                                        <div class="survey-question-upload-img-inner-desc">最多可上传50张图片</div>
+                                                    </div> <input type="file" class="survey-question-upload-img-file" name="upload_img" multiple=""> </div>
+                                            </div>
+                                            <div class="operate visible-show">
+                                                <ul>
+                                                    <li class="drag-area" title="移动"><i class="fa fa-arrows-alt" aria-hidden="true"></i></li>
+                                                    <li class="question-handle" title="操作" (click)="questionHandle(i)"><i class="fa fa-align-justify" aria-hidden="true"></i></li>
+                                                    <li class="question-delete" title="删除" (click)="questionDelete(i)"><i class="fa fa-trash" aria-hidden="true"></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!--图片单选结束-->
+
+                                        <!--图片多选开始-->
+                                        <div *ngIf="item.questionGenre==8">
+                                            <div class="question-title" type="15" name="checkbox-question">
+                                                <span class="required">*</span><span class="question-id" order="10" page="1" index="10" absolute_id="14" question-required="Y" has_other="N" title-quote="N" choice-quote="0" min="" max="">Q{{i+1}}</span>
+                                                <div class="position-relative">
+                                                    <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">图片多选题</div>
+                                                </div>
+                                            </div>
+                                            <ul class="question-choice"></ul>
+                                            <div class="add-area survey-question-upload-img-wrap" style="position: relative; left: 0px; top: 0px;">
+                                                <div class="survey-question-upload-img-btn">
+                                                    <div class="survey-question-upload-img-inner"> <img src="/static/home/img/survey/template/upload-img-icon.png">
+                                                        <div class="survey-question-upload-img-inner-title">点击上传图片</div>
+                                                        <div class="survey-question-upload-img-inner-desc">最多可上传50张图片</div>
+                                                    </div> <input type="file" class="survey-question-upload-img-file" name="upload_img" multiple=""> </div>
+                                            </div>
+                                            <div class="operate visible-show">
+                                                <ul>
+                                                    <li class="drag-area" title="移动"><i class="fa fa-arrows-alt" aria-hidden="true"></i></li>
+                                                    <li class="question-handle" title="操作" (click)="questionHandle(i)"><i class="fa fa-align-justify" aria-hidden="true"></i></li>
+                                                    <li class="question-delete" title="删除" (click)="questionDelete(i)"><i class="fa fa-trash" aria-hidden="true"></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!--图片多选结束-->
+
+                                        <!--描述说明开始-->
+                                        <div *ngIf="item.questionGenre==9">
+                                            <div class="question-title" type="10" name="description"><span class="question-id" order="11" page="1" index="0" absolute_id="15" question-required="N" has_other="N"></span>
+                                                <div class="position-relative">
+                                                    <div class="qs-content qs-high-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">描述说明</div>
+                                                </div>
+                                            </div>
+                                            <div class="operate visible-show">
+                                                <ul>
+                                                    <li class="drag-area" title="移动"><i class="fa fa-arrows-alt" aria-hidden="true"></i></li>
+                                                    <li class="question-handle" title="操作" (click)="questionHandle(i)"><i class="fa fa-align-justify" aria-hidden="true"></i></li>
+                                                    <li class="question-delete" title="删除" (click)="questionDelete(i)"><i class="fa fa-trash" aria-hidden="true"></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!--描述说明结束-->
+                                    </div>
                                     <!--题目区域结束-->
                                 </div>
                                 <div id="survey-tail">
@@ -484,7 +466,7 @@
                                         <li style="height: 40px;">
                                             <div id="survey-op" class="after-clear">
                                                 <div class="preview-survey dib vm mr10">
-                                                    <input type="button" class="bce-ui-button btn-lg" value="预览问卷" onclick="previewSurvey()">
+                                                    <input type="button" class="bce-ui-button btn-lg" value="预览问卷" click="previewSurvey()">
                                                 </div>
                                                 <div class="bce-ui-button btn-lg bce-skin-primary-button op-next vm">下一步</div>
                                             </div>

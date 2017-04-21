@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-questionnaire-create',
   templateUrl: './questionnaire-create.component.html',
-  styleUrls: ['./questionnaire-create.component.scss']
+  styleUrls: ['./questionnaire-create.component.scss'],
+   encapsulation: ViewEncapsulation.None
 })
 export class QuestionnaireCreateComponent implements OnInit {
   
@@ -32,10 +33,19 @@ export class QuestionnaireCreateComponent implements OnInit {
   
   public addQuestion=function(index){
        let question={
-                 questionGenre:index, 
+                 questionGenre:index,
                  questionTitle:this.questionGenre[index],
-                  questionChoice:[
+                 isnecessary:0,     //0表示必做，1表示选做
+                 questionChoice:[
                            {
+                                text:"选项内容",
+                                isSelected:false
+                            },
+                             {
+                                text:"选项内容",
+                                isSelected:false
+                            },
+                             {
                                 text:"选项内容",
                                 isSelected:false
                             }
@@ -44,6 +54,10 @@ export class QuestionnaireCreateComponent implements OnInit {
               };
        this.qustionnaire.questionList.push(question);
        console.log(this.qustionnaire);
+  }
+
+  public questionDelete=function(index){
+    this.qustionnaire.questionList.splice(index,1);
   }
 }
 

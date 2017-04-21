@@ -1,0 +1,38 @@
+.operate {
+    float: right;
+    margin-right: 30px;
+    height: 36px;
+    cursor: pointer;
+}
+
+.operate li {
+    float: left;
+    margin: 0 12px;
+    width: 23px;
+    height: 23px;
+}
+
+.set-logic {
+    background: url(/static/home/img/survey/handle.png) no-repeat;
+}
+
+.question-copy {
+    background: url(/static/home/img/survey/handle.png) no-repeat;
+    background-position: -88px 0;
+}
+
+.question-handle {
+    background: url(/static/home/img/survey/handle.png) no-repeat;
+    background-position: -134px 0;
+}
+
+.question-delete {
+    background: url(/static/home/img/survey/handle.png) no-repeat;
+    background-position: -178px 0;
+}
+
+ul,
+ol {
+    padding: 0;
+    list-style: none;
+}
