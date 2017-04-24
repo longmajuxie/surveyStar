@@ -99,26 +99,26 @@
                                         <div *ngIf="item.questionGenre==0">
                                             <div class="question-title" type="6" name="radio-question"><span class="required">*</span><span class="question-id" order="2" page="1" index="1" absolute_id="5" question-required="Y" has_other="N" title-quote="N" choice-quote="0">Q{{i+1}}</span>
                                                 <div class="position-relative">
-                                                    <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">单选题</div>
+                                                    <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);" [textContent]="item.questionTitle" (input)="item.questionTitle=$event.target.textContent">
+                                                        {{item.questionTitle}}
+                                                    </div>
                                                 </div>
                                             </div>
                                             <ul class="question-choice">
-                                                <li class="choice" has_other="N" choice_absolute_id="1"><input type="radio" name="radio">
+                                                <li class="choice" has_other="N" choice_absolute_id="1" *ngFor="let itemChoice of item.questionChoice; let qc = index">
+                                                    <input type="radio" name="radio">
                                                     <div class="position-relative">
-                                                        <div class="edit-area edit-child-element" contenteditable="true" content-default="1">选项1 </div>
-                                                    </div>
-                                                    <div class="option-tips"></div>
-                                                </li>
-                                                <li class="choice" has_other="N" choice_absolute_id="2"><input type="radio" name="radio">
-                                                    <div class="position-relative">
-                                                        <div class="edit-area edit-child-element" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">选项2 </div>
+                                                        <div class="edit-area edit-child-element" contenteditable="true" content-default="1" [textContent]="itemChoice.text" (input)="itemChoice.text=$event.target.textContent">
+                                                            {{itemChoice.text}}
+                                                        </div>
+                                                        <span title="删除" (click)="deleteQuestionChoice(i,qc)"><i class="fa fa-times" aria-hidden="true"></i></span>
                                                     </div>
                                                     <div class="option-tips"></div>
                                                 </li>
                                             </ul>
                                             <div class="add-area visible-show">
                                                 <ul>
-                                                    <li class="add-choice" title="增加" click="addQuestionChoice(i)"><i class="fa fa-plus-square-o" aria-hidden="true"></i></li>
+                                                    <li class="add-choice" title="增加" (click)="addQuestionChoice(i)"><i class="fa fa-plus-square-o" aria-hidden="true"></i></li>
                                                 </ul>
                                             </div>
                                             <div class="operate visible-show">

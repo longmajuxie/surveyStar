@@ -5,7 +5,7 @@ import {Injectable,OnInit} from '@angular/core';
 @Injectable()
 export class QuestionnaireDelService implements OnInit {
     questionGenre={
-         0:"单选题",
+            0:"单选题",
             1:"下拉选择题",
             2:"多选题",
             3:"单行填空题",
@@ -108,7 +108,7 @@ export class QuestionnaireDelService implements OnInit {
               else if(index==7||index==8){
                 questionChoice.push();
               }
-       question.questionChoice.push(questionChoice);
+       question.questionChoice=questionChoice;
        return question;
     }
    
