@@ -6,6 +6,7 @@ import { DragulaModule } from 'ng2-dragula';
 import { routing }       from './questionnaire.routes';
 
 import { QuestionnaireComponent } from './questionnaire.component';
+import { QuestionnaireDelService } from './questionnaire-create/questionnaire-create.service';
 import { QuestionnaireListComponent } from './questionnaire-list/questionnaire-list.component';
 import { QuestionnaireTemplateListComponent } from './questionnaire-template-list/questionnaire-template-list.component';
 import { QuestionnaireCreateComponent } from './questionnaire-create/questionnaire-create.component';
@@ -21,7 +22,8 @@ import { QuestionHandleComponent } from '../../widgets/question-handle/question-
         QuestionnaireTemplateListComponent,
         QuestionnaireCreateComponent,
         QuestionHandleComponent,
-     ]
+     ],
+   providers:[QuestionnaireDelService]
 })
 export class QuestionnaireModule {
 }

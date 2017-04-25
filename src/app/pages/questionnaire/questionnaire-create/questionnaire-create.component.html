@@ -99,26 +99,26 @@
                                         <div *ngIf="item.questionGenre==0">
                                             <div class="question-title" type="6" name="radio-question"><span class="required">*</span><span class="question-id" order="2" page="1" index="1" absolute_id="5" question-required="Y" has_other="N" title-quote="N" choice-quote="0">Q{{i+1}}</span>
                                                 <div class="position-relative">
-                                                    <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">单选题</div>
+                                                    <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);" [textContent]="item.questionTitle" (input)="item.questionTitle=$event.target.textContent">
+                                                        {{item.questionTitle}}
+                                                    </div>
                                                 </div>
                                             </div>
                                             <ul class="question-choice">
-                                                <li class="choice" has_other="N" choice_absolute_id="1"><input type="radio" name="radio">
+                                                <li class="choice" has_other="N" choice_absolute_id="1" *ngFor="let itemChoice of item.questionChoice; let qc = index">
+                                                    <input type="radio" name="radio">
                                                     <div class="position-relative">
-                                                        <div class="edit-area edit-child-element" contenteditable="true" content-default="1">选项1 </div>
-                                                    </div>
-                                                    <div class="option-tips"></div>
-                                                </li>
-                                                <li class="choice" has_other="N" choice_absolute_id="2"><input type="radio" name="radio">
-                                                    <div class="position-relative">
-                                                        <div class="edit-area edit-child-element" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">选项2 </div>
+                                                        <div class="edit-area edit-child-element" contenteditable="true" content-default="1" [textContent]="itemChoice.text" (input)="itemChoice.text=$event.target.textContent">
+                                                            {{itemChoice.text}}
+                                                        </div>
+                                                        <span title="删除" (click)="deleteQuestionChoice(i,qc)"><i class="fa fa-times" aria-hidden="true"></i></span>
                                                     </div>
                                                     <div class="option-tips"></div>
                                                 </li>
                                             </ul>
                                             <div class="add-area visible-show">
                                                 <ul>
-                                                    <li class="add-choice" title="增加" click="edit.addQuestion(this)"><i class="fa fa-plus-square-o" aria-hidden="true"></i></li>
+                                                    <li class="add-choice" title="增加" (click)="addQuestionChoice(i)"><i class="fa fa-plus-square-o" aria-hidden="true"></i></li>
                                                 </ul>
                                             </div>
                                             <div class="operate visible-show">
@@ -137,13 +137,14 @@
                                                 <span class="required">*</span>
                                                 <span class="question-id" order="3" page="1" index="2" absolute_id="6" question-required="Y" has_other="N" title-quote="N" choice-quote="0">Q{{i+1}}</span>
                                                 <div class="position-relative">
-                                                    <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true">选择列表</div>
+                                                    <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true" [textContent]="item.questionTitle" (input)="item.questionTitle=$event.target.textContent">
+                                                        {{item.questionTitle}}
+                                                    </div>
                                                 </div>
                                             </div>
                                             <select class="question-choice" style="  padding: 0;margin: 15px 0 20px 35px;">
-                                             <option class="choice" has_other="N" choice_absolute_id="1">选项1</option>
-                                            <option class="choice" has_other="N" choice_absolute_id="2">选项2</option>
-                                            <option class="choice" has_other="N" choice_absolute_id="3">选项3</option></select>
+                                             <option class="choice" has_other="N" choice_absolute_id="1" *ngFor="let itemChoice of item.questionChoice; let qc = index"> {{itemChoice.text}}</option>
+                                            </select>
                                             <span class="edit-select" style="  width: 60%;display: inline-block;line-height: 30px;" click="edit.editSelect(this)">编辑选项</span>
                                             <div class="operate visible-show">
                                                 <ul>
@@ -160,7 +161,9 @@
                                             <div class="question-title" type="8" name="checkbox-question"><span class="required">*</span>
                                                 <span class="question-id" order="4" page="1" index="3" absolute_id="7" question-required="Y" has_other="N" title-quote="N" choice-quote="0" min="" max="" exclusive-options="">Q{{i+1}}</span>
                                                 <div class="position-relative">
-                                                    <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">多选题</div>
+                                                    <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);" [textContent]="item.questionTitle" (input)="item.questionTitle=$event.target.textContent">
+                                                        {{item.questionTitle}}
+                                                    </div>
                                                 </div>
                                             </div>
                                             <ul class="question-choice">
@@ -179,7 +182,7 @@
                                             </ul>
                                             <div class="add-area visible-show">
                                                 <ul>
-                                                    <li class="add-choice" title="增加" click="edit.addQuestion(this)">
+                                                    <li class="add-choice" title="增加" (click)="addQuestionChoice(i)">
                                                         <i class="fa fa-plus-square-o" aria-hidden="true"></i>
                                                     </li>
                                                 </ul>
@@ -199,7 +202,7 @@
                                             <div class="question-title" type="1" name="input-question"><span class="required">*</span>
                                                 <span class="question-id" order="5" page="1" index="4" absolute_id="8" question-required="Y" has_other="N" title-quote="N">Q{{i+1}}</span>
                                                 <div class="position-relative">
-                                                    <div class="qs-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">单行填空题</div>
+                                                    <div class="qs-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);" [textContent]="item.questionTitle" (input)="item.questionTitle=$event.target.textContent"> {{item.questionTitle}}</div>
                                                 </div>
                                             </div>
                                             <ul class="question-choice">
@@ -221,7 +224,7 @@
                                                 <span class="required">*</span>
                                                 <span class="question-id" order="5" page="1" index="4" absolute_id="8" question-required="Y" has_other="N" title-quote="N">Q{{i+1}}</span>
                                                 <div class="position-relative">
-                                                    <div class="qs-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">多行填空题</div>
+                                                    <div class="qs-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);" [textContent]="item.questionTitle" (input)="item.questionTitle=$event.target.textContent"> {{item.questionTitle}}</div>
                                                 </div>
                                             </div>
                                             <ul class="question-choice">
@@ -241,7 +244,7 @@
                                         <div *ngIf="item.questionGenre==5">
                                             <div class="question-title" type="9" name="radio-matrix-question"><span class="required">*</span><span class="question-id" order="8" page="1" index="7" absolute_id="11" question-required="Y" has_other="N" title-quote="N">Q{{i+1}}</span>
                                                 <div class="position-relative">
-                                                    <div class="qs-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">矩阵单选题</div>
+                                                    <div class="qs-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);" [textContent]="item.questionTitle" (input)="item.questionTitle=$event.target.textContent"> {{item.questionTitle}}</div>
                                                 </div>
                                             </div>
                                             <ul class="question-choice" style="float:left;width: 700px;">
@@ -285,13 +288,13 @@
                                             </ul>
                                             <div class="add-area visible-hide" style="width: 34px; margin: 0px 0 0 46px;" choice="Y">
                                                 <ul>
-                                                    <li class="add-choice" click="edit.addQuestion(this)"></li>
+                                                    <li class="add-choice" click="addQuestionChoice(i)"></li>
                                                     <li class="batch-add-choice" style="margin-top: 14px;" click="edit.batchAddChoice(this)"></li>
                                                 </ul>
                                             </div>
                                             <div class="add-area visible-hide" choice="N">
                                                 <ul>
-                                                    <li class="add-choice" click="edit.addQuestion(this)"></li>
+                                                    <li class="add-choice" click="addQuestionChoice(i)"></li>
                                                     <li class="batch-add-choice" click="edit.batchAddChoice(this)"></li>
                                                 </ul>
                                             </div>
@@ -310,7 +313,7 @@
                                             <div class="question-title" type="13" name="checkbox-matrix-question"><span class="required">*</span>
                                                 <span class="question-id" order="9" page="1" index="8" absolute_id="12" question-required="Y" has_other="N" title-quote="N">Q{{i+1}}</span>
                                                 <div class="position-relative">
-                                                    <div class="qs-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">矩阵多选题</div>
+                                                    <div class="qs-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);" [textContent]="item.questionTitle" (input)="item.questionTitle=$event.target.textContent"> {{item.questionTitle}}</div>
                                                 </div>
                                             </div>
                                             <ul class="question-choice" style="float:left;width: 700px;">
@@ -354,13 +357,13 @@
                                             </ul>
                                             <div class="add-area visible-show" style="width: 34px; margin: 0px 0 0 46px;" choice="Y">
                                                 <ul>
-                                                    <li class="add-choice" click="edit.addQuestion(this)"></li>
+                                                    <li class="add-choice" click="addQuestionChoice(i)"></li>
                                                     <li class="batch-add-choice" style="margin-top: 14px;" click="edit.batchAddChoice(this)"></li>
                                                 </ul>
                                             </div>
                                             <div class="add-area visible-show" choice="N">
                                                 <ul>
-                                                    <li class="add-choice" click="edit.addQuestion(this)"></li>
+                                                    <li class="add-choice" click="addQuestionChoice(i)"></li>
                                                     <li class="batch-add-choice" click="edit.batchAddChoice(this)"></li>
                                                 </ul>
                                             </div>
@@ -378,7 +381,8 @@
                                         <div *ngIf="item.questionGenre==7">
                                             <div class="question-title" type="14" name="radio-question"><span class="required">*</span><span class="question-id" order="10" page="1" index="9" absolute_id="13" question-required="Y" has_other="N" title-quote="N" choice-quote="0">Q{{i+1}}</span>
                                                 <div class="position-relative">
-                                                    <div class="qs-content edit-area edit-title edit-area-active" tabindex="0" contenteditable="true" content-default="1" data-value="图片单选题" style="background: rgb(253, 249, 205); border: 1px solid rgb(51, 51, 51);">图片单选题</div>
+                                                    <div class="qs-content edit-area edit-title edit-area-active" tabindex="0" contenteditable="true" content-default="1" data-value="图片单选题" style="background: rgb(253, 249, 205); border: 1px solid rgb(51, 51, 51);" [textContent]="item.questionTitle" (input)="item.questionTitle=$event.target.textContent">
+                                                        {{item.questionTitle}}</div>
                                                     <div class="survey-hide edit-img" contenteditable="false" style="width: 30px; display: block;">
                                                         <ul>
                                                             <li class="upload-element-img">
@@ -418,7 +422,7 @@
                                             <div class="question-title" type="15" name="checkbox-question">
                                                 <span class="required">*</span><span class="question-id" order="10" page="1" index="10" absolute_id="14" question-required="Y" has_other="N" title-quote="N" choice-quote="0" min="" max="">Q{{i+1}}</span>
                                                 <div class="position-relative">
-                                                    <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">图片多选题</div>
+                                                    <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);" [textContent]="item.questionTitle" (input)="item.questionTitle=$event.target.textContent"> {{item.questionTitle}}</div>
                                                 </div>
                                             </div>
                                             <ul class="question-choice"></ul>
@@ -441,9 +445,15 @@
 
                                         <!--描述说明开始-->
                                         <div *ngIf="item.questionGenre==9">
+                                            <div class="question-title" type="15" name="checkbox-question">
+                                                <span class="required">*</span><span class="question-id" order="10" page="1" index="10" absolute_id="14" question-required="Y" has_other="N" title-quote="N" choice-quote="0" min="" max="">Q{{i+1}}</span>
+                                                <div class="position-relative">
+                                                    <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);" [textContent]="item.questionTitle" (input)="item.questionTitle=$event.target.textContent"> {{item.questionTitle}}</div>
+                                                </div>
+                                            </div>
                                             <div class="question-title" type="10" name="description"><span class="question-id" order="11" page="1" index="0" absolute_id="15" question-required="N" has_other="N"></span>
                                                 <div class="position-relative">
-                                                    <div class="qs-content qs-high-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);">描述说明</div>
+                                                    <div class="qs-content qs-high-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);border: 1px solid #dbdbdb;">描述说明</div>
                                                 </div>
                                             </div>
                                             <div class="operate visible-show">
