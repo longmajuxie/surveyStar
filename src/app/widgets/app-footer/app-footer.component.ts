@@ -18,7 +18,6 @@ export class AppFooterComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log($("#gridModalLabel").val());
   }
   @HostListener("window:scroll", [])
   onWindowScroll() {

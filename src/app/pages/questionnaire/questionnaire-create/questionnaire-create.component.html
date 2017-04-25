@@ -480,67 +480,22 @@
 
                 <div class="attach-layer attach-left"></div>
                 <div class="attach-layer attach-right"></div>
-
-
-                <script type="text/template" id="static_edit_logic_pop">
-                    <div class="logic-popup" id="elp" ng-app="ELPApp" ng-controller="ELPCtrl">
-                        <div class="logic-area">
-                            <div class="logic-area-title" ng-click="show_logic_items()">
-                                逻辑设置
-                                <span class="close">&times;</span>
-                            </div>
-                            <div class="logic-area-content">
-                                <div class="logic-relation-input-item" ng-repeat="logic_item in logic_items" style="margin: 10px 0 40px 0;">
-                                    <div style="margin: 20px 0; line-height: 30px;" ng-repeat="source_item in logic_item.source">
-                                        <span ng-show="$first" style="margin-left:15px;">如果 本题</span>
-                                        <select class="join-type-select logic_select" style="width: 77px;" ng-hide="$first" ng-model="source_item.join_type" ng-options="jtc.value as jtc.name for jtc in join_type_choices">
-                        </select>
-                                        <span style="width: 45px; display: inline-block;" ng-hide="$first">&nbsp;</span>
-                                        <select class="logic-question-select logic_select" style="width: 100px;margin: 0  0 0 10px;" ng-hide="$first" ng-model="source_item.question_id" ng-options="question.absolute_id as question.title for question in source_question_list | orderBy:'order' | rmBlankQuestion"
-                                            ng-change="source_question_change(source_item,logic_item)">
-                        </select>
-                                        <span class="logic-add-button" ng-show="$last && logic_item.source.length < MAX_SOURCE_COUNT && not_common_any_choice(source_item)" ng-click="add_logic_source(logic_item)"></span>
-                                        <span class="logic-empty-button" ng-hide="$last && logic_item.source.length < MAX_SOURCE_COUNT && not_common_any_choice(source_item)">&nbsp;</span>
-                                        <span class="logic-delete-button" ng-hide="$first" ng-click="del_logic_source(logic_item,source_item)"></span>
-                                        <span class="logic-empty-button" ng-show="$first">&nbsp;</span>
-                                        <span ng-hide="$first">&nbsp;</span>
-                                        <select class="logic-answer-select logic_select" style="float: right; width: 70px;" ng-model="source_item.select_type" ng-options="stc.value as stc.name for stc in source_item.select_types" ng-change="update_source_options(logic_item)">
-                        </select>
-                                        <span style="float: right;">为</span>
-                                        <select ng-show="$first" class="logic-choice-select logic_select" style="float: right; width: 215px;" ng-model="source_item.choice_id" ng-options="choice.choice_absolute_id as choice.content for choice in questions[source_item.question_id].choice | rmAnyChoice:source_item:logic_item:logic_items:questions"
-                                            ng-change="update_source_options(logic_item)">
-                        </select>
-                                        <select ng-hide="$first" class="logic-choice-select logic_select" style="float: right; width: 100px;margin: 0 10px 0 0;" ng-model="source_item.choice_id" ng-options="choice.choice_absolute_id as choice.content for choice in questions[source_item.question_id].choice | rmAnyChoice:source_item:logic_item:logic_items:questions"
-                                            ng-change="update_source_options(logic_item)">
-                        </select>
-                                    </div>
-                                    <span style="width: 30px; display: inline-block; margin-left: 160px; float: left;line-height: 30px;">则</span>
-                                    <select class="logic-tyoe-select logic_select" style="width: 100px; float: left;margin: 0 0 0 10px;" ng-model="logic_item.logic_type" ng-options="ltc.value as ltc.name for ltc in logic_item.logic_types" ng-change="update_logic_types(logic_item)">
-                    </select>
-                                    <div style="margin: 10px 0; line-height: 30px;" ng-repeat="target_question in logic_item.target">
-                                        <span style="display: inline-block;">&nbsp;</span>
-                                        <span class="logic-add-button" ng-show="$last && logic_item.target.length < MAX_TARGET_COUNT && logic_item.logic_type==2 && target_question.question_id>=0" ng-click="add_logic_target(logic_item)"> </span>
-                                        <span class="logic-empty-button" ng-hide="$last && logic_item.target.length < MAX_TARGET_COUNT && logic_item.logic_type==2 && target_question.question_id>=0"> &nbsp; </span>
-                                        <span class="logic-delete-button" style="float: right; width: 16px; height: 16px;" ng-click="del_logic_target(logic_item,target_question)"> </span>
-                                        <select class="logic-question-select logic_select" style="width: 170px; float: right;margin: 0 10px 0 0;" ng-model="target_question.question_id" ng-change="update_target_options(logic_item)" ng-options="question.absolute_id as question.title for question in target_question.questions | orderBy:'order' | rmEndTargetQuestion:logic_item:target_question">
-                        </select>
-                                    </div>
-                                </div>
-                                <div class="logic-add-button-area">
-                                    <span style="margin: 0; cursor: pointer; color: #3333bb;" ng-click="add_logic_item()" ng-show="logic_items.length < MAX_LOGIC_COUNT && logic_items[0].source[0].choice_id !== 0">+点击添加新逻辑</span>
-                                </div>
-                            </div>
-                            <div class="logic-area-button">
-                                <input type="button" class="dialog-button-survey button-confirm" value="确定" ng-click="saveLogic()"> &nbsp;
-                                <input type="button" class="dialog-button-survey button-cancel" value="取消">
+                <div class="question-handle-dialog" [hidden]="!isShowHandleDig">
+                    <div class="handle-dialog">
+                        <div class="handle-dialog-title">题目设置<span class="close">×</span></div>
+                        <div class="handle-dialog-content">
+                            <ul class="handle-area" question-order="2">
+                                <li><label><input type="checkbox" name="question-required" class="question-required no-required">  该题可跳过不答</label></li>
+                            </ul>
+                            <div style="margin-left: 16px"><span class="required handle-area-error"></span></div>
+                            <div class="handle-dialog-button">
+                                <input type="button" class="dialog-button-survey button-confirm" id="survey-confirm-y" value="确定" (click)="handleConfirm()">&nbsp;
+                                <input type="button" class="dialog-button-survey button-cancel" id="survey-confirm-n" value="取消" (click)="handleClose()">
                             </div>
                         </div>
-                        <div class="survey-mask"></div>
                     </div>
-                </script>
-
-
-
+                    <div class="survey-mask"></div>
+                </div>
             </div>
         </div>
     </div>

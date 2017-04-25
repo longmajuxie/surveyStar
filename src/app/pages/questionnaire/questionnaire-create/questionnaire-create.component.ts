@@ -1,4 +1,5 @@
-import { Component, OnInit ,ViewEncapsulation} from '@angular/core';
+import { Component, OnInit ,ViewEncapsulation,HostListener} from '@angular/core';
+declare var $: any;
 
 @Component({
   selector: 'app-questionnaire-create',
@@ -13,6 +14,8 @@ export class QuestionnaireCreateComponent implements OnInit {
     questionnairePrompt:"欢迎参加调查！",
     questionList:[]
   };
+  currentHandleQuestion:number;
+  isShowHandleDig=false;
  questionGenre={
     0:"单选题",
     1:"下拉选择题",
@@ -30,7 +33,15 @@ export class QuestionnaireCreateComponent implements OnInit {
   ngOnInit() {
       
   }
-  
+   @HostListener("window:scroll", [])
+  onWindowScroll() {
+    //we'll do some stuff here when the window is scrolled
+   if(window.scrollY>200){
+          $(".sur-sidebar").addClass("fixed-area");
+       }else{
+         $(".sur-sidebar").removeClass("fixed-area");
+       }
+  }
   public addQuestion=function(index){
        let question={
                  questionGenre:index,
@@ -53,11 +64,22 @@ export class QuestionnaireCreateComponent implements OnInit {
            
               };
        this.qustionnaire.questionList.push(question);
+       window.scrollTo(0, document.body.offsetHeight-1000);
        console.log(this.qustionnaire);
   }
-
+  public questionHandle(index){
+      this.currentHandleQuestion=index;
+      this.isShowHandleDig=true;
+  }
   public questionDelete=function(index){
     this.qustionnaire.questionList.splice(index,1);
+  }
+  public handleConfirm(){
+    this.qustionnaire.questionList[this.currentHandleQuestion].isnecessary=1;
+    this.isShowHandleDig=false;
+  }
+  public handleClose(){
+    this.isShowHandleDig=false;
   }
 }
 
