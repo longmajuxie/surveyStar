@@ -657,19 +657,6 @@ table {
     text-align: center;
 }
 
-.add-area.survey-question-upload-img-wrap {
-    float: none;
-    height: auto;
-    vertical-align: top;
-    margin-left: 35px;
-}
-
-.add-area {
-    float: left;
-    margin: 0 35px;
-    height: 30px;
-}
-
 .survey-question-upload-img-btn {
     width: 173px;
     height: 130px;
@@ -839,4 +826,60 @@ input[type=submit] {
     top: 0;
     left: 0;
     opacity: .5;
+}
+
+.edit-area:hover {
+    border: 1px solid #1C86EE;
+}
+
+.matrix-choice,
+.radio_array_title .edit-area,
+.checkbox_array_title .edit-area {
+    height: 100%;
+    line-height: 32px;
+    width: 100%;
+}
+
+.matrixdeleteChoice {
+    float: right;
+    margin-top: -10px;
+}
+
+.survey-question-radio-img .survey-question-radio-choice .survey-question-radio-choice-img img {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #eee;
+    box-sizing: border-box;
+}
+
+.survey-question-radio-img .survey-question-radio-choice {
+    display: inline-block;
+    width: 173px;
+    padding: 10px 10px 10px 0;
+    vertical-align: top;
+    box-sizing: content-box;
+    position: relative;
+    cursor: pointer;
+}
+
+.Matrix li {
+    float: left;
+}
+
+.survey-question-upload-img-wrap {
+    margin-top: 10px;
+}
+
+.survey-question-radio-img .survey-question-radio-choice .survey-question-radio-img-remove {
+    position: absolute;
+    display: block;
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    top: 10px;
+    right: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    background: url("../../../../assets/img/choice-remove.png") no-repeat;
+    z-index: 100;
 }

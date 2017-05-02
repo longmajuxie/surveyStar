@@ -24,7 +24,8 @@ export class QuestionnaireDelService implements OnInit {
             let question={
                  questionGenre:index,
                  questionTitle:this.questionGenre[index],
-                 isnecessary:0,     //0表示必做，1表示选做
+                 isNecessary:true,     
+                 isEdit:false,      //下拉选择是否编辑
                  questionChoice:[]
               };
               let questionChoice=[];
@@ -53,41 +54,28 @@ export class QuestionnaireDelService implements OnInit {
               else if(index==5||index==6){
                 questionChoice.push(
                     {
-                        line:"",
-                        choice:[
-                            {
-                                text:"选项内容1",
+                        line:[
+                             {
+                                text:"",
                                 isSelected:false
                             },
                             {
-                                text:"选项内容2",
+                                text:"矩阵行1",
                                 isSelected:false
                             },
                             {
-                                text:"选项内容3",
+                                text:"矩阵行2",
                                 isSelected:false
                             },
-                        ]
-                    },
-                     {
-                        line:"矩阵行1",
-                        choice:[
-                            {
-                                text:"选项内容1",
+                             {
+                                text:"矩阵行3",
                                 isSelected:false
                             },
-                            {
-                                text:"选项内容2",
+                             {
+                                text:"矩阵行4",
                                 isSelected:false
-                            },
-                            {
-                                text:"选项内容3",
-                                isSelected:false
-                            },
-                        ]
-                    },
-                     {
-                        line:"矩阵行2",
+                            }
+                        ],
                         choice:[
                             {
                                 text:"选项内容1",

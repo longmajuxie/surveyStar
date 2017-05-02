@@ -3,6 +3,8 @@ import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
 import { FormsModule }    from '@angular/forms';
 import { DragulaModule } from 'ng2-dragula';
+import {FileUploadModule} from 'ng2-file-upload';
+
 import { routing }       from './questionnaire.routes';
 
 import { QuestionnaireComponent } from './questionnaire.component';
@@ -15,7 +17,7 @@ import { QuestionHandleComponent } from '../../widgets/question-handle/question-
 
 
 @NgModule({
-  imports: [CommonModule,FormsModule,DragulaModule, routing],
+  imports: [CommonModule,FormsModule,DragulaModule,FileUploadModule, routing],
   declarations: [
         QuestionnaireComponent,
         QuestionnaireListComponent,
