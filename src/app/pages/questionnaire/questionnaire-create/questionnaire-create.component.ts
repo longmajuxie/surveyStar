@@ -1,5 +1,6 @@
 import { FileItem } from 'ng2-file-upload/file-upload/file-item.class';
 import { Component, OnInit ,ViewEncapsulation,HostListener} from '@angular/core';
+import { ActivatedRoute, Router,Params } from '@angular/router';
 import { FileUploader } from 'ng2-file-upload';
 declare var $: any;
 import { QuestionnaireDelService } from './questionnaire-create.service';
@@ -21,7 +22,7 @@ export class QuestionnaireCreateComponent implements OnInit {
   currentHandleQuestion:number;
   isShowHandleDig=false;
   public uploader:FileUploader = new FileUploader({url: URL});
-  constructor(public del:QuestionnaireDelService) { }
+  constructor(public del:QuestionnaireDelService,public router:Router) { }
   ngOnInit() {}
   @HostListener("window:scroll", [])
   onWindowScroll() {
@@ -130,4 +131,8 @@ export class QuestionnaireCreateComponent implements OnInit {
   public handleClose(){
     this.isShowHandleDig=false;
   }
+  public previewSurvey(){
+      this.router.navigate(['/pages/questionnaire/previewOrPlay'], { queryParams: { questionnaire: JSON.stringify(this.qustionnaire)} });
+  }
+      
 }

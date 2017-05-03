@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { TemplateDetailComponent } from './template/template-detail/template-detail.component';
 import { TopicCreateComponent } from './template/topic-create/topic-create.component';
 import { TemplateCreateOrEditComponent } from './template/template-create-or-edit/template-create-or-edit.component';
+import { QuestionnairePlayComponent } from './questionnaire/questionnaire-play/questionnaire-play.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { TemplateCreateOrEditComponent } from './template/template-create-or-edi
       HomeComponent,
       TemplateDetailComponent,
       TopicCreateComponent,
-      TemplateCreateOrEditComponent
+      TemplateCreateOrEditComponent,
+      QuestionnairePlayComponent
     ]
 })
 export class PagesModule {

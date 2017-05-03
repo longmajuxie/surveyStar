@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { TemplateDetailComponent } from './template/template-detail/template-detail.component';
 import { TopicCreateComponent } from './template/topic-create/topic-create.component';
 import { TemplateCreateOrEditComponent } from './template/template-create-or-edit/template-create-or-edit.component';
+import { QuestionnairePlayComponent } from './questionnaire/questionnaire-play/questionnaire-play.component';
 './service/ga'
 
 // noinspection TypeScriptValidateTypes
@@ -37,7 +38,8 @@ export const routes: Routes = [
       { path: 'measurement', loadChildren: 'app/pages/measurement/measurement.module#MeasurementModule' },
       { path: 'template/detail', component: TemplateDetailComponent},
        { path: 'template/create', component: TopicCreateComponent },
-      { path: 'template/createOrEdit', component: TemplateCreateOrEditComponent }
+      { path: 'template/createOrEdit', component: TemplateCreateOrEditComponent },
+       { path: 'questionnaire/previewOrPlay', component:QuestionnairePlayComponent },
     ]
   }
 ];
