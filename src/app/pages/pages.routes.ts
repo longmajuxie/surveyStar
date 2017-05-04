@@ -31,8 +31,12 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component:HomeComponent },
-      { path: 'topic-discussion', loadChildren: 'app/pages/topic-discussion/topic-discussion.module#TopicDiscussionModule' },
-      { path: 'questionnaire', loadChildren: 'app/pages/questionnaire/questionnaire.module#QuestionnaireModule' },
+      { path: 'topic-discussion', loadChildren: 'app/pages/topic-discussion/topic-discussion.module#TopicDiscussionModule' },   
+      { 
+        canActivate: [AuthGuard],
+        path: 'questionnaire', 
+        loadChildren: 'app/pages/questionnaire/questionnaire.module#QuestionnaireModule' 
+      },
       { path: 'report', loadChildren: 'app/pages/report/report.module#ReportModule' },
       { path: 'template', loadChildren: 'app/pages/template/template.module#TemplateModule' },
       { path: 'measurement', loadChildren: 'app/pages/measurement/measurement.module#MeasurementModule' },

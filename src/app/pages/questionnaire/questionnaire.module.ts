@@ -6,7 +6,6 @@ import { DragulaModule } from 'ng2-dragula';
 import {FileUploadModule} from 'ng2-file-upload';
 
 import { routing }       from './questionnaire.routes';
-
 import { QuestionnaireComponent } from './questionnaire.component';
 import { QuestionnaireDelService } from './questionnaire-create/questionnaire-create.service';
 import { QuestionnaireListComponent } from './questionnaire-list/questionnaire-list.component';

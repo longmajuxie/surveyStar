@@ -32,9 +32,53 @@
             <input class="form-control mr-sm-2" type="text" placeholder="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
-        <ul class="nav navbar-nav navbar-right userbox">
-            <li class="signup"><i class="fa fa-user-plus" aria-hidden="true" style="margin-right: 1px"></i> <a [routerLink]="['/signup']" [routerLinkActive]="['active']">注册</a></li>
-            <li class="login"><i class="fa fa-sign-in" aria-hidden="true" style="margin-right: 2px"></i><a [routerLink]="['/login']" [routerLinkActive]="['active']">登录</a></li>
-        </ul>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav" *ngIf="user">
+                <li _ngcontent-aej-10="" class="dropdown user user-menu userBox" _nghost-aej-17="">
+                    <a _ngcontent-aej-17="" class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+
+                        <img _ngcontent-aej-17="" class="user-image" ng-reflect-src="../../assets/img/user.jpg" src="../../assets/img/user.jpg" ng-reflect-alt="WEBER Antoine" alt="WEBER Antoine">
+
+                        <span _ngcontent-aej-17="" class="hidden-xs">{{user.username}}</span>
+                    </a>
+                    <ul _ngcontent-aej-17="" class="dropdown-menu">
+
+                        <li _ngcontent-aej-17="" class="user-header">
+                            <img _ngcontent-aej-17="" class="img-circle" ng-reflect-src="../../assets/img/user.jpg" src="../../assets/img/user.jpg" ng-reflect-alt="WEBER Antoine" alt="WEBER Antoine">
+                            <p _ngcontent-aej-17="">
+                                {{user.username}}
+                                <small _ngcontent-aej-17="">Member since </small>
+                            </p>
+                        </li>
+
+                        <li _ngcontent-aej-17="" class="user-body">
+                            <div _ngcontent-aej-17="" class="col-xs-4 text-center">
+                                <a _ngcontent-aej-17="" href="#">Followers</a>
+                            </div>
+                            <div _ngcontent-aej-17="" class="col-xs-4 text-center">
+                                <a _ngcontent-aej-17="" href="#">Sales</a>
+                            </div>
+                            <div _ngcontent-aej-17="" class="col-xs-4 text-center">
+                                <a _ngcontent-aej-17="" href="#">Friends</a>
+                            </div>
+                        </li>
+
+                        <li _ngcontent-aej-17="" class="user-footer">
+                            <div _ngcontent-aej-17="" class="pull-left">
+                                <a _ngcontent-aej-17="" class="btn btn-default btn-flat" href="#">Profile</a>
+                            </div>
+                            <div _ngcontent-aej-17="" class="pull-right">
+                                <a _ngcontent-aej-17="" class="btn btn-default btn-flat" (click)="signOut()">Sign out</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#" data-toggle="control-sidebar" class="toggle-sidebar-right"><i class="fa fa-gears"></i></a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right userbox" *ngIf="!user">
+                <li class="signup"><i class="fa fa-user-plus" aria-hidden="true" style="margin-right: 1px"></i> <a [routerLink]="['/signup']" [routerLinkActive]="['active']">注册</a></li>
+                <li class="login"><i class="fa fa-sign-in" aria-hidden="true" style="margin-right: 2px"></i><a [routerLink]="['/login']" [routerLinkActive]="['active']">登录</a></li>
+            </ul>
+        </div>
     </div>
 </nav>

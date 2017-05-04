@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
+import { AuthenticationService } from '../../services/authentication.service'
 declare var $: any;
 @Component({
   selector: 'app-header',
@@ -7,12 +8,16 @@ declare var $: any;
   styleUrls: ['./app-header.component.scss']
 })
 export class AppHeaderComponent implements OnInit {
-
-  constructor() {
+  user;
+  constructor(private auth:AuthenticationService) {
+    this.user=this.auth.getUser();
   }
 
   ngOnInit() {
    
   }
-
+  signOut(){
+    this.auth.logOut();
+    this.user="";
+  }
 }

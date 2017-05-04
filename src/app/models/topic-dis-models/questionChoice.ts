@@ -1,5 +1,3 @@
-
-
 export class questionChoice {
   public title: string;
   public ticketNumber: number;          

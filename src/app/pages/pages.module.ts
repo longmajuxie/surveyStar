@@ -1,9 +1,14 @@
 import { NgModule }      from '@angular/core';
 
 import { CommonModule }  from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { routing }       from './pages.routes';
 
+import {LocalStorageService, SessionStorageService} from 'ng2-webstorage';
+import { AuthenticationService } from '../services/authentication.service';
+import { AuthGuard } from '../services/guard.service';
 import { Pages } from './pages.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
@@ -18,7 +23,7 @@ import { QuestionnairePlayComponent } from './questionnaire/questionnaire-play/q
 
 
 @NgModule({
-  imports: [CommonModule, routing],
+  imports: [CommonModule,BrowserModule,FormsModule,ReactiveFormsModule, routing],
   declarations: [
       Pages,
       SignupComponent,
@@ -31,7 +36,13 @@ import { QuestionnairePlayComponent } from './questionnaire/questionnaire-play/q
       TopicCreateComponent,
       TemplateCreateOrEditComponent,
       QuestionnairePlayComponent
-    ]
+    ],
+  providers:[
+    LocalStorageService,
+    SessionStorageService,
+    AuthenticationService,
+    AuthGuard
+  ]
 })
 export class PagesModule {
 }

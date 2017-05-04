@@ -9,8 +9,8 @@
             <div class="panel-body">
                 <form id="signupform" class="form-horizontal" role="form">
 
-                    <div id="signupalert" style="display:none" class="alert alert-danger">
-                        <p>Error:</p>
+                    <div id="signupalert" class="alert alert-danger" [hidden]="!errMsg">
+                        <p>Error:{{errMsg}}</p>
                         <span></span>
                     </div>
 
@@ -19,40 +19,40 @@
                     <div class="form-group">
                         <label for="email" class="col-md-3 control-label">Email</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="email" placeholder="Email Address">
+                            <input type="text" class="form-control" name="email" placeholder="Email Address" [(ngModel)]="userInfo.email">{{ngModel}}
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="firstname" class="col-md-3 control-label">UserName</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="UserName" placeholder="UserName">
+                            <input type="text" class="form-control" name="UserName" placeholder="UserName" [(ngModel)]="userInfo.userName">{{ngModel}}
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="password" class="col-md-3 control-label">Password</label>
                         <div class="col-md-9">
-                            <input type="password" class="form-control" name="Password" placeholder="Password">
+                            <input type="password" class="form-control" name="Password" placeholder="Password" [(ngModel)]="userInfo.passWord">{{ngModel}}
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="password" class="col-md-3 control-label">RePassword</label>
                         <div class="col-md-9">
-                            <input type="password" class="form-control" name="passwd" placeholder="RePassword">
+                            <input type="password" class="form-control" name="passwd" placeholder="RePassword" [(ngModel)]="userInfo.rePassWord">{{ngModel}}
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label for="icode" class="col-md-3 control-label" style="display:inline">Invitation Code</label>
                         <div class="col-md-9">
                             <input type="text" class="form-control" name="icode" placeholder="">
                         </div>
-                    </div>
+                    </div>-->
 
                     <div class="form-group">
                         <!-- Button -->
                         <div class="col-md-offset-3 col-md-9">
-                            <button id="btn-signup" type="button" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp; Sign Up</button>
+                            <button id="btn-signup" type="button" class="btn btn-info" (click)="signUp()"><i class="icon-hand-right"></i> &nbsp; Sign Up</button>
                         </div>
                     </div>
                 </form>
