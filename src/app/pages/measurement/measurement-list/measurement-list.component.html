@@ -1,6 +1,6 @@
-<div>
+<div *ngIf="news">
     <div class="l-item">
-        <ul *ngIf="news">
+        <ul>
             <li *ngFor="let item of news; let i=index">
                 <h3><a (click)="detail(i)" [routerLinkActive]="['active']" target="_blank">{{item.title}}</a></h3>
                 <p>
