@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router,Params } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-measurement',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./measurement.component.scss']
 })
 export class MeasurementComponent implements OnInit {
+  
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(public router:Router) { }
+  
+  ngOnInit() {}
+  public genreList(genreIndex){
+        this.router.navigate(['/pages/measurement/list'], { queryParams: { genre: genreIndex } });
   }
-
 }

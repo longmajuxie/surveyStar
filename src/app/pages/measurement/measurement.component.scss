@@ -1,0 +1,95 @@
+#wraper {
+    width: 990px;
+    margin: 100px auto;
+}
+
+#list {
+    font-size: 14px;
+}
+
+.mT10 {
+    margin-top: 125px;
+}
+
+.mainContent {
+    float: left;
+    width: 660px;
+    margin-bottom: 75px;
+    position: sticky;
+    z-index: 1000;
+}
+
+.cols {
+    width: 300px;
+    float: right;
+    overflow: hidden;
+}
+
+.l-nav {
+    margin-top: 10px;
+}
+
+.l-nav ul {
+    width: 353px;
+    margin-left: -43px;
+}
+
+ul {
+    zoom: 1;
+}
+
+ul,
+ol,
+li {
+    list-style: none;
+}
+
+.l-nav li {
+    float: left;
+    margin: 3px 3px;
+    width: 96px;
+    cursor: pointer;
+}
+
+.l-nav li:hover {
+    border: pink solid 1px;
+}
+
+li {
+    overflow: hidden;
+}
+
+.l-nav li a {
+    display: block;
+    height: 30px;
+    white-space: nowrap;
+    background: #d2e8f5;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+}
+
+a {
+    color: #555;
+    text-decoration: none;
+}
+
+ul:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+}
+
+.partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
+}

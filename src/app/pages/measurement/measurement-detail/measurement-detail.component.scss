@@ -1,0 +1,58 @@
+#detail {
+    margin: 100px auto;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.pleft {
+    width: 680px;
+    overflow: hidden;
+}
+
+.fl {
+    float: left;
+}
+
+.pleft .box {
+    border: solid 1px #97ceed;
+}
+
+.viewbox .sbody {
+    line-height: 225%;
+    font-size: 14px;
+    background-position: -979px -30px;
+    padding: 15px 30px 15px 31px;
+    margin-left: -1px;
+}
+
+.viewbox h2.title {
+    font-size: 25px;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    padding: 5px 0;
+}
+
+.viewbox .info {
+    text-align: center;
+    color: #7E7E7E;
+    border-bottom: #E1E1E1 1px solid;
+    margin-bottom: 25px;
+    padding-bottom: 5px;
+    font-size: 12px;
+}
+
+.viewbox .info {
+    text-align: center;
+    color: #7E7E7E;
+    border-bottom: #E1E1E1 1px solid;
+    margin-bottom: 25px;
+    padding-bottom: 5px;
+    font-size: 12px;
+}
+
+em,
+small {
+    font-style: normal;
+    font-size: 12px;
+}

@@ -1,0 +1,20 @@
+<div>
+    <div class="l-item">
+        <ul *ngIf="news">
+            <li *ngFor="let item of news; let i=index">
+                <h3><a (click)="detail(i)" [routerLinkActive]="['active']" target="_blank">{{item.title}}</a></h3>
+                <p>
+                    <a (click)="detail(i)" [routerLinkActive]="['active']" target="_blank">
+                        <img class="fl" [src]="item.img">
+                    </a>
+                    {{item.content}}
+                </p>
+            </li>
+        </ul>
+    </div>
+    <div class="pagelist">
+        <button (click)="changePage(currentGenre,currentIndex-1)" [disabled]="currentIndex==0">上一页</button>
+        <a (click)="changePage(currentGenre,item)" [ngStyle]="{'background-color':currentIndex==item ? '#F262A5':'#5ea9d2'}" *ngFor="let item of pageCountList">{{item+1}}</a>
+        <button (click)="changePage(currentGenre,currentIndex+1)" [disabled]="currentIndex==pageCount-1">下一页</button>
+    </div>
+</div>

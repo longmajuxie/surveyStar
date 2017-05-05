@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AlertModule,TabsModule  } from 'ng2-bootstrap';
+import { DatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
@@ -24,6 +25,7 @@ import * as _ from 'lodash';
     HttpModule,
     RouterModule,
     ReactiveFormsModule,
+    DatepickerModule.forRoot(),
     AlertModule.forRoot(),
     TabsModule.forRoot(),
     PagesModule,
