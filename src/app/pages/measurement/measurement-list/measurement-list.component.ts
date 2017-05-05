@@ -25,7 +25,9 @@ export class MeasurementListComponent implements OnInit {
                         this.lists=data;
                         this.pageCount=data[this.currentGenre].length;
                         for(let i=0;i<this.pageCount;i++){
-                          this.pageCountList.push(i);
+                          if(data[this.currentGenre][i].length!=0){
+                            this.pageCountList.push(i);
+                          }
                         }
                         this.changePage(this.currentGenre,this.currentIndex);
                       },
