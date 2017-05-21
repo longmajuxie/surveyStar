@@ -7,11 +7,12 @@ import {FileUploadModule} from 'ng2-file-upload';
 
 import { routing }       from './questionnaire.routes';
 import { QuestionnaireComponent } from './questionnaire.component';
-import { QuestionnaireDelService } from './questionnaire-create/questionnaire-create.service';
+import { QuestionnaireDelService } from './questionnaire.service';
 import { QuestionnaireListComponent } from './questionnaire-list/questionnaire-list.component';
 import { QuestionnaireTemplateListComponent } from './questionnaire-template-list/questionnaire-template-list.component';
 import { QuestionnaireCreateComponent } from './questionnaire-create/questionnaire-create.component';
 import { QuestionHandleComponent } from '../../widgets/question-handle/question-handle.component';
+import { QuestionnaireService } from '../../services/questionnaire'
 
 
 
@@ -25,7 +26,7 @@ import { QuestionHandleComponent } from '../../widgets/question-handle/question-
         QuestionnaireCreateComponent,
         QuestionHandleComponent,
      ],
-   providers:[QuestionnaireDelService]
+   providers:[QuestionnaireDelService,QuestionnaireService]
 })
 export class QuestionnaireModule {
 }

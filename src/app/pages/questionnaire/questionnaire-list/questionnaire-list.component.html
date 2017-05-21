@@ -3,32 +3,22 @@
     <span class="divider">/</span>
     <span class="active">问卷列表</span>
 </p>
-<div class="bce-list-content" ng-hide="emptyList" style="display:none">
+<div class="bce-list-content" *ngIf="isList">
     <h2>问卷列表 <span class="survey-manage-content-tip"></span></h2>
     <div class="bce-task-list-head">
-        <a class="bce-create-task-btn" style="text-decoration: none" href="http://mtc.baidu.com/survey/home/createSurvey" target="_blank">
+        <a class="bce-create-task-btn" style="text-decoration: none" (click)="isList=false">
             <div class="bce-ui-button bce-skin-create-button"><i class="fa fa-plus-square" aria-hidden="true"></i>免费创建</div>
         </a>
 
         <div class="bce-ui-group bce-ui-search-group vt">
-            <div class="bce-ui-select" ng-click="expandSelect()" ng-class="{true: 'bce-ui-select-active'}[isExpanded]">
-                <span ng-bind="statusAry[statusFilter]" class="ng-binding">全部状态<i class="fa fa-chevron-down" aria-hidden="true"></i></span>
-                <ul ng-show="isExpanded" class="bce-ui-select-layer ng-hide">
+            <div class="bce-ui-select">
+                <span class="ng-binding" (click)="isShowSelectTab=!isShowSelectTab">{{currentStatus}}<i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+                <ul ng-show="isExpanded" class="bce-ui-select-layer" *ngIf="isShowSelectTab">
                     <!-- ngRepeat: (k,v) in statusMap -->
-                    <li ng-repeat="(k,v) in statusMap" ng-bind="statusAry[v]" ng-click="statusChanged(v)" class="bce-ui-select-item ng-binding ng-scope">全部状态</li>
+                    <li (click)="statusChanged(0)" class="bce-ui-select-item ng-binding ng-scope">全部状态</li>
                     <!-- end ngRepeat: (k,v) in statusMap -->
-                    <li ng-repeat="(k,v) in statusMap" ng-bind="statusAry[v]" ng-click="statusChanged(v)" class="bce-ui-select-item ng-binding ng-scope">创建中</li>
-                    <!-- end ngRepeat: (k,v) in statusMap -->
-                    <li ng-repeat="(k,v) in statusMap" ng-bind="statusAry[v]" ng-click="statusChanged(v)" class="bce-ui-select-item ng-binding ng-scope">待支付</li>
-                    <!-- end ngRepeat: (k,v) in statusMap -->
-                    <li ng-repeat="(k,v) in statusMap" ng-bind="statusAry[v]" ng-click="statusChanged(v)" class="bce-ui-select-item ng-binding ng-scope">审核中</li>
-                    <!-- end ngRepeat: (k,v) in statusMap -->
-                    <li ng-repeat="(k,v) in statusMap" ng-bind="statusAry[v]" ng-click="statusChanged(v)" class="bce-ui-select-item ng-binding ng-scope">审核不通过</li>
-                    <!-- end ngRepeat: (k,v) in statusMap -->
-                    <li ng-repeat="(k,v) in statusMap" ng-bind="statusAry[v]" ng-click="statusChanged(v)" class="bce-ui-select-item ng-binding ng-scope">发布中</li>
-                    <!-- end ngRepeat: (k,v) in statusMap -->
-                    <li ng-repeat="(k,v) in statusMap" ng-bind="statusAry[v]" ng-click="statusChanged(v)" class="bce-ui-select-item ng-binding ng-scope">已完成</li>
-                    <!-- end ngRepeat: (k,v) in statusMap -->
+                    <li (click)="statusChanged(1)" class="bce-ui-select-item ng-binding ng-scope">未发布</li>
+                    <li (click)="statusChanged(2)" class="bce-ui-select-item ng-binding ng-scope">已发布</li>
                 </ul>
             </div>
             <div class="bce-ui-textbox vt">
@@ -118,204 +108,35 @@
     </div>
 </div>
 <!-- ngIf: emptyList -->
-<div ng-include="includeUrl()" ng-if="emptyList" class="ng-scope">
+<div *ngIf="!isList">
     <div class="empty-survey-wrap ng-scope" ng-controller="emptySurveyGuideController">
-        <div class="empty-survey-title"></div>
+        <div class="empty-survey-title"><button class="bce-ui-button bce-skin-create-button" style="margin-left:16px;margin-top:16px" (click)="isList=true">返回列表</button></div>
         <div class="empty-survey-guide">
             <div class="survey-guide-tip">选择模板开始创建</div>
             <div class="survey-guide-content">
                 <!-- ngRepeat: tplType in tplTypes -->
-                <div class="survey-tpl-type ng-scope selectedtype" ng-repeat="tplType in tplTypes" nowrap="" title="产品调研阶段" ng-click="selectTplType($index,$event)" ng-class="{selectedtype: $index==selectedTypeIndex}">
+                <div class="survey-tpl-type ng-scope selectedtype" *ngFor="let item of questionnaireTypes" nowrap="" title="产品调研阶段" ng-click="selectTplType($index,$event)" ng-class="{selectedtype: $index==selectedTypeIndex}">
                     <div class="tpl-type-icon-area">
                         <div class="tpl-type-icon" ng-style="{'background':'url(/static/home/img/survey/'+tplType.icon+') no-repeat'}" style="background: url(&quot;/static/home/img/survey/market_research.png&quot;) no-repeat;"></div>
                     </div>
-                    <p ng-bind="tplType.name" class="tpl-type-name ng-binding">产品调研阶段</p>
+                    <p class="tpl-type-name ng-binding">{{item.questionnaireStage}}</p>
                     <ul class="survey-name-list">
                         <!-- ngRepeat: survey in tplType.survey -->
-                        <a ng-repeat=" survey in tplType.survey" href="http://mtc.baidu.com/survey/home/createSurvey?type_id=4&amp;survey_id=39794" target="_blank" class="ng-scope">
+                        <a *ngFor="let itemContent of item.questionnaireGenreDetail" [routerLink]="['/pages/questionnaire/create',itemContent.id]" [routerLinkActive]="['active']" target="_blank" class="ng-scope">
                             <li nowrap="" title="市场调研">
                                 <div class="rect-dot"></div>
-                                <div ng-bind="survey.desc_name" class="survey-name ng-binding">市场调研</div>
+                                <div ng-bind="survey.desc_name" class="survey-name ng-binding">{{itemContent.title}}</div>
                             </li>
                         </a>
-                        <!-- end ngRepeat: survey in tplType.survey -->
-                        <a ng-repeat=" survey in tplType.survey" href="http://mtc.baidu.com/survey/home/createSurvey?type_id=4&amp;survey_id=39781" target="_blank" class="ng-scope">
-                            <li nowrap="" title="用户偏好调研">
-                                <div class="rect-dot"></div>
-                                <div ng-bind="survey.desc_name" class="survey-name ng-binding">用户偏好调研</div>
-                            </li>
-                        </a>
-                        <!-- end ngRepeat: survey in tplType.survey -->
-                        <a ng-repeat=" survey in tplType.survey" href="http://mtc.baidu.com/survey/home/createSurvey?type_id=4&amp;survey_id=39790" target="_blank" class="ng-scope">
-                            <li nowrap="" title="消费者行为调研">
-                                <div class="rect-dot"></div>
-                                <div ng-bind="survey.desc_name" class="survey-name ng-binding">消费者行为调研</div>
-                            </li>
-                        </a>
-                        <!-- end ngRepeat: survey in tplType.survey -->
-                        <a ng-repeat=" survey in tplType.survey" href="http://mtc.baidu.com/survey/home/createSurvey?type_id=4&amp;survey_id=46964" target="_blank" class="ng-scope">
-                            <li nowrap="" title="产品使用习惯调查">
-                                <div class="rect-dot"></div>
-                                <div ng-bind="survey.desc_name" class="survey-name ng-binding">产品使用习惯调查</div>
-                            </li>
-                        </a>
-                        <!-- end ngRepeat: survey in tplType.survey -->
+                        <!--end ngRepeat: survey in tplType.survey -->
                     </ul>
                 </div>
-                <!-- end ngRepeat: tplType in tplTypes -->
-                <div class="survey-tpl-type ng-scope" ng-repeat="tplType in tplTypes" nowrap="" title="产品研发阶段" ng-click="selectTplType($index,$event)" ng-class="{selectedtype: $index==selectedTypeIndex}">
-                    <div class="tpl-type-icon-area">
-                        <div class="tpl-type-icon" ng-style="{'background':'url(/static/home/img/survey/'+tplType.icon+') no-repeat'}" style="background: url(&quot;/static/home/img/survey/product_development.png&quot;) no-repeat;"></div>
-                    </div>
-                    <p ng-bind="tplType.name" class="tpl-type-name ng-binding">产品研发阶段</p>
-                    <ul class="survey-name-list">
-                        <!-- ngRepeat: survey in tplType.survey -->
-                        <a ng-repeat=" survey in tplType.survey" href="http://mtc.baidu.com/survey/home/createSurvey?type_id=5&amp;survey_id=46812" target="_blank" class="ng-scope">
-                            <li nowrap="" title="功能体验调研">
-                                <div class="rect-dot"></div>
-                                <div ng-bind="survey.desc_name" class="survey-name ng-binding">功能体验调研</div>
-                            </li>
-                        </a>
-                        <!-- end ngRepeat: survey in tplType.survey -->
-                        <a ng-repeat=" survey in tplType.survey" href="http://mtc.baidu.com/survey/home/createSurvey?type_id=5&amp;survey_id=40139" target="_blank" class="ng-scope">
-                            <li nowrap="" title="性能体验调研">
-                                <div class="rect-dot"></div>
-                                <div ng-bind="survey.desc_name" class="survey-name ng-binding">性能体验调研</div>
-                            </li>
-                        </a>
-                        <!-- end ngRepeat: survey in tplType.survey -->
-                        <a ng-repeat=" survey in tplType.survey" href="http://mtc.baidu.com/survey/home/createSurvey?type_id=5&amp;survey_id=46816" target="_blank" class="ng-scope">
-                            <li nowrap="" title="操作流程体验调研">
-                                <div class="rect-dot"></div>
-                                <div ng-bind="survey.desc_name" class="survey-name ng-binding">操作流程体验调研</div>
-                            </li>
-                        </a>
-                        <!-- end ngRepeat: survey in tplType.survey -->
-                        <a ng-repeat=" survey in tplType.survey" href="http://mtc.baidu.com/survey/home/createSurvey?type_id=5&amp;survey_id=46814" target="_blank" class="ng-scope">
-                            <li nowrap="" title="页面展示效果体验">
-                                <div class="rect-dot"></div>
-                                <div ng-bind="survey.desc_name" class="survey-name ng-binding">页面展示效果体验</div>
-                            </li>
-                        </a>
-                        <!-- end ngRepeat: survey in tplType.survey -->
-                    </ul>
-                </div>
-                <!-- end ngRepeat: tplType in tplTypes -->
-                <div class="survey-tpl-type ng-scope" ng-repeat="tplType in tplTypes" nowrap="" title="产品发布前" ng-click="selectTplType($index,$event)" ng-class="{selectedtype: $index==selectedTypeIndex}">
-                    <div class="tpl-type-icon-area">
-                        <div class="tpl-type-icon" ng-style="{'background':'url(/static/home/img/survey/'+tplType.icon+') no-repeat'}" style="background: url(&quot;/static/home/img/survey/before_product_listed.png&quot;) no-repeat;"></div>
-                    </div>
-                    <p ng-bind="tplType.name" class="tpl-type-name ng-binding">产品发布前</p>
-                    <ul class="survey-name-list">
-                        <!-- ngRepeat: survey in tplType.survey -->
-                        <a ng-repeat=" survey in tplType.survey" href="http://mtc.baidu.com/survey/home/createSurvey?type_id=6&amp;survey_id=40124" target="_blank" class="ng-scope">
-                            <li nowrap="" title="价格接受度调研">
-                                <div class="rect-dot"></div>
-                                <div ng-bind="survey.desc_name" class="survey-name ng-binding">价格接受度调研</div>
-                            </li>
-                        </a>
-                        <!-- end ngRepeat: survey in tplType.survey -->
-                        <a ng-repeat=" survey in tplType.survey" href="http://mtc.baidu.com/survey/home/createSurvey?type_id=6&amp;survey_id=40133" target="_blank" class="ng-scope">
-                            <li nowrap="" title="产品名称测试">
-                                <div class="rect-dot"></div>
-                                <div ng-bind="survey.desc_name" class="survey-name ng-binding">产品名称测试</div>
-                            </li>
-                        </a>
-                        <!-- end ngRepeat: survey in tplType.survey -->
-                        <a ng-repeat=" survey in tplType.survey" href="http://mtc.baidu.com/survey/home/createSurvey?type_id=6&amp;survey_id=46822" target="_blank" class="ng-scope">
-                            <li nowrap="" title="用户触媒习惯调研">
-                                <div class="rect-dot"></div>
-                                <div ng-bind="survey.desc_name" class="survey-name ng-binding">用户触媒习惯调研
-                                </div>
-                            </li>
-                        </a>
-                        <!-- end ngRepeat: survey in tplType.survey -->
-                        <a ng-repeat=" survey in tplType.survey" href="http://mtc.baidu.com/survey/home/createSurvey?type_id=6&amp;survey_id=46825" target="_blank" class="ng-scope">
-                            <li nowrap="" title="广告语测试">
-                                <div class="rect-dot"></div>
-                                <div ng-bind="survey.desc_name" class="survey-name ng-binding">广告语测试</div>
-                            </li>
-                        </a>
-                        <!-- end ngRepeat: survey in tplType.survey -->
-                    </ul>
-                </div>
-                <!-- end ngRepeat: tplType in tplTypes -->
-                <div class="survey-tpl-type ng-scope" ng-repeat="tplType in tplTypes" nowrap="" title="产品发布后" ng-click="selectTplType($index,$event)" ng-class="{selectedtype: $index==selectedTypeIndex}">
-                    <div class="tpl-type-icon-area">
-                        <div class="tpl-type-icon" ng-style="{'background':'url(/static/home/img/survey/'+tplType.icon+') no-repeat'}" style="background: url(&quot;/static/home/img/survey/after_product_listed.png&quot;) no-repeat;"></div>
-                    </div>
-                    <p ng-bind="tplType.name" class="tpl-type-name ng-binding">产品发布后</p>
-                    <ul class="survey-name-list">
-                        <!-- ngRepeat: survey in tplType.survey -->
-                        <a ng-repeat=" survey in tplType.survey" href="http://mtc.baidu.com/survey/home/createSurvey?type_id=7&amp;survey_id=39769" target="_blank" class="ng-scope">
-                            <li nowrap="" title="用户满意度调研">
-                                <div class="rect-dot"></div>
-                                <div ng-bind="survey.desc_name" class="survey-name ng-binding">用户满意度调研</div>
-                            </li>
-                        </a>
-                        <!-- end ngRepeat: survey in tplType.survey -->
-                        <a ng-repeat=" survey in tplType.survey" href="http://mtc.baidu.com/survey/home/createSurvey?type_id=7&amp;survey_id=46834" target="_blank" class="ng-scope">
-                            <li nowrap="" title="活动效果评估">
-                                <div class="rect-dot"></div>
-                                <div ng-bind="survey.desc_name" class="survey-name ng-binding">活动效果评估</div>
-                            </li>
-                        </a>
-                        <!-- end ngRepeat: survey in tplType.survey -->
-                        <a ng-repeat=" survey in tplType.survey" href="http://mtc.baidu.com/survey/home/createSurvey?type_id=7&amp;survey_id=46954" target="_blank" class="ng-scope">
-                            <li nowrap="" title="产品服务质量评测">
-                                <div class="rect-dot"></div>
-                                <div ng-bind="survey.desc_name" class="survey-name ng-binding">产品服务质量评测</div>
-                            </li>
-                        </a>
-                        <!-- end ngRepeat: survey in tplType.survey -->
-                        <a ng-repeat=" survey in tplType.survey" href="http://mtc.baidu.com/survey/home/createSurvey?type_id=7&amp;survey_id=46958" target="_blank" class="ng-scope">
-                            <li nowrap="" title="广告效果评估">
-                                <div class="rect-dot"></div>
-                                <div ng-bind="survey.desc_name" class="survey-name ng-binding">广告效果评估</div>
-                            </li>
-                        </a>
-                        <!-- end ngRepeat: survey in tplType.survey -->
-                    </ul>
-                </div>
-                <!-- end ngRepeat: tplType in tplTypes -->
-                <div class="survey-tpl-type ng-scope" ng-repeat="tplType in tplTypes" nowrap="" title="产品战略" ng-click="selectTplType($index,$event)" ng-class="{selectedtype: $index==selectedTypeIndex}">
-                    <div class="tpl-type-icon-area">
-                        <div class="tpl-type-icon" ng-style="{'background':'url(/static/home/img/survey/'+tplType.icon+') no-repeat'}" style="background: url(&quot;/static/home/img/survey/&quot;) no-repeat;"></div>
-                    </div>
-                    <p ng-bind="tplType.name" class="tpl-type-name ng-binding">产品战略</p>
-                    <ul class="survey-name-list">
-                        <!-- ngRepeat: survey in tplType.survey -->
-                        <a ng-repeat=" survey in tplType.survey" href="http://mtc.baidu.com/survey/home/createSurvey?type_id=8&amp;survey_id=60947" target="_blank" class="ng-scope">
-                            <li nowrap="" title="产品定义">
-                                <div class="rect-dot"></div>
-                                <div ng-bind="survey.desc_name" class="survey-name ng-binding">产品定义</div>
-                            </li>
-                        </a>
-                        <!-- end ngRepeat: survey in tplType.survey -->
-                    </ul>
-                </div>
-                <!-- end ngRepeat: tplType in tplTypes -->
-                <div class="survey-tpl-type ng-scope" ng-repeat="tplType in tplTypes" nowrap="" title="产品品质" ng-click="selectTplType($index,$event)" ng-class="{selectedtype: $index==selectedTypeIndex}">
-                    <div class="tpl-type-icon-area">
-                        <div class="tpl-type-icon" ng-style="{'background':'url(/static/home/img/survey/'+tplType.icon+') no-repeat'}" style="background: url(&quot;/static/home/img/survey/&quot;) no-repeat;"></div>
-                    </div>
-                    <p ng-bind="tplType.name" class="tpl-type-name ng-binding">产品品质</p>
-                    <ul class="survey-name-list">
-                        <!-- ngRepeat: survey in tplType.survey -->
-                        <a ng-repeat=" survey in tplType.survey" href="http://mtc.baidu.com/survey/home/createSurvey?type_id=9&amp;survey_id=60948" target="_blank" class="ng-scope">
-                            <li nowrap="" title="产品体验">
-                                <div class="rect-dot"></div>
-                                <div ng-bind="survey.desc_name" class="survey-name ng-binding">产品体验</div>
-                            </li>
-                        </a>
-                        <!-- end ngRepeat: survey in tplType.survey -->
-                    </ul>
-                </div>
+
                 <!-- end ngRepeat: tplType in tplTypes -->
                 <div class="survey-tpl-type" id="create_empty_survey">
                     <div class="create-empty-survey-area">
-                        <a class="create-empty-survey" [routerLink]="['/pages/questionnaire/create']" [routerLinkActive]="['active']">+</a>
-                        <a [routerLink]="['/pages/questionnaire/create']" [routerLinkActive]="['active']">创建空白问卷</a>
+                        <a class="create-empty-survey" [routerLink]="['/pages/questionnaire/create/0']" [routerLinkActive]="['active']" target="_blank">+</a>
+                        <a [routerLink]="['/pages/questionnaire/create/0']" [routerLinkActive]="['active']" target="_blank">创建空白问卷</a>
                     </div>
                 </div>
             </div>

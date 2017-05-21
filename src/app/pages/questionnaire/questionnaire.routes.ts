@@ -15,7 +15,7 @@ export const routes: Routes = [
       { path: '', redirectTo:'list', pathMatch:'full' },
       { path: 'list', component:QuestionnaireListComponent },
       { path: 'templateList', component: QuestionnaireTemplateListComponent },
-      { path: 'create', component: QuestionnaireCreateComponent }
+      { path: 'create/:genre', component: QuestionnaireCreateComponent }
 
     ]
   }

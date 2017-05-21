@@ -12,11 +12,11 @@ export class topicService implements OnInit {
     ngOnInit(){}
     // Uses http.get() to load a single JSON file
     getNews() {
-        this.newsData = this.http.get('../../assets/json/newsList.json').map((res:Response) => res.json());
+        this.newsData = this.http.get('assets/json/newsList.json').map((res:Response) => res.json());
         return this.newsData
     }
     getNewsDetail(index:number,genre:number){
-        this.newsData = this.http.get('../../assets/json/newsList.json').map((res:Response) => res.json());
+        this.newsData = this.http.get('assets/json/newsList.json').map((res:Response) => res.json());
         this.newsDetail=this.newsData[genre][index] || null;
         return this.newsDetail;
     }

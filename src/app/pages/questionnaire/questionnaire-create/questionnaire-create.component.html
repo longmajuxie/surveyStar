@@ -68,7 +68,9 @@
                                 </div>
                                 <div class="survey-desc">
                                     <div class="position-relative" style="width:100%">
-                                        <div class="desc-content edit-area" contenteditable="true" style="background: rgb(255, 255, 255);">欢迎参加调查！答卷数据仅用于统计分析，请放心填写。题目选项无对错之分，按照实际情况选择即可。感谢您的帮助！</div>
+                                        <div class="desc-content edit-area" contenteditable="true" style="background: rgb(255, 255, 255);" [textContent]="qustionnaire.questionnairePrompt" (input)="qustionnaire.questionnairePrompt=$event.target.textContent">
+                                            {{qustionnaire.questionnairePrompt}}
+                                        </div>
                                         <div class="error-tips"></div>
                                     </div>
                                 </div>
@@ -471,7 +473,7 @@
                                         <li style="height: 40px;">
                                             <div id="survey-op" class="after-clear">
                                                 <div class="preview-survey dib vm mr10">
-                                                    <input type="button" class="bce-ui-button btn-lg" value="保存问卷" click="previewSurvey()">
+                                                    <input type="button" class="bce-ui-button btn-lg" value="保存问卷" (click)="saveSurvey()">
                                                 </div>
                                                 <!-- <div class="bce-ui-button btn-lg bce-skin-primary-button op-next vm">下一步</div>-->
                                             </div>

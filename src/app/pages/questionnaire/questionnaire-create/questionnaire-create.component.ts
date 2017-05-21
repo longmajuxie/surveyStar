@@ -1,11 +1,15 @@
 import { FileItem } from 'ng2-file-upload/file-upload/file-item.class';
 import { Component, OnInit ,ViewEncapsulation,HostListener} from '@angular/core';
 import { ActivatedRoute, Router,Params } from '@angular/router';
-import { FileUploader } from 'ng2-file-upload';
+import {Http, Response, Headers, RequestOptions,RequestOptionsArgs,URLSearchParams} from "@angular/http";
+import { FileUploader,ParsedResponseHeaders } from 'ng2-file-upload';
 declare var $: any;
-import { QuestionnaireDelService } from './questionnaire-create.service';
+import { QuestionnaireDelService } from '../questionnaire.service';
+import { QuestionnaireService } from '../../../services/questionnaire'
+import 'rxjs/add/operator/switchMap';
+import { Subscription }   from 'rxjs/Subscription';
 
-const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
+const URL = 'api/file/uploadFile';
 @Component({
   selector: 'app-questionnaire-create',
   templateUrl: './questionnaire-create.component.html',
@@ -16,14 +20,20 @@ export class QuestionnaireCreateComponent implements OnInit {
 
   qustionnaire={
     questionnaireTitle:"问卷名",
-    questionnairePrompt:"欢迎参加调查！",
+    questionnaireType:0,
+    questionnairePrompt:"欢迎参加调查！答卷数据仅用于统计分析，请放心填写。题目选项无对错之分，按照实际情况选择即可。感谢您的帮助！",
     questionList:[]
   };
   currentHandleQuestion:number;
   isShowHandleDig=false;
   public uploader:FileUploader = new FileUploader({url: URL});
-  constructor(public del:QuestionnaireDelService,public router:Router) { }
-  ngOnInit() {}
+  constructor(public del:QuestionnaireDelService,public router:Router,public Qs:QuestionnaireService,private route: ActivatedRoute,) { }
+  ngOnInit() {
+    this.route.params.switchMap((params: Params) => params['genre'])
+        .subscribe(x=>{
+        this.qustionnaire.questionnaireType=+x;
+    })
+  }
   @HostListener("window:scroll", [])
   onWindowScroll() {
     //we'll do some stuff here when the window is scrolled
@@ -38,7 +48,6 @@ export class QuestionnaireCreateComponent implements OnInit {
        question=this.del.createQuestionnaireQuestion(index);
        this.qustionnaire.questionList.push(question);
        window.scrollTo(0, document.body.offsetHeight-1000);
-       console.log(this.qustionnaire);
   }
   public questionDelete=function(index){
     this.qustionnaire.questionList.splice(index,1);
@@ -59,9 +68,16 @@ export class QuestionnaireCreateComponent implements OnInit {
                             },);
               }else if(index==7||index==8){
                 let _this=this;
+            /*    this.uploader._fileSizeFilter();*/
                 this.uploader.autoUpload=true;
+                let headers= new Headers({"Access-Control-Allow-Origin":"*"});
+                this.uploader.setOptions(headers);
                 this.uploader.onAfterAddingFile=function(FileItem){
                     FileItem.upload();
+                    FileItem._onComplete = ( response: string, status: number,
+                      headers: ParsedResponseHeaders) => {
+                       console.log(123);
+                    };
                     FileItem._onError=function(response, status, headers){
                         console.log(456);
                     }
@@ -130,6 +146,18 @@ export class QuestionnaireCreateComponent implements OnInit {
   }
   public handleClose(){
     this.isShowHandleDig=false;
+  }
+  public saveSurvey(){
+    this.Qs.saveSurvey(this.qustionnaire) .subscribe(
+                    // the first argument is a function which runs on success
+            data => { 
+                this.router.navigate(['/pages/questionnaire/list']);
+            },
+          // the second argument is a function which runs on error
+            err => console.error(err),
+      // the third argument is a function which runs on completion
+            () => console.log('done loading')
+        );
   }
   public previewSurvey(){
       this.router.navigate(['/pages/questionnaire/previewOrPlay'], { queryParams: { questionnaire: JSON.stringify(this.qustionnaire)} });
