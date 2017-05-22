@@ -30,12 +30,15 @@ export class LoginComponent implements OnInit, OnDestroy {
       
     }
     login(){
-      this.errMsg=this.storage.checkLoginMsg(this.userInfo.userName,this.userInfo.passWord);
-      if(this.errMsg==""){
-        this.storage.login(this.userInfo.userName,this.userInfo.passWord);
-        this.storage.loginFake("123","456")
-         this.router.navigate(['/pages/home']);
-      }
+      this.storage.login(this.userInfo.userName,this.userInfo.passWord).subscribe(
+                    // the first argument is a function which runs on success
+            data => { 
+                this.router.navigate(['/pages/home']);
+            },
+          // the second argument is a function which runs on error
+            err => console.error(err),
+      // the third argument is a function which runs on completion
+            () => console.log('done loading')
+        );
     }
-
 }

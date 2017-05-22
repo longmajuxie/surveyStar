@@ -1,18 +1,22 @@
-import { userInfo } from 'os';
-import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import {Injectable,OnInit} from '@angular/core';
+import {Http, Response, Headers, RequestOptions,RequestOptionsArgs,URLSearchParams} from "@angular/http";
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 
 import {LocalStorageService, SessionStorageService} from 'ng2-webstorage';
 
 @Injectable()
-export class AuthenticationService {
+export class AuthenticationService implements OnInit {
 
-    constructor(private http: Http, private storage:LocalStorageService) { }
+    
+    ngOnInit(){}
+    constructor(private http:Http, private storage:LocalStorageService) { }
 
-    login(username: string, password: string) {
-        return this.http.post('./api/authenticate', JSON.stringify({ username: username, password: password }))
+    login(username, password) {
+        return this.http.post('api/login/doLogin?userName="'+username+'"&password="'+password+'"', JSON.stringify({ }))
         .map((response: Response) => {
             // login successful if there's a jwt token in the response
             let user = response.json();
@@ -54,8 +58,12 @@ export class AuthenticationService {
         // localStorage.removeItem('currentUser');
         this.storage.clear('currentUser');
     }
-    signUp(userInfo:any){
-        return this.http.post('./api/authenticate', JSON.stringify({userInfo:userInfo}))
+    signUp(userInfo){
+        const params = new URLSearchParams();
+        params.set('userName', JSON.stringify(userInfo.userName));
+        params.set('password', JSON.stringify(userInfo.passWord));
+        params.set('email', JSON.stringify(userInfo.email));
+        return this.http.post('api/login/register', params)
         .map((response: Response) => {
             // login successful if there's a jwt token in the response
             let user = response.json();
@@ -68,15 +76,15 @@ export class AuthenticationService {
     checkSignUpInfo(userInfo:any){
         let emailFilter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         let errMsg="";
-        if(userInfo.email=""){
+        if(userInfo.email==""){
             errMsg="邮箱不能为空";
-        }else if(emailFilter.test(userInfo.email)){
+        }else if(!emailFilter.test(userInfo.email)){
             errMsg="邮箱格式不正确";
-        }else if(userInfo.userName=""){
+        }else if(userInfo.userName==""){
             errMsg="用户名不能为空";
         }else if(userInfo.passWord==""||userInfo.rePassWord==""){
             errMsg="密码不能为空";
-        }else if(userInfo.passWord!=userInfo.rePassword){
+        }else if(userInfo.passWord!=userInfo.rePassWord){
             errMsg="两次密码不一致";
         }
 
