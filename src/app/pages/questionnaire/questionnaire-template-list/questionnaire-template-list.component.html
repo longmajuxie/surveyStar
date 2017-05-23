@@ -19,25 +19,22 @@
                                 <input type="text" placeholder="问卷名称" ng-model="searchTplName" class="ng-pristine ng-untouched ng-valid">
                             </div>
                             <div class="bce-ui-button bce-skin-primary-button vm" ng-click="searchTemplate(searchTplName)">搜索</div>
-                            <div class="div-inline desc-text ng-binding" ng-hide="emptyList">1684个作者，分享1864个模板</div>
                         </div>
+                        <!--
                         <div class="order-select-area" ng-hide="emptyList">
                             <div class="select-desc">排序</div>
                             <div class="bce-ui-select-wrap">
                                 <div class="bce-ui-select" ng-click="expandSelect()" ng-class="{true: 'bce-ui-select-active'}[isExpanded]">
                                     <span ng-bind="orderAry[filter.display_order_attr]" class="ng-binding">按使用次数 <i aria-hidden="true" class="fa fa-chevron-down"></i></span>
                                     <ul ng-show="isExpanded" class="bce-ui-select-layer ng-hide">
-                                        <!-- ngRepeat: (k,v) in orderMap -->
                                         <li class="bce-ui-select-item ng-binding ng-scope" ng-repeat="(k,v) in orderMap" ng-bind="orderAry[v]" ng-click="orderChanged(v)">按使用次数</li>
-                                        <!-- end ngRepeat: (k,v) in orderMap -->
                                         <li class="bce-ui-select-item ng-binding ng-scope" ng-repeat="(k,v) in orderMap" ng-bind="orderAry[v]" ng-click="orderChanged(v)">按作者姓名</li>
-                                        <!-- end ngRepeat: (k,v) in orderMap -->
                                         <li class="bce-ui-select-item ng-binding ng-scope" ng-repeat="(k,v) in orderMap" ng-bind="orderAry[v]" ng-click="orderChanged(v)">按问卷名称</li>
-                                        <!-- end ngRepeat: (k,v) in orderMap -->
                                     </ul>
                                 </div>
                             </div>
                         </div>
+                        -->
                         <ul class="survey-tpl-name-list" ng-hide="emptyList">
                             <!-- ngRepeat: template in templateList -->
                             <li ng-repeat=" template in templateList" nowrap="" title="市场调查" ng-click="selectTemplate(template,$event)" ng-class="{selectedsurvey: template.id==selectedTemplate.id}" class="ng-scope">

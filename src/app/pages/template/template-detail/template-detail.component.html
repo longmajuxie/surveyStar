@@ -1,41 +1,28 @@
 <div class="wjContent">
     <div class="content ptop Tj">
-        <div class="templates">
+        <div class="templates" *ngIf="questionnaire">
             <div class="proheaddiv">
                 <div class="Mbgen_title">
                     <ul class="nav_block clearfix">
+
                         <li>
-                            <a href="/">问卷网</a>
+                            <span>问卷模板</span>
                             <s class="arrowr"></s>
                         </li>
                         <li>
-                            <a href="/lib">问卷模板</a>
-                            <s class="arrowr"></s>
-                        </li>
-
-
-                        <li>
-                            <a href="/official/edu_f_official_1">学术教育</a>
-                            <s class="arrowr"></s>
-                        </li>
-
-
-                        <li>
-                            <a href="#" class="active">大学生网购调查问卷</a>
+                            <span class="active">{{questionnaire.questionnaireName}}</span>
                         </li>
                     </ul>
                 </div>
                 <div class="reldiv">
-                    <h1 class="alignc h3">大学生网购调查问卷</h1>
+                    <h1 class="alignc h3">{{questionnaire.questionnaireName}}</h1>
                     <div class="mtop2 lookdiv">
                         问卷概况：
-                        <span>17</span> 个问题
-                        <span>1</span> 页 已被引用
-                        <span>19257</span> 次
-                        <button title="模拟答题" class="N_view" rel="nofollow">导出</button>
+                        <span>{{questionnaire.questions.length}}</span> 个问题
+                        <button title="导出" class="N_view" rel="nofollow">导出</button>
                     </div>
                     <div class="mtop2 lookdiv">
-                        <span class="fL">您好，我们是XXX，我们正在进行一项关于大学生网购的调查，想邀请您用几分钟时间帮忙填答这份问卷。本问卷实行匿名制，所有数据只用于统计分析， 请您放心填写。题目选项无对错之分，请您按自己的实际情况填写。谢谢您的帮助。</span>
+                        <span class="fL">{{questionnaire.questionnairePrompt}}</span>
                     </div>
                     <div nowrap="" id="describe">
                         <br>
@@ -45,464 +32,360 @@
                     </div>
                     <div class="wjhr mtop"></div>
                     <div class="ques mtop">
-
-                        <div class="wjques">
-
-
-                            <div class="title">Q1：您的性别？</div>
-                            <div class="matrix">
-                                <div id="qwe" class="matrix">
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>男</span>
+                        <div id="question-box" class="ui-sortable">
+                            <!--题目区域开始-->
+                            <div class="topic-type-content topic-type-question after-clear" *ngFor="let item of questionnaire.questions;let i = index;">
+                                <!--单选题开始-->
+                                <div *ngIf="item.questionGenre==0">
+                                    <div class="question-title" type="6" name="radio-question"><span class="required" [hidden]="!item.isNecessary">*</span><span class="question-id" order="2" page="1" index="1" absolute_id="5" question-required="Y" has_other="N" title-quote="N" choice-quote="0">Q{{i+1}}</span>
+                                        <div class="position-relative">
+                                            <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);" [textContent]="item.questionTitle" (input)="item.questionTitle=$event.target.textContent">
+                                                {{item.questionTitle}}
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>女</span>
+                                    <ul class="question-choice">
+                                        <li class="choice" has_other="N" choice_absolute_id="1" *ngFor="let itemChoice of item.questionChoice; let qc = index">
+                                            <input type="radio" name="radio">
+                                            <div class="position-relative">
+                                                <div class="edit-area edit-child-element" contenteditable="true" content-default="1" [textContent]="itemChoice.text" (input)="itemChoice.text=$event.target.textContent">
+                                                    {{itemChoice.text}}
+                                                </div>
+                                                <span title="删除" (click)="deleteQuestionChoice(i,qc)"><i class="fa fa-times" aria-hidden="true"></i></span>
+                                            </div>
+                                            <div class="option-tips"></div>
+                                        </li>
+                                    </ul>
+                                    <div class="add-area visible-show">
+                                        <ul>
+                                            <li class="add-choice" title="增加" (click)="addQuestionChoice(i,item.questionGenre)"><i class="fa fa-plus-square-o" aria-hidden="true"></i></li>
+                                        </ul>
                                     </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="wjques">
-
-
-                            <div class="title">Q2：你所在的年级？</div>
-                            <div class="matrix">
-                                <div id="qwe" class="matrix">
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>大一</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>大二</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>大三</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>大四</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>研究生</span>
+                                    <div class="operate visible-show">
+                                        <ul>
+                                            <li class="question-handle" title="操作" (click)="questionHandle(i)"><i class="fa fa-align-justify" aria-hidden="true"></i></li>
+                                            <li class="question-delete" title="删除" (click)="questionDelete(i)"><i class="fa fa-trash" aria-hidden="true"></i></li>
+                                        </ul>
                                     </div>
                                 </div>
-                            </div>
+                                <!--单选题结束-->
 
-                        </div>
-
-                        <div class="wjques">
-
-
-                            <div class="title">Q3：你过去3个月是否曾经在网络上购买东西？</div>
-                            <div class="matrix">
-                                <div id="qwe" class="matrix">
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>是</span>
+                                <!--下拉选择题开始-->
+                                <div *ngIf="item.questionGenre==1">
+                                    <div class="question-title" type="7" name="select-question">
+                                        <span class="required" [hidden]="!item.isNecessary">*</span>
+                                        <span class="question-id" order="3" page="1" index="2" absolute_id="6" question-required="Y" has_other="N" title-quote="N" choice-quote="0">Q{{i+1}}</span>
+                                        <div class="position-relative">
+                                            <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true" [textContent]="item.questionTitle" (input)="item.questionTitle=$event.target.textContent">
+                                                {{item.questionTitle}}
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>否</span>
+                                    <select class="question-choice" style="padding: 0;margin: 15px 0 20px 35px;" [hidden]="item.isEdit">
+                                             <option class="choice" has_other="N" choice_absolute_id="1" *ngFor="let itemChoice of item.questionChoice; let qc = index"> {{itemChoice.text}}</option>
+                                            </select>
+                                    <ul class="question-choice" [hidden]="!item.isEdit">
+                                        <li class="choice" has_other="N" choice_absolute_id="1" *ngFor="let itemChoice of item.questionChoice; let qc = index">
+                                            <input type="radio" name="radio">
+                                            <div class="position-relative">
+                                                <div class="edit-area edit-child-element" contenteditable="true" content-default="1" [textContent]="itemChoice.text" (input)="itemChoice.text=$event.target.textContent">
+                                                    {{itemChoice.text}}
+                                                </div>
+                                                <span title="删除" (click)="deleteQuestionChoice(i,qc)"><i class="fa fa-times" aria-hidden="true"></i></span>
+                                            </div>
+                                            <div class="option-tips"></div>
+                                        </li>
+                                    </ul>
+                                    <span class="edit-select" style="width: 60%;display: inline-block;line-height: 30px;" (click)="editSelect(i)" [hidden]="item.isEdit">编辑选项</span>
+                                    <div class="add-area visible-show" [hidden]="!item.isEdit">
+                                        <ul>
+                                            <li class="add-choice" title="增加" (click)="addQuestionChoice(i,item.questionGenre)"><i class="fa fa-plus-square-o" aria-hidden="true"></i></li>
+                                            <li class="finish_edit_select" (click)="finishEditSelect(i)" style="width: 75px;cursor: pointer;">完成编辑</li>
+                                        </ul>
+                                    </div>
+                                    <div class="operate visible-show">
+                                        <ul>
+                                            <li class="question-handle" title="操作" (click)="questionHandle(i)"><i class="fa fa-align-justify" aria-hidden="true"></i></li>
+                                            <li class="question-delete" title="删除" (click)="questionDelete(i)"><i class="fa fa-trash" aria-hidden="true"></i></li>
+                                        </ul>
                                     </div>
                                 </div>
-                            </div>
+                                <!--下拉选择题结束-->
 
-                        </div>
-
-                        <div class="wjques">
-
-
-                            <div class="title">Q4：你选择网络购物的主要原因是？</div>
-                            <div class="matrix">
-                                <div id="qwe" class="matrix">
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>方便快捷，节省时间</span>
+                                <!--多选题开始-->
+                                <div *ngIf="item.questionGenre==2">
+                                    <div class="question-title" type="8" name="checkbox-question"><span class="required" [hidden]="!item.isNecessary">*</span>
+                                        <span class="question-id" order="4" page="1" index="3" absolute_id="7" question-required="Y" has_other="N" title-quote="N" choice-quote="0" min="" max="" exclusive-options="">Q{{i+1}}</span>
+                                        <div class="position-relative">
+                                            <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);" [textContent]="item.questionTitle" (input)="item.questionTitle=$event.target.textContent">
+                                                {{item.questionTitle}}
+                                            </div>
+                                            <span title="删除" (click)="deleteQuestionChoice(i,qc)"><i class="fa fa-times" aria-hidden="true"></i></span>
+                                        </div>
                                     </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>品种齐全</span>
+                                    <ul class="question-choice">
+                                        <li class="choice" has_other="N" choice_absolute_id="1" *ngFor="let itemChoice of item.questionChoice; let qc = index">
+                                            <input type="checkbox" name="checkbox">
+                                            <div class="position-relative">
+                                                <div class="edit-area edit-child-element" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);" [textContent]="itemChoice.text" (input)="itemChoice.text=$event.target.textContent">
+                                                    {{itemChoice.text}}
+                                                </div>
+                                            </div>
+                                            <div class="option-tips"></div>
+                                        </li>
+                                    </ul>
+                                    <div class="add-area visible-show">
+                                        <ul>
+                                            <li class="add-choice" title="增加" (click)="addQuestionChoice(i,item.questionGenre)">
+                                                <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>价格便宜</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>时尚有趣</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>实体店难以买到</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>网购时间不受限制</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>其他</span>
+                                    <div class="operate visible-show">
+                                        <ul>
+                                            <li class="question-handle" title="操作" (click)="questionHandle(i)"><i class="fa fa-align-justify" aria-hidden="true"></i></li>
+                                            <li class="question-delete" title="删除" (click)="questionDelete(i)"><i class="fa fa-trash" aria-hidden="true"></i></li>
+                                        </ul>
                                     </div>
                                 </div>
-                            </div>
+                                <!--多选题结束-->
 
-                        </div>
-
-                        <div class="wjques">
-
-
-                            <div class="title">Q5：你主要在哪些网站上购买东西？</div>
-                            <div class="matrix">
-                                <div id="qwe" class="matrix">
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>淘宝网</span>
+                                <!--单行填空题开始-->
+                                <div *ngIf="item.questionGenre==3">
+                                    <div class="question-title" type="1" name="input-question">
+                                        <span class="required" [hidden]="!item.isNecessary">*</span>
+                                        <span class="question-id" order="5" page="1" index="4" absolute_id="8" question-required="Y" has_other="N" title-quote="N">Q{{i+1}}</span>
+                                        <div class="position-relative">
+                                            <div class="qs-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);" [textContent]="item.questionTitle" (input)="item.questionTitle=$event.target.textContent">
+                                                {{item.questionTitle}}
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>京东商城</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>卓越亚马逊</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>当当网</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>拍拍网</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>其他</span>
+                                    <ul class="question-choice">
+                                        <li><input type="text" name="input" class="input-single"></li>
+                                    </ul>
+                                    <div class="operate visible-show">
+                                        <ul>
+                                            <li class="question-handle" title="操作" (click)="questionHandle(i)"><i class="fa fa-align-justify" aria-hidden="true"></i></li>
+                                            <li class="question-delete" title="删除" (click)="questionDelete(i)"><i class="fa fa-trash" aria-hidden="true"></i></li>
+                                        </ul>
                                     </div>
                                 </div>
-                            </div>
+                                <!--单行填空题结束-->
 
-                        </div>
-
-                        <div class="wjques">
-
-
-                            <div class="title">Q6：你在网上主要购买哪些东西？</div>
-                            <div class="matrix">
-                                <div id="qwe" class="matrix">
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>服饰鞋帽</span>
+                                <!--多行填空题开始-->
+                                <div *ngIf="item.questionGenre==4">
+                                    <div class="question-title" type="1" name="input-question">
+                                        <span class="required" [hidden]="!item.isNecessary">*</span>
+                                        <span class="question-id" order="5" page="1" index="4" absolute_id="8" question-required="Y" has_other="N" title-quote="N">Q{{i+1}}</span>
+                                        <div class="position-relative">
+                                            <div class="qs-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);" [textContent]="item.questionTitle" (input)="item.questionTitle=$event.target.textContent">
+                                                {{item.questionTitle}}
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>饰品</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>电子产品</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>生活日用品</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>化妆品</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>书籍</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>其他</span>
+                                    <ul class="question-choice">
+                                        <li class="auto-height"><textarea name="multi-input" class="multi-input"></textarea></li>
+                                    </ul>
+                                    <div class="operate visible-show">
+                                        <ul>
+                                            <li class="drag-area" title="移动"><i class="fa fa-arrows-alt" aria-hidden="true"></i></li>
+                                            <li class="question-handle" title="操作" (click)="questionHandle(i)"><i class="fa fa-align-justify" aria-hidden="true"></i></li>
+                                            <li class="question-delete" title="删除" (click)="questionDelete(i)"><i class="fa fa-trash" aria-hidden="true"></i></li>
+                                        </ul>
                                     </div>
                                 </div>
-                            </div>
+                                <!--多行填空题结束-->
 
-                        </div>
-
-                        <div class="wjques">
-
-
-                            <div class="title">Q7：你选择这些网站购物，主要看重哪些因素？</div>
-                            <div class="matrix">
-                                <div id="qwe" class="matrix">
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>产品种类的丰富性</span>
+                                <!--矩阵单选题开始-->
+                                <div *ngIf="item.questionGenre==5">
+                                    <div class="question-title" type="9" name="radio-matrix-question"><span class="required" [hidden]="!item.isNecessary">*</span><span class="question-id" order="8" page="1" index="7" absolute_id="11" question-required="Y" has_other="N" title-quote="N">Q{{i+1}}</span>
+                                        <div class="position-relative">
+                                            <div class="qs-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);" [textContent]="item.questionTitle" (input)="item.questionTitle=$event.target.textContent"> {{item.questionTitle}}</div>
+                                        </div>
                                     </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>网站页面设计</span>
+                                    <ul class="question-choice" style="float:left;width: 700px;">
+                                        <li class="auto-height">
+                                            <table style="border-collapse: collapse;">
+                                                <tbody>
+                                                    <tr *ngFor="let itemLine of item.questionChoice[0].line; let line=index">
+                                                        <td class="radio_array_title edit-area" name="checkbox-matrix" contenteditable="true">
+                                                            {{itemLine.text}}
+                                                            <span *ngIf="line!=0" class="matrixdeleteChoice" (click)="deleteMatrixQuestionChoice(i,0,line)"><i class="fa fa-times" aria-hidden="true"></i></span>
+                                                        </td>
+                                                        <td name="checkbox-matrix-choice" *ngFor="let itemChoice of item.questionChoice[0].choice;let qc=index">
+                                                            <div class="position-relative" style="width:100%" *ngIf="line==0">
+                                                                <li class="choice edit-area matrix-choice" has_other="N" contenteditable="true" content-default="1">
+                                                                    {{itemChoice.text}}
+                                                                    <span class="matrixdeleteChoice" (click)="deleteMatrixQuestionChoice(i,1,qc)"><i class="fa fa-times" aria-hidden="true"></i></span>
+                                                                </li>
+                                                            </div>
+                                                            <input type="radio" *ngIf="line!=0">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </li>
+                                    </ul>
+                                    <div class="add-area visible-show" style="width: 34px; margin: 0px 0 0 46px;" choice="Y">
+                                        <ul>
+                                            <li class="add-choice" (click)="addMatrixQuestionChoice(i,0)">
+                                                <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>网站广告宣传和促销</span>
+                                    <div class="add-area visible-show" choice="N">
+                                        <ul>
+                                            <li class="add-choice" (click)="addMatrixQuestionChoice(i,1)">
+                                                <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>销售商家信用度</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>商家服务态度和互动程度</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>网站/品牌知名度</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>退换货便利性</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>产品价格</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>产品质量描述</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>发货及送货速度</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>售后服务</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>购买者评论</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>其他</span>
+                                    <div class="operate visible-show">
+                                        <ul>
+                                            <li class="question-handle" title="操作" (click)="questionHandle(i)"><i class="fa fa-align-justify" aria-hidden="true"></i></li>
+                                            <li class="question-delete" title="删除" (click)="questionDelete(i)"><i class="fa fa-trash" aria-hidden="true"></i></li>
+                                        </ul>
                                     </div>
                                 </div>
-                            </div>
+                                <!--矩阵单选题结束-->
 
-                        </div>
+                                <!--矩阵多选题开始-->
+                                <div *ngIf="item.questionGenre==6">
+                                    <div class="question-title" type="13" name="checkbox-matrix-question"><span class="required" [hidden]="!item.isNecessary">*</span>
+                                        <span class="question-id" order="9" page="1" index="8" absolute_id="12" question-required="Y" has_other="N" title-quote="N">Q{{i+1}}</span>
+                                        <div class="position-relative">
+                                            <div class="qs-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);" [textContent]="item.questionTitle" (input)="item.questionTitle=$event.target.textContent"> {{item.questionTitle}}</div>
+                                        </div>
+                                    </div>
+                                    <ul class="question-choice" style="float:left;width: 700px;">
+                                        <li class="auto-height">
+                                            <table style="border-collapse: collapse;">
+                                                <tbody>
+                                                    <tr *ngFor="let itemLine of item.questionChoice[0].line; let line=index">
+                                                        <td class="checkbox_array_title edit-area" name="checkbox-matrix" contenteditable="true">
+                                                            {{itemLine.text}}
+                                                            <span *ngIf="line!=0" class="matrixdeleteChoice" (click)="deleteMatrixQuestionChoice(i,0,line)"> <i class="fa fa-times" aria-hidden="true"></i></span>
+                                                        </td>
+                                                        <td name="checkbox-matrix-choice" *ngFor="let itemChoice of item.questionChoice[0].choice; let qc=index">
+                                                            <div class="position-relative" style="width:100%" *ngIf="line==0">
+                                                                <li class="choice edit-area matrix-choice" has_other="N" contenteditable="true" content-default="1">
+                                                                    {{itemChoice.text}}
+                                                                    <span class="matrixdeleteChoice" (click)="deleteMatrixQuestionChoice(i,1,qc)"><i class="fa fa-times" aria-hidden="true"></i></span>
+                                                                </li>
+                                                            </div>
+                                                            <input type="checkbox" *ngIf="line!=0">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </li>
+                                    </ul>
+                                    <div class="add-area visible-show" style="width: 34px; margin: 0px 0 0 46px;" choice="Y">
+                                        <ul>
+                                            <li class="add-choice" (click)="addMatrixQuestionChoice(i,0)">
+                                                <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                                            </li>
 
-                        <div class="wjques">
+                                        </ul>
+                                    </div>
+                                    <div class="add-area visible-show" choice="N">
+                                        <ul>
+                                            <li class="add-choice" (click)="addMatrixQuestionChoice(i,1)">
+                                                <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                                            </li>
 
-
-                            <div class="title">Q8：你平时网购的频率是？</div>
-                            <div class="matrix">
-                                <div id="qwe" class="matrix">
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>每天一次或以上</span>
+                                        </ul>
                                     </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>每周４－５次</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>每周２－３次</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>每周１次</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>每月５－６次</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>每月２－３次</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>每月１次</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>少于每月一次</span>
+                                    <div class="operate visible-show">
+                                        <ul>
+                                            <li class="question-handle" title="操作" (click)="questionHandle(i)"><i class="fa fa-align-justify" aria-hidden="true"></i></li>
+                                            <li class="question-delete" title="删除" (click)="questionDelete(i)"><i class="fa fa-trash" aria-hidden="true"></i></li>
+                                        </ul>
                                     </div>
                                 </div>
-                            </div>
+                                <!--矩阵多选题结束-->
 
-                        </div>
+                                <!--图片单选开始-->
+                                <div *ngIf="item.questionGenre==7">
+                                    <div class="question-title" type="14" name="radio-question">
+                                        <span class="required" [hidden]="!item.isNecessary">*</span>
+                                        <span class="question-id" order="10" page="1" index="9" absolute_id="13" question-required="Y" has_other="N" title-quote="N" choice-quote="0">
+                                                Q{{i+1}}</span>
+                                        <div class="position-relative">
+                                            <div class="position-relative">
+                                                <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);" [textContent]="item.questionTitle" (input)="item.questionTitle=$event.target.textContent"> {{item.questionTitle}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="question-choice Matrix">
+                                        <li class="choice survey-question-radio-img" has_other="N" choice_absolute_id="2" *ngFor="let itemChoice of item.questionChoice; let qc = index">
+                                            <div class="survey-question-radio-choice edit-area-active">
+                                                <div class="survey-question-radio-choice-img">
+                                                    <a class="remove-child-element survey-question-radio-img-remove" (click)="deleteQuestionChoice(i,qc)"></a> <img src="http://bj.bcebos.com/mtcapp///25fb9ad3363eb4414b6ef4713c584bc7."> </div>
+                                                <div class="survey-question-radio-choice-text"> <input type="radio" name="radio">
+                                                    <label class="edit-area edit-child-element" contenteditable="true" style="background: rgb(255, 255, 255);" [textContent]="itemChoice.text" (input)="itemChoice.text=$event.target.textContent">
+                                                             {{itemChoice.text}}
+                                                         </label>
+                                                    <div class="option-tips"></div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
 
-                        <div class="wjques">
+                                </div>
+                                <!--图片单选结束-->
 
+                                <!--图片多选开始-->
+                                <div *ngIf="item.questionGenre==8">
+                                    <div class="question-title" type="15" name="checkbox-question">
+                                        <span class="required" [hidden]="!item.isNecessary">*</span><span class="question-id" order="10" page="1" index="10" absolute_id="14" question-required="Y" has_other="N" title-quote="N" choice-quote="0" min="" max="">Q{{i+1}}</span>
+                                        <div class="position-relative">
+                                            <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);" [textContent]="item.questionTitle" (input)="item.questionTitle=$event.target.textContent"> {{item.questionTitle}}</div>
+                                        </div>
+                                    </div>
+                                    <ul class="question-choice Matrix">
+                                        <li class="choice survey-question-radio-img" has_other="N" choice_absolute_id="2" *ngFor="let itemChoice of item.questionChoice; let qc = index">
+                                            <div class="survey-question-radio-choice edit-area-active">
+                                                <div class="survey-question-radio-choice-img">
+                                                    <a class="remove-child-element survey-question-radio-img-remove" (click)="deleteQuestionChoice(i,qc)"></a> <img src="http://bj.bcebos.com/mtcapp///25fb9ad3363eb4414b6ef4713c584bc7."> </div>
+                                                <div class="survey-question-radio-choice-text"> <input type="checkbox" name="checkbox">
+                                                    <label class="edit-area edit-child-element" contenteditable="true" style="background: rgb(255, 255, 255);" [textContent]="itemChoice.text" (input)="itemChoice.text=$event.target.textContent">
+                                                             {{itemChoice.text}}
+                                                         </label>
+                                                    <div class="option-tips"></div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
 
-                            <div class="title">Q9：你平均每个月花费在网购上的费用是多少钱？</div>
-                            <div class="matrix">
-                                <div id="qwe" class="matrix">
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>１００元以内</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>１００－３００元</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>３０１－５００元</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>５０１－１０００元</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>１０００元以上</span>
+                                    <div class="operate visible-show" style="margin-top: 175px">
+                                        <ul>
+                                            <li class="question-handle" title="操作" (click)="questionHandle(i)"><i class="fa fa-align-justify" aria-hidden="true"></i></li>
+                                            <li class="question-delete" title="删除" (click)="questionDelete(i)"><i class="fa fa-trash" aria-hidden="true"></i></li>
+                                        </ul>
                                     </div>
                                 </div>
-                            </div>
+                                <!--图片多选结束-->
 
-                        </div>
-
-                        <div class="wjques">
-
-
-                            <div class="title">Q10：你喜欢的促销方式有哪些？</div>
-                            <div class="matrix">
-                                <div id="qwe" class="matrix">
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>免邮费</span>
+                                <!--描述说明开始-->
+                                <div *ngIf="item.questionGenre==9">
+                                    <div class="question-title" type="15" name="checkbox-question">
+                                        <span class="required" [hidden]="!item.isNecessary">*</span><span class="question-id" order="10" page="1" index="10" absolute_id="14" question-required="Y" has_other="N" title-quote="N" choice-quote="0" min="" max="">Q{{i+1}}</span>
+                                        <div class="position-relative">
+                                            <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);" [textContent]="item.questionTitle" (input)="item.questionTitle=$event.target.textContent"> {{item.questionTitle}}</div>
+                                        </div>
                                     </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>打折</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>送分送礼物</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>赠送优惠券</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px">  □  </span>
-                                        <span>其他</span>
+                                    <div class="question-title" type="10" name="description"><span class="question-id" order="11" page="1" index="0" absolute_id="15" question-required="N" has_other="N"></span>
+                                        <div class="position-relative">
+                                            <div class="qs-content qs-high-content edit-area edit-title" contenteditable="true" content-default="1" style="background: rgb(255, 255, 255);border: 1px solid #dbdbdb;">描述说明</div>
+                                        </div>
                                     </div>
                                 </div>
+                                <!--描述说明结束-->
                             </div>
-
+                            <!--题目区域结束-->
                         </div>
-
-                        <div class="wjques">
-
-
-                            <div class="title">Q11：网购时，你经常使用哪种付款方式？</div>
-                            <div class="matrix">
-                                <div id="qwe" class="matrix">
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>网上支付</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>货到付款</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>邮局汇款</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>银行转账</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>其他</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="wjques">
-
-
-                            <div class="title">Q12：你对网银、支付宝、财富通等网络支付手段的态度？</div>
-                            <div class="matrix">
-                                <div id="qwe" class="matrix">
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>放心，方便快捷又安全</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>比较放心</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>不放心，感觉不安全</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="wjques">
-
-
-                            <div class="title">Q13：网购时，对于货物，你通常采用哪种邮递方式？</div>
-                            <div class="matrix">
-                                <div id="qwe" class="matrix">
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>平邮</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>快递</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>ＥＭＳ</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>其他</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="wjques">
-
-
-                            <div class="title">Q14：网购时，你对于货物送达能够接受的最长时间是？</div>
-                            <div class="matrix">
-                                <div id="qwe" class="matrix">
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>１天</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>２－３天</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>４－５天</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>６－７天</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>８－１０天</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>无所谓</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="wjques">
-
-
-                            <div class="title">Q15：网购过程，你最担心的因素是？</div>
-                            <div class="matrix">
-                                <div id="qwe" class="matrix">
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>支付的安全性</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>商家的诚信</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>图片和实物有差距</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>产品质量不合格</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>运货过程货物受损</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>其他</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="wjques">
-
-
-                            <div class="title">Q16：总体而言，你对网购是否满意？</div>
-                            <div class="matrix">
-                                <div id="qwe" class="matrix">
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>非常满意</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>比较满意</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>一般</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>不满意</span>
-                                    </div>
-                                    <div class="icheckbox_div"><span style="font-size:25px"> ○  </span>
-                                        <span>非常不满意</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="wjques">
-
-
-                            <div class="title">Q17：你对网购有什么改善建议？</div>
-                            <div class="matrix">
-                                <div id="qwe" class="matrix">
-                                    <div class="icheckbox_div">
-                                        <span>&nbsp;&nbsp;&nbsp;&nbsp;____________</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
                     </div>
                     <br>
 

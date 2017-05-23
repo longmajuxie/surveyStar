@@ -40,7 +40,7 @@ export const routes: Routes = [
       { path: 'report', loadChildren: 'app/pages/report/report.module#ReportModule' },
       { path: 'template', loadChildren: 'app/pages/template/template.module#TemplateModule' },
       { path: 'measurement', loadChildren: 'app/pages/measurement/measurement.module#MeasurementModule' },
-      { path: 'template/detail', component: TemplateDetailComponent},
+      { path: 'template/detail/:id', component: TemplateDetailComponent},
        { path: 'template/create', component: TopicCreateComponent },
       { path: 'template/createOrEdit', component: TemplateCreateOrEditComponent },
        { path: 'questionnaire/previewOrPlay', component:QuestionnairePlayComponent },

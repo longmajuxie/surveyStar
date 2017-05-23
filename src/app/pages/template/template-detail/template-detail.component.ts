@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router,Params } from '@angular/router';
+import { QuestionnaireService } from '../../../services/questionnaire'
+import 'rxjs/add/operator/switchMap';
+import { Subscription }   from 'rxjs/Subscription';
 declare var $: any;
 
 @Component({
@@ -8,13 +12,14 @@ declare var $: any;
 })
 export class TemplateDetailComponent implements OnInit {
 
-  constructor() { }
-
+  questionnaire;
+  constructor(public router:Router,public Qs:QuestionnaireService,private route: ActivatedRoute,) { }
+  
   ngOnInit() {
-    $(document).ready(function(){
-      $(".N_view").click(function(event) {
-		    $(".reldiv").remove("#describe").remove(".resultbtn").wordExport("导出名");
-	    });
+    this.route.params.switchMap((params: Params) =>  this.Qs.getById(+params['id']))
+    .subscribe(data => {
+      console.log(data);
+      this.questionnaire = JSON.parse(data);
     });
   }
 }

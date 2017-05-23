@@ -6,6 +6,7 @@ import { FileUploader,ParsedResponseHeaders } from 'ng2-file-upload';
 declare var $: any;
 import { QuestionnaireDelService } from '../questionnaire.service';
 import { QuestionnaireService } from '../../../services/questionnaire'
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import { Subscription }   from 'rxjs/Subscription';
 
@@ -29,9 +30,24 @@ export class QuestionnaireCreateComponent implements OnInit {
   public uploader:FileUploader = new FileUploader({url: URL});
   constructor(public del:QuestionnaireDelService,public router:Router,public Qs:QuestionnaireService,private route: ActivatedRoute,) { }
   ngOnInit() {
-    this.route.params.switchMap((params: Params) => params['genre'])
-        .subscribe(x=>{
-        this.qustionnaire.questionnaireType=+x;
+    this.route.params.map((params: Params) => params['genre'])
+        .subscribe(genre=>{
+        this.qustionnaire.questionnaireType=+genre;
+        if(this.qustionnaire.questionnaireType==0){
+            this.qustionnaire["questionnaireCatalog"]=-1;
+        }else if(this.qustionnaire.questionnaireType>=1 && this.qustionnaire.questionnaireType<=4){
+            this.qustionnaire["questionnaireCatalog"]=1;
+        }else if(this.qustionnaire.questionnaireType>=5 && this.qustionnaire.questionnaireType<=8){
+            this.qustionnaire["questionnaireCatalog"]=2;
+        }else if(this.qustionnaire.questionnaireType>=9 && this.qustionnaire.questionnaireType<=12){
+            this.qustionnaire["questionnaireCatalog"]=3;
+        }else if(this.qustionnaire.questionnaireType>=13 && this.qustionnaire.questionnaireType<=17){
+            this.qustionnaire["questionnaireCatalog"]=4;
+        }else if(this.qustionnaire.questionnaireType==18){
+            this.qustionnaire["questionnaireCatalog"]=5;
+        }else if(this.qustionnaire.questionnaireType==19){
+            this.qustionnaire["questionnaireCatalog"]=6;
+        }
     })
   }
   @HostListener("window:scroll", [])

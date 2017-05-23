@@ -42,7 +42,7 @@
                     <!-- ngRepeat: survey in surveyList | offset: currentPage*itemsPerPage | limitTo: itemsPerPage -->
                     <tr class="survey-manage-table-row ng-scope" *ngFor="let item of questionList">
                         <td nowrap="" title="{{item.questionnaireName}}">
-                            <a target="_blank" style="color:#0886e9" class="ng-binding">{{item.questionnaireName}}</a>
+                            <a [routerLink]="['/pages/template/detail',item.questionnaireId]" [routerLinkActive]="['active']" target="_blank" style="color:#0886e9" class="ng-binding">{{item.questionnaireName}}</a>
                         </td>
                         <td class="ng-binding">{{item.questionnairePrompt}}</td>
                         <td class="ng-binding">{{item.createTime}}</td>

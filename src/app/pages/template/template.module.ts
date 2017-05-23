@@ -21,7 +21,8 @@ import { TemplateHomeComponent } from './template-home/template-home.component';
         TemplateListComponent,
         TemplateSearchComponent,
         TemplateHomeComponent,
-     ]
+     ],
+  providers:[]
 })
 export class TemplateModule {
 }

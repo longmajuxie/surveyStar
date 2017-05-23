@@ -20,7 +20,7 @@ import { TemplateDetailComponent } from './template/template-detail/template-det
 import { TopicCreateComponent } from './template/topic-create/topic-create.component';
 import { TemplateCreateOrEditComponent } from './template/template-create-or-edit/template-create-or-edit.component';
 import { QuestionnairePlayComponent } from './questionnaire/questionnaire-play/questionnaire-play.component';
-
+import { QuestionnaireService } from '../services/questionnaire'
 
 @NgModule({
   imports: [CommonModule,BrowserModule,FormsModule,ReactiveFormsModule, routing],
@@ -41,7 +41,8 @@ import { QuestionnairePlayComponent } from './questionnaire/questionnaire-play/q
     LocalStorageService,
     SessionStorageService,
     AuthenticationService,
-    AuthGuard
+    AuthGuard,
+    QuestionnaireService
   ]
 })
 export class PagesModule {

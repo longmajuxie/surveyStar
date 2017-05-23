@@ -57,4 +57,9 @@ export class QuestionnaireService implements OnInit {
            .map(this.extractData)
            .catch(this.handleError);
     }
+     getById(id){
+        return this.http.get('api/questionnaire/getById/?questionnaireId='+id)
+           .map(this.extractData)
+           .catch(this.handleError);
+    }
 }
