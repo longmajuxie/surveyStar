@@ -148,7 +148,7 @@ export class QuestionnaireCreateComponent implements OnInit {
     this.isShowHandleDig=false;
   }
   public saveSurvey(){
-    this.Qs.saveSurvey(this.qustionnaire) .subscribe(
+    this.Qs.saveSurvey(this.qustionnaire).subscribe(
                     // the first argument is a function which runs on success
             data => { 
                 this.router.navigate(['/pages/questionnaire/list']);

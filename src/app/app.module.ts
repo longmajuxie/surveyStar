@@ -17,7 +17,7 @@ import * as _ from 'lodash';
 @NgModule({
   declarations: [
     AppComponent,
-    NoContentComponent,
+    NoContentComponent
   ],
   imports: [
     BrowserModule,

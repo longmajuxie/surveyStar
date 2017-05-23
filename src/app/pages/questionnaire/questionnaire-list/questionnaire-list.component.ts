@@ -1,9 +1,9 @@
 import { Pages } from './../../pages.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output } from '@angular/core';
 
 import { Subscription }   from 'rxjs/Subscription';
 import { QuestionnaireService } from '../../../services/questionnaire'
-
+import { Pagination } from '../../../widgets/pagination/pagination'
 @Component({
   selector: 'app-questionnaire-list',
   templateUrl: './questionnaire-list.component.html',
@@ -115,27 +115,51 @@ export class QuestionnaireListComponent implements OnInit {
   isList=true;
   isShowSelectTab=false;
   currentStatus="全部状态";
+  questionList;
+  questionnaireEntity={
+    questionnaireName:""
+  }
+  
+  @Output() 
+  public pagination:Pagination = Pagination.defaultPagination;
   constructor(public Qs:QuestionnaireService,) {
 
    }
 
   ngOnInit() {
-    
+    this.initList();
+    this.pagination.changePage = (() => {
+      this.initList();
+    });
   }
-  statusChanged(state){
-    if(state==0){
-       this.currentStatus="全部状态";
-    }else if(state==1){
-       this.currentStatus="未发布";
-    }else {
-       this.currentStatus="已发布";
-    }
-    this.isShowSelectTab=false;
+  private statusChanged(state){
+      if(state==0){
+         this.currentStatus="全部状态";
+      }else if(state==1){
+         this.currentStatus="未发布";
+      }else {
+         this.currentStatus="已发布";
+      }
+      this.isShowSelectTab=false;
   }
-  loadList(searchKey,Pages){
-      /*this.Qs.getList().subscribe(
-             data=> { 
-               
-      });*/
+  
+  private filter(){
+     this.pagination=Pagination.defaultPagination;
+     this.initList();
+  }
+  private initList(): void {
+        this.Qs.getList(this.questionnaireEntity,{page:this.pagination.currentPage,rows:this.pagination.pageItems}).subscribe(
+                    // the first argument is a function which runs on success
+            data => {
+                let  resData=JSON.parse(data);
+                this.questionList=resData.questionnaires;
+                this.pagination.totalItems =resData.page.total;
+                this.pagination.pageNum=Math.ceil(this.pagination.totalItems/this.pagination.pageItems);
+            },
+          // the second argument is a function which runs on error
+            err => console.error(err),
+      // the third argument is a function which runs on completion
+            () => console.log('done loading')
+        );
   }
 }
