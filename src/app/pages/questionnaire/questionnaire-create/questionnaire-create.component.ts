@@ -84,31 +84,26 @@ export class QuestionnaireCreateComponent implements OnInit {
                             },);
               }else if(index==7||index==8){
                 let _this=this;
-            /*    this.uploader._fileSizeFilter();*/
-                this.uploader.autoUpload=true;
-                let headers= new Headers({"Access-Control-Allow-Origin":"*"});
-                this.uploader.setOptions(headers);
                 this.uploader.onAfterAddingFile=function(FileItem){
                     FileItem.upload();
-                    FileItem._onComplete = ( response: string, status: number,
+                   /* FileItem._onComplete = ( response: string, status: number,
                       headers: ParsedResponseHeaders) => {
                        console.log(123);
-                    };
+                    };*/
                     FileItem._onError=function(response, status, headers){
                         console.log(456);
                     }
                     FileItem._onSuccess=function(response, status, headers){
-                       _this.qustionnaire.questionList[qindex].questionChoice.push(
+                        setTimeout(function(){
+                            _this.qustionnaire.questionList[qindex].questionChoice.push(
                             { 
-                                    imgUrl:"",
+                                    imgUrl:"http://localhost:10080/oa/api/upload/"+JSON.parse(response).fileName,
                                     text:"选项内容"+(_this.qustionnaire.questionList[qindex].questionChoice.length+1),
                                     isSelected:false
-                            },
-                        );
+                            })
+                        },5000)
                     }
-                    
                 };
-                 
               }
   }
   public addMatrixQuestionChoice(qindex,direction){

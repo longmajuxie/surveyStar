@@ -118,7 +118,7 @@ export class QuestionnaireListComponent implements OnInit {
   questionList;
   questionnaireEntity={
     questionnaireName:"",
-    state:null
+    quesState:null
   }
   
   @Output() 
@@ -136,13 +136,13 @@ export class QuestionnaireListComponent implements OnInit {
   private statusChanged(state){
       if(state==0){
          this.currentStatus="全部状态";
-         this.questionnaireEntity.state=null;
+         this.questionnaireEntity.quesState=null;
       }else if(state==1){
          this.currentStatus="未发布";
-         this.questionnaireEntity.state=0;
+         this.questionnaireEntity.quesState=0;
       }else {
          this.currentStatus="已发布";
-          this.questionnaireEntity.state=1;
+          this.questionnaireEntity.quesState=1;
       }
       this.filter();
       this.isShowSelectTab=false;
@@ -156,8 +156,8 @@ export class QuestionnaireListComponent implements OnInit {
         this.Qs.getList(this.questionnaireEntity,{page:this.pagination.currentPage,rows:this.pagination.pageItems}).subscribe(
                     // the first argument is a function which runs on success
             data => {
-                if(data.result=="success"){
-                  let  resData=JSON.parse(data);
+                let  resData=JSON.parse(data);
+                if(resData.result=="success"){
                   this.questionList=resData.questionnaires;
                   this.pagination.totalItems =resData.page.total;
                   this.pagination.pageNum=Math.ceil(this.pagination.totalItems/this.pagination.pageItems);

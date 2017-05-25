@@ -20,6 +20,12 @@ export class TemplateDetailComponent implements OnInit {
     .subscribe(data => {
       console.log(data);
       this.questionnaire = JSON.parse(data);
+      let this_=this;
+       $(document).ready(function(){
+           $(".N_view").click(function(event) {
+		          $(".reldiv").remove("#describe").remove(".resultbtn").wordExport(this_.questionnaire.questionnaireName);
+	        });
+      });
     });
   }
 }

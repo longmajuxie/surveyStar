@@ -11,13 +11,12 @@ import { AppComponent } from './app.component';
 import { NoContentComponent } from './pages/no-content/no-content.component'
 import { PagesModule } from './pages/pages.module';
 import { routing } from './app.routes';
-
 //Utilities
 import * as _ from 'lodash';
 @NgModule({
   declarations: [
     AppComponent,
-    NoContentComponent
+    NoContentComponent,
   ],
   imports: [
     BrowserModule,

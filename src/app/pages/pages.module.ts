@@ -21,6 +21,7 @@ import { TopicCreateComponent } from './template/topic-create/topic-create.compo
 import { TemplateCreateOrEditComponent } from './template/template-create-or-edit/template-create-or-edit.component';
 import { QuestionnairePlayComponent } from './questionnaire/questionnaire-play/questionnaire-play.component';
 import { QuestionnaireService } from '../services/questionnaire'
+import { stringToJsonPipe,stringLineToJsonPipe,stringChoiceToJsonPipe } from '../filters/common.filters';
 
 @NgModule({
   imports: [CommonModule,BrowserModule,FormsModule,ReactiveFormsModule, routing],
@@ -35,7 +36,10 @@ import { QuestionnaireService } from '../services/questionnaire'
       TemplateDetailComponent,
       TopicCreateComponent,
       TemplateCreateOrEditComponent,
-      QuestionnairePlayComponent
+      QuestionnairePlayComponent,
+      stringToJsonPipe,
+      stringLineToJsonPipe,
+      stringChoiceToJsonPipe 
     ],
   providers:[
     LocalStorageService,

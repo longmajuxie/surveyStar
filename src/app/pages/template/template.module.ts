@@ -14,13 +14,14 @@ import { TemplateHomeComponent } from './template-home/template-home.component';
 
 
 
+
 @NgModule({
   imports: [CommonModule, routing],
   declarations: [
         TemplateComponent,
         TemplateListComponent,
         TemplateSearchComponent,
-        TemplateHomeComponent,
+        TemplateHomeComponent
      ],
   providers:[]
 })

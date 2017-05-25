@@ -365,7 +365,9 @@
                                                 <li class="choice survey-question-radio-img" has_other="N" choice_absolute_id="2" *ngFor="let itemChoice of item.questionChoice; let qc = index">
                                                     <div class="survey-question-radio-choice edit-area-active">
                                                         <div class="survey-question-radio-choice-img">
-                                                            <a class="remove-child-element survey-question-radio-img-remove" (click)="deleteQuestionChoice(i,qc)"></a> <img src="http://bj.bcebos.com/mtcapp///25fb9ad3363eb4414b6ef4713c584bc7."> </div>
+                                                            <a class="remove-child-element survey-question-radio-img-remove" (click)="deleteQuestionChoice(i,qc)"></a>
+                                                            <img [src]="itemChoice.imgUrl">
+                                                        </div>
                                                         <div class="survey-question-radio-choice-text"> <input type="radio" name="radio">
                                                             <label class="edit-area edit-child-element" contenteditable="true" style="background: rgb(255, 255, 255);" [textContent]="itemChoice.text" (input)="itemChoice.text=$event.target.textContent">
                                                              {{itemChoice.text}}
@@ -409,7 +411,9 @@
                                                 <li class="choice survey-question-radio-img" has_other="N" choice_absolute_id="2" *ngFor="let itemChoice of item.questionChoice; let qc = index">
                                                     <div class="survey-question-radio-choice edit-area-active">
                                                         <div class="survey-question-radio-choice-img">
-                                                            <a class="remove-child-element survey-question-radio-img-remove" (click)="deleteQuestionChoice(i,qc)"></a> <img src="http://bj.bcebos.com/mtcapp///25fb9ad3363eb4414b6ef4713c584bc7."> </div>
+                                                            <a class="remove-child-element survey-question-radio-img-remove" (click)="deleteQuestionChoice(i,qc)"></a>
+                                                            <img [src]="itemChoice.imgUrl">
+                                                        </div>
                                                         <div class="survey-question-radio-choice-text"> <input type="checkbox" name="checkbox">
                                                             <label class="edit-area edit-child-element" contenteditable="true" style="background: rgb(255, 255, 255);" [textContent]="itemChoice.text" (input)="itemChoice.text=$event.target.textContent">
                                                              {{itemChoice.text}}
