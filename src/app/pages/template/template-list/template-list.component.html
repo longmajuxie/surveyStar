@@ -3,11 +3,11 @@
         <div class="Mbgen_title">
             <ul>
                 <li>
-                    <a href="/lib">问卷库</a>
+                    <span>调查中心</span>
                     <s class="arrowr"></s>
                 </li>
                 <li>
-                    <a href="/official/more_official_1" class="active">推荐模板</a>
+                    <span class="active">所有问卷</span>
 
                 </li>
 
@@ -19,186 +19,31 @@
     <div class="Mbdiv">
         <div class="Mbdiv_list mh800">
 
-            <div class="tem">
+            <div class="tem" *ngFor="let item of questionList">
                 <div class="temtitle">
-                    <a href="/lib_detail_full/5268c32f89c09722ebc65704" target="_blank">
-                        <p>盖洛普Q12员工满意度调查问卷</p>
+                    <a [routerLink]="['/pages/template/detail',item.questionnaireId]" [routerLinkActive]="['active']">
+                        <p>{{item.questionnaireName}}</p>
                     </a><a class="resume">推荐</a>
-                    <span>共1页1个问题</span>
+                    <span>共{{9}}个问题</span>
                 </div>
                 <div class="temcon">
-                    <span>分类：<a href="/classify/_f_1" style="display:inline;"></a></span> |
-                    <span>作者：问卷网</span> |
-                    <span>被引用次数：1342</span>
+                    <span>分类：{{item.questionnaireType | emQuestionnaireType}}</span> |
+                    <span>作者：{{item.user}}</span> |
+                    <span>创建日期：{{item.createTime}}</span>
                 </div>
                 <div class="text">
-                    您好！非常感谢您能抽出时间回答下面的问卷。您的建议是公司管理改进的重要依据，您的意见将会被严格保密。感谢您的配合！
+                    {{item.questionnairePrompt}}
                 </div>
             </div>
-
-            <div class="tem">
-                <div class="temtitle">
-                    <a href="/lib_detail_full/525f8cbe89c0977086221814" target="_blank">
-                        <p>XXX研讨会注册表</p>
-                    </a><a class="resume">推荐</a>
-                    <span>共1页13个问题</span>
-                </div>
-                <div class="temcon">
-                    <span>分类：<a href="/classify/_f_1" style="display:inline;"></a></span> |
-                    <span>作者：问卷网</span> |
-                    <span>被引用次数：55</span>
-                </div>
-                <div class="text">
-                    该问卷模板为一般研讨会，技术大会等会议注册表模板或报名表模板，可在此基础上修改以适合贵公司的需要。为保证您顺利参会，请您协助我们完成以下参会信息：
-                </div>
-            </div>
-
-            <div class="tem">
-                <div class="temtitle">
-                    <a href="/lib_detail_full/525e3a1589c0976fc18ed829" target="_blank">
-                        <p>培训报名表</p>
-                    </a><a class="resume">推荐</a>
-                    <span>共1页1个问题</span>
-                </div>
-                <div class="temcon">
-                    <span>分类：<a href="/classify/_f_1" style="display:inline;"></a></span> |
-                    <span>作者：问卷网</span> |
-                    <span>被引用次数：241</span>
-                </div>
-                <div class="text">
-                    感谢您有兴趣参加XX公司举办的培训课程。具体的课程信息请访问官方网站。
-                </div>
-            </div>
-
-            <div class="tem">
-                <div class="temtitle">
-                    <a href="/lib_detail_full/525e2c4f89c0976ff31f58ff" target="_blank">
-                        <p>XXX活动报名表</p>
-                    </a><a class="resume">推荐</a>
-                    <span>共1页1个问题</span>
-                </div>
-                <div class="temcon">
-                    <span>分类：<a href="/classify/_f_1" style="display:inline;"></a></span> |
-                    <span>作者：问卷网</span> |
-                    <span>被引用次数：354</span>
-                </div>
-                <div class="text">
-                    活动名称：地点：活动时间：活动官方网站：报名截止日期：2013年11年30日
-                </div>
-            </div>
-
-            <div class="tem">
-                <div class="temtitle">
-                    <a href="/lib_detail_full/525e258189c0976fc18ed673" target="_blank">
-                        <p>会议报名表</p>
-                    </a><a class="resume">推荐</a>
-                    <span>共1页7个问题</span>
-                </div>
-                <div class="temcon">
-                    <span>分类：<a href="/classify/_f_1" style="display:inline;"></a></span> |
-                    <span>作者：问卷网</span> |
-                    <span>被引用次数：195</span>
-                </div>
-                <div class="text">
-                    欢迎您报名参加本次会议！请按照以下信息填写。会议官方网站： XXX报名截止时间：2013年11月30日
-                </div>
-            </div>
-
-            <div class="tem">
-                <div class="temtitle">
-                    <a href="/lib_detail_full/521c4bbde5d7dc4797256c81" target="_blank">
-                        <p>饮品产品概念测试</p>
-                    </a><a class="resume">推荐</a>
-                    <span>共1页11个问题</span>
-                </div>
-                <div class="temcon">
-                    <span>分类：<a href="/classify/_f_1" style="display:inline;"></a></span> |
-                    <span>作者：问卷网</span> |
-                    <span>被引用次数：1208</span>
-                </div>
-                <div class="text">
-                    下面您会看到关于植物蛋白饮品的介绍。请注意这只是产品介绍不是广告。也和现在市场上正在销售的任何植物蛋白饮品无关。在您仔细阅读后，会有一些关于这个产品介绍的问题，请认真回答。谢谢。
-                </div>
-            </div>
-
-            <div class="tem">
-                <div class="temtitle">
-                    <a href="/lib_detail_full/5217354a9b9fbe11d4243f9a" target="_blank">
-                        <p>购买考虑因素(KBF)</p>
-                    </a><a class="resume">推荐</a>
-                    <span>共1页1个问题</span>
-                </div>
-                <div class="temcon">
-                    <span>分类：<a href="/classify/_f_1" style="display:inline;"></a></span> |
-                    <span>作者：问卷网</span> |
-                    <span>被引用次数：1588</span>
-                </div>
-                <div class="text">
-                    欢迎参加本次答题
-                </div>
-            </div>
-
-            <div class="tem">
-                <div class="temtitle">
-                    <a href="/lib_detail_full/5212ec719b9fbe3bcb6531c0" target="_blank">
-                        <p>淘宝店铺调查问卷</p>
-                    </a><a class="resume">推荐</a>
-                    <span>共1页21个问题</span>
-                </div>
-                <div class="temcon">
-                    <span>分类：<a href="/classify/_f_1" style="display:inline;"></a></span> |
-                    <span>作者：问卷网</span> |
-                    <span>被引用次数：4056</span>
-                </div>
-                <div class="text">
-                    亲，感谢您对本淘宝店的关注和支持。这份问卷就是希望能够在进一步了解您的需求后，给您提供更优质的服务。敬请您填写以下问题，您的回答对我们很有价值。您的资料我们会给予保密，敬请放心。
-                </div>
-            </div>
-
-            <div class="tem">
-                <div class="temtitle">
-                    <a href="/lib_detail_full/520317089b9fbe2bbb650f7b" target="_blank">
-                        <p>企业员工满意度调查</p>
-                    </a><a class="resume">推荐</a>
-                    <span>共1页54个问题</span>
-                </div>
-                <div class="temcon">
-                    <span>分类：<a href="/classify/_f_1" style="display:inline;"></a></span> |
-                    <span>作者：问卷网</span> |
-                    <span>被引用次数：6998</span>
-                </div>
-                <div class="text">
-                    员工满意度调查收集员工对企业管理各个方面满意程度的信息，然后通过后续专业、科学的数据统计和分析，真实的反映公司经营管理现状，为企业管理者决策提供客观的参考依据。员工满意度调查还有助于培养员工对企业的认同感、归属感，不断增强员工对企业的向心力和凝聚力。员工满意度调查活动使员工在民主管理的基础上树立以企业为...
-                </div>
-            </div>
-
-            <div class="tem">
-                <div class="temtitle">
-                    <a href="/lib_detail_full/52025df59b9fbe21d11b2945" target="_blank">
-                        <p>员工自我评估</p>
-                    </a><a class="resume">推荐</a>
-                    <span>共1页3个问题</span>
-                </div>
-                <div class="temcon">
-                    <span>分类：<a href="/classify/_f_1" style="display:inline;"></a></span> |
-                    <span>作者：问卷网</span> |
-                    <span>被引用次数：419</span>
-                </div>
-                <div class="text">
-                    员工自我评估的目的，在于得到员工对他们的体现的自我见解。这是一个在整个绩效考的进程中给予员工发言机遇的强有力的要领。
-                </div>
-            </div>
-
         </div>
     </div>
     <div class="pagenum" id="pagenum">
 
 
 
-        <span class="active">1</span> <a href="/official/more_official_2">2</a> <a href="/official/more_official_3">3</a> <a href="/official/more_official_4">4</a> <a href="/official/more_official_5">5</a> <a href="/official/more_official_6">6</a>
+        <page [(pagination)]="pagination">
+        </page>
 
-        <a href="/official/more_official_2" class="next"></a>
-
-        <span>共6页</span>
+        <span>共&nbsp;&nbsp;{{pagination.pageNum}}&nbsp;&nbsp;页&nbsp;&nbsp;|&nbsp;&nbsp;{{pagination.totalItems}}&nbsp;&nbsp;条</span>
     </div>
 </div>

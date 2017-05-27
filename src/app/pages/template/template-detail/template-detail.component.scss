@@ -724,7 +724,7 @@ input[type=checkbox] {
 }
 
 .input-single {
-    width: 240px;
+    width: 90%;
 }
 
 .question-choice .auto-height {
@@ -732,7 +732,7 @@ input[type=checkbox] {
 }
 
 .multi-input {
-    width: 240px;
+    width: 90%;
     height: 94px;
     border: 1px solid #b0c0e7;
     resize: none;
@@ -946,9 +946,10 @@ input[type=submit] {
     opacity: .5;
 }
 
-.edit-area:hover {
+
+/*.edit-area:hover {
     border: 1px solid #1C86EE;
-}
+}*/
 
 .matrix-choice,
 .radio_array_title .edit-area,

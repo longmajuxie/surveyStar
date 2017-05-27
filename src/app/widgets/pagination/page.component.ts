@@ -86,5 +86,10 @@ export class PageComponent implements DoCheck{
       this.pagination.changePage();
     }
   }
+  static forRoot() {
+    return {
+      ngModule: PageComponent
+    }
+  }
 
 }

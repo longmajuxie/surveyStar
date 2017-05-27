@@ -60,16 +60,17 @@ export class AuthenticationService implements OnInit {
     }
     signUp(userInfo){
         const params = new URLSearchParams();
-        params.set('userName', JSON.stringify(userInfo.userName));
-        params.set('password', JSON.stringify(userInfo.passWord));
-        params.set('email', JSON.stringify(userInfo.email));
+        params.set('userName', userInfo.userName);
+        params.set('password', userInfo.passWord);
+        params.set('email', userInfo.email);
         return this.http.post('api/login/register', params)
         .map((response: Response) => {
             // login successful if there's a jwt token in the response
-            let user = response.json();
+            console.log(response);
+            let user;
             if (user && user.token) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
-                this.storage.store('currentUser',user);
+                this.storage.store('currentUser',userInfo);
             }
         });
     }

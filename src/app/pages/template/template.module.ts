@@ -8,7 +8,9 @@ import { TemplateComponent } from './template.component';
 import { TemplateListComponent } from './template-list/template-list.component';
 import { TemplateSearchComponent } from './template-search/template-search.component';
 import { TemplateHomeComponent } from './template-home/template-home.component';
-
+import { QuestionnaireService } from '../../services/questionnaire';
+import { emQuestionnaireTypePipe } from '../../filters/common.filters';
+import {SharedModule} from "../share.module"
 
 
 
@@ -16,14 +18,15 @@ import { TemplateHomeComponent } from './template-home/template-home.component';
 
 
 @NgModule({
-  imports: [CommonModule, routing],
+  imports: [CommonModule,SharedModule, routing],
   declarations: [
         TemplateComponent,
         TemplateListComponent,
         TemplateSearchComponent,
-        TemplateHomeComponent
+        TemplateHomeComponent,
+        emQuestionnaireTypePipe
      ],
-  providers:[]
+  providers:[QuestionnaireService]
 })
 export class TemplateModule {
 }

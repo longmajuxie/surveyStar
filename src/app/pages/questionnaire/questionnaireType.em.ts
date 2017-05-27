@@ -1,48 +1,8 @@
-import { Pipe, PipeTransform } from '@angular/core';
-
-@Pipe({
-    name: 'stringToJson'
-})
-export class stringToJsonPipe implements PipeTransform {
-    transform(items: any): any {
-        if (!items) {
-            return items;
-        }
-        // filter items array, items which match and return true will be kept, false will be filtered out
-        return JSON.parse(items);
-    }
-}
-
-@Pipe({
-    name: 'stringLineToJson'
-})
-export class stringLineToJsonPipe implements PipeTransform {
-    transform(items: any): any {
-        if (!items) {
-            return items;
-        }
-        // filter items array, items which match and return true will be kept, false will be filtered out
-        return JSON.parse(items)[0].line;
-    }
-}
-@Pipe({
-    name: 'stringChoiceToJson'
-})
-export class stringChoiceToJsonPipe implements PipeTransform {
-    transform(items: any): any {
-        if (!items) {
-            return items;
-        }
-        // filter items array, items which match and return true will be kept, false will be filtered out
-        return JSON.parse(items)[0].choice;
-    }
-}
-@Pipe({
-    name: 'emQuestionnaireType'
-})
-export class emQuestionnaireTypePipe implements PipeTransform {
-    transform(item:number): any {
-        let questionnaireTypes=[
+export class questionnaireTypes{
+   questionnaireTypes=[
+        {
+           questionnaireStage:"产品调研阶段",
+           questionnaireGenreDetail:[
                {
                  id:1,
                  title:"市场调研"  
@@ -58,7 +18,14 @@ export class emQuestionnaireTypePipe implements PipeTransform {
                {
                  id:4,
                  title:"产品使用习惯调研"  
-              }, {
+              }
+           ]
+            
+        },
+        {
+           questionnaireStage:"产品研发阶段",
+           questionnaireGenreDetail:[
+              {
                  id:5,
                  title:"功能体验调研"  
               },
@@ -73,8 +40,12 @@ export class emQuestionnaireTypePipe implements PipeTransform {
                {
                  id:8,
                  title:"页面展示效果体验"  
-              },
-               {
+              }
+           ]
+        },{
+           questionnaireStage:"产品发布前",
+           questionnaireGenreDetail:[
+              {
                  id:9,
                  title:"价格接受度调研"  
               },
@@ -89,7 +60,11 @@ export class emQuestionnaireTypePipe implements PipeTransform {
                {
                  id:12,
                  title:"广告语测试"  
-              },
+              }
+           ]
+        },{
+           questionnaireStage:"产品发布后",
+           questionnaireGenreDetail:[
               {
                  id:13,
                  title:"用户满意度调研"  
@@ -105,19 +80,26 @@ export class emQuestionnaireTypePipe implements PipeTransform {
                {
                  id:16,
                  title:"广告效果评估"  
-              },
-               {
+              }
+           ]
+        },
+        {
+           questionnaireStage:"产品战略",
+           questionnaireGenreDetail:[
+              {
                  id:17,
                  title:"产品定义"  
-              }, {
+              }
+           ]
+        },
+        {
+           questionnaireStage:"产品品质",
+           questionnaireGenreDetail:[
+              {
                  id:18,
                  title:"产品体验"  
               }
            ]
-        if (!item ||item==0) {
-            return "其他";
-        }else {
-            return questionnaireTypes[item-1].title;
         }
-    }
+    ]
 }

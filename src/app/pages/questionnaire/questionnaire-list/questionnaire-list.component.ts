@@ -4,13 +4,14 @@ import { Component, OnInit,Output } from '@angular/core';
 import { Subscription }   from 'rxjs/Subscription';
 import { QuestionnaireService } from '../../../services/questionnaire'
 import { Pagination } from '../../../widgets/pagination/pagination'
+import {questionnaireTypes } from '../questionnaireType.em'
 @Component({
   selector: 'app-questionnaire-list',
   templateUrl: './questionnaire-list.component.html',
   styleUrls: ['./questionnaire-list.component.scss']
 })
 export class QuestionnaireListComponent implements OnInit {
-   questionnaireTypes=[
+   public  questionnaireTypes=[
         {
            questionnaireStage:"产品调研阶段",
            questionnaireGenreDetail:[
@@ -102,7 +103,8 @@ export class QuestionnaireListComponent implements OnInit {
                  title:"产品定义"  
               }
            ]
-        },{
+        },
+        {
            questionnaireStage:"产品品质",
            questionnaireGenreDetail:[
               {
@@ -111,7 +113,7 @@ export class QuestionnaireListComponent implements OnInit {
               }
            ]
         }
-    ];
+    ]
   isList=true;
   isShowSelectTab=false;
   currentStatus="全部状态";

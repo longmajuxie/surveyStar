@@ -20,7 +20,9 @@ export class QuestionnaireService implements OnInit {
         const params = new URLSearchParams();
         let surveyWithNoQues = {
             questionnaireTitle:survey["questionnaireTitle"],
-            questionnairePrompt:survey["questionnairePrompt"]
+            questionnairePrompt:survey["questionnairePrompt"],
+            questionnaireType:survey["questionnaireType"],
+            questionnaireCatalog:survey["questionnaireCatalog"]
         };
         params.set('questionList', JSON.stringify(survey.questionList));
         params.set('questionnaireEntity', JSON.stringify(surveyWithNoQues));

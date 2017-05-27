@@ -9,9 +9,6 @@
                     <ul class="selected_nav">
 
                         <li class="selected_s">问卷</li>
-                        <li class="selected_f" style="display:none">表单</li>
-                        <li class="selected_a" style="display:none">测评</li>
-
                     </ul>
                     <s class="arrow"></s>
                     <input id="keywords" name="keywords" type="text" placeholder="输入关键字，搜索您想要的问卷模板" value="">
@@ -24,67 +21,7 @@
                 </form>
             </div>
             <div class="hotwords" id="hotwords_survey">热门搜索：
-
-                <a onclick="" href="/search?keywords=%E6%BB%A1%E6%84%8F%E5%BA%A6" word="满意度" p_type="1">满意度&nbsp;&nbsp;</a>
-
-                <a onclick="" href="/search?keywords=%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B6%88%E8%B4%B9" word="大学生消费" p_type="1">大学生消费&nbsp;&nbsp;</a>
-
-                <a onclick="" href="/search?keywords=%E5%85%BC%E8%81%8C" word="兼职" p_type="1">兼职&nbsp;&nbsp;</a>
-
-                <a onclick="" href="/search?keywords=%E5%9F%B9%E8%AE%AD%E9%9C%80%E6%B1%82" word="培训需求" p_type="1">培训需求&nbsp;&nbsp;</a>
-
-                <a onclick="" href="/search?keywords=%E6%B6%88%E8%B4%B9%E8%80%85" word="消费者" p_type="1">消费者&nbsp;&nbsp;</a>
-
-                <a onclick="" href="/search?keywords=%E5%B0%B1%E4%B8%9A" word="就业" p_type="1">就业&nbsp;&nbsp;</a>
-
-                <a onclick="" href="/search?keywords=%E6%96%B0%E7%94%9F" word="新生" p_type="1">新生&nbsp;&nbsp;</a>
-
-                <a onclick="" href="/search?keywords=%E5%B8%82%E5%9C%BA%E8%B0%83%E6%9F%A5" word="市场调查" p_type="1">市场调查&nbsp;&nbsp;</a>
-
-                <a onclick="" href="/search?keywords=%E9%A1%BE%E5%AE%A2" word="顾客" p_type="1">顾客&nbsp;&nbsp;</a>
-
-                <a onclick="" href="/search?keywords=%E7%94%A8%E6%88%B7" word="用户" p_type="1">用户&nbsp;&nbsp;</a>
-
-                <a onclick="" href="/search?keywords=%E5%AE%A2%E6%88%B7%0A" word="客户" p_type="1">客户&nbsp;&nbsp;</a>
-
-            </div>
-            <div class="hotwords" style="display:none" id="hotwords_form">热门搜索：
-
-                <a onclick="" href="/form_search?keywords=%E6%8A%A5%E5%90%8D%E8%A1%A8&amp;func=" word="报名表" p_type="0">报名表&nbsp;&nbsp;</a>
-
-                <a onclick="" href="/form_search?keywords=%E7%99%BB%E8%AE%B0%E8%A1%A8&amp;func=" word="登记表" p_type="0">登记表&nbsp;&nbsp;</a>
-
-                <a onclick="" href="/form_search?keywords=%E7%95%99%E8%A8%80&amp;func=" word="留言" p_type="0">留言&nbsp;&nbsp;</a>
-
-                <a onclick="" href="/form_search?keywords=%E7%AD%BE%E5%88%B0&amp;func=" word="签到" p_type="0">签到&nbsp;&nbsp;</a>
-
-                <a onclick="" href="/form_search?keywords=%E8%AE%A2%E5%8D%95&amp;func=" word="订单" p_type="0">订单&nbsp;&nbsp;</a>
-
-                <a onclick="" href="/form_search?keywords=%E7%94%B3%E8%AF%B7&amp;func=" word="申请" p_type="0">申请&nbsp;&nbsp;</a>
-
-                <a onclick="" href="/form_search?keywords=%E5%8F%8D%E9%A6%88&amp;func=" word="反馈" p_type="0">反馈&nbsp;&nbsp;</a>
-
-                <a onclick="" href="/form_search?keywords=%E7%BB%9F%E8%AE%A1&amp;func=" word="统计" p_type="0">统计&nbsp;&nbsp;</a>
-
-                <a onclick="" href="/form_search?keywords=%E9%A2%84%E7%BA%A6%0A&amp;func=" word="预约
-" p_type="0">预约
-&nbsp;&nbsp;</a>
-
-            </div>
-            <div class="hotwords" style="display:none" id="hotwords_assess">热门搜索：
-
-                <a onclick="" href="/assess_search?keywords=%E6%B5%8B%E8%AF%95&amp;func=" word="测试" p_type="2">测试&nbsp;&nbsp;</a>
-
-                <a onclick="" href="/assess_search?keywords=%E8%80%83%E8%AF%95&amp;func=" word="考试" p_type="2">考试&nbsp;&nbsp;</a>
-
-                <a onclick="" href="/assess_search?keywords=%E5%9F%B9%E8%AE%AD&amp;func=" word="培训" p_type="2">培训&nbsp;&nbsp;</a>
-
-                <a onclick="" href="/assess_search?keywords=%E8%80%83%E8%AF%84&amp;func=" word="考评" p_type="2">考评&nbsp;&nbsp;</a>
-
-                <a onclick="" href="/assess_search?keywords=%E8%AF%95%E5%8D%B7%0A&amp;func=" word="试卷
-" p_type="2">试卷
-&nbsp;&nbsp;</a>
-
+                <span *ngFor="let item of hotWords">{{item}}&nbsp;&nbsp;</span>
             </div>
         </div>
     </div>
@@ -114,45 +51,6 @@
 
                                 <li title="其他"><a href="/classify/other_f_1">其他</a></li>
 
-                            </ul>
-
-                            <div class="h1">行业分类</div>
-                            <ul class="ul-capability hy_list">
-
-                                <li title="食品饮料餐饮"><a href="/classify/food_i_1">食品饮料餐饮</a></li>
-
-                                <li title="服饰鞋帽饰品"><a href="/classify/apparel_i_1">服饰鞋帽饰品</a></li>
-
-                                <li title="数码电子产品"><a href="/classify/digital_i_1">数码电子产品</a></li>
-
-                                <li title="母婴产品"><a href="/classify/maternal_i_1">母婴产品</a></li>
-
-                                <li title="日用品护肤品"><a href="/classify/commodity_i_1">日用品护肤品</a></li>
-
-                                <li title="汽车"><a href="/classify/car_i_1">汽车</a></li>
-
-                                <li title="家电"><a href="/classify/appliance_i_1">家电</a></li>
-
-                                <li title="其他"><a href="/classify/other_i_1">其他</a></li>
-
-                            </ul>
-
-                        </div>
-                        <div class="mb_con_group">
-                            <div class="h1">推荐专题</div>
-                            <ul class="ul-capability liorange">
-
-                                <li title="大学生消费"><a href="/topic_detail/54116fb1f7405b5b46d2f822">大学生消费</a></li>
-
-                                <li title="大学生就业"><a href="/topic_detail/54116d09f7405b5a57e58fc4">大学生就业</a></li>
-
-                                <li title="培训需求"><a href="/topic_detail/54116af0f7405b58ba9a7b3d">培训需求</a></li>
-
-                                <li title="员工满意度"><a href="/topic_detail/54116a46f7405b5a05beddca">员工满意度</a></li>
-
-                                <li title="新员工调查"><a href="/topic_detail/54116cb2f7405b5a3497fe30">新员工调查</a></li>
-
-                                <a href="/topic_list/" class="more">更多</a>
                             </ul>
                         </div>
                     </div>

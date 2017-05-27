@@ -23,6 +23,7 @@ import { QuestionnairePlayComponent } from './questionnaire/questionnaire-play/q
 import { QuestionnaireService } from '../services/questionnaire'
 import { stringToJsonPipe,stringLineToJsonPipe,stringChoiceToJsonPipe } from '../filters/common.filters';
 
+
 @NgModule({
   imports: [CommonModule,BrowserModule,FormsModule,ReactiveFormsModule, routing],
   declarations: [
@@ -39,7 +40,7 @@ import { stringToJsonPipe,stringLineToJsonPipe,stringChoiceToJsonPipe } from '..
       QuestionnairePlayComponent,
       stringToJsonPipe,
       stringLineToJsonPipe,
-      stringChoiceToJsonPipe 
+      stringChoiceToJsonPipe,
     ],
   providers:[
     LocalStorageService,
