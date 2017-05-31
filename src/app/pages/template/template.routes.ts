@@ -15,7 +15,7 @@ export const routes: Routes = [
     children: [
       {path: '',redirectTo:'home',pathMatch:'full'},
       {path: 'home',component:TemplateHomeComponent},
-      { path: 'list', component: TemplateListComponent },
+      { path: 'list/:id', component: TemplateListComponent },
       { path: 'search', component: TemplateSearchComponent }
     ]
   }

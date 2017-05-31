@@ -16,13 +16,13 @@ export class AuthenticationService implements OnInit {
     constructor(private http:Http, private storage:LocalStorageService) { }
 
     login(username, password) {
-        return this.http.post('api/login/doLogin?userName="'+username+'"&password="'+password+'"', JSON.stringify({ }))
+        return this.http.post('api/login/doLogin?userName='+username+'&password='+password, {})
         .map((response: Response) => {
             // login successful if there's a jwt token in the response
-            let user = response.json();
-            if (user && user.token) {
+            let result=JSON.parse(response["_body"]);
+            if (result.result=="success") {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
-                this.storage.store('currentUser',user);
+                this.storage.store('currentUser',result.user);
             }
         });
     }
@@ -66,11 +66,10 @@ export class AuthenticationService implements OnInit {
         return this.http.post('api/login/register', params)
         .map((response: Response) => {
             // login successful if there's a jwt token in the response
-            console.log(response);
-            let user;
-            if (user && user.token) {
+            let result=JSON.parse(response["_body"]);
+            if (result.result=="success") {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
-                this.storage.store('currentUser',userInfo);
+                this.storage.store('currentUser',result.user);
             }
         });
     }

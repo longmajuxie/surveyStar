@@ -13,12 +13,12 @@ declare var $: any;
 export class TemplateDetailComponent implements OnInit {
 
   questionnaire;
+  questionnaireId;
   constructor(public router:Router,public Qs:QuestionnaireService,private route: ActivatedRoute,) { }
   
   ngOnInit() {
     this.route.params.switchMap((params: Params) =>  this.Qs.getById(+params['id']))
     .subscribe(data => {
-      console.log(data);
       this.questionnaire = JSON.parse(data);
       let this_=this;
        $(document).ready(function(){
@@ -27,5 +27,8 @@ export class TemplateDetailComponent implements OnInit {
 	        });
       });
     });
+  }
+  play(){
+    this.router.navigate(['/pages/template/play'], { queryParams: { id: this.questionnaire.questionnaireId} });
   }
 }

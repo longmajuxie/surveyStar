@@ -1,0 +1,271 @@
+<div class="con-border" style="margin-top: 100px;" *ngIf="questionnaire">
+    <div id="dyb-labelDIV"></div>
+    <div class="top" id="answertop">
+        <div class="top-bg fixed">
+            <div class="tit-n-c">
+                <div class="titname" id="titname">{{questionnaire.questionnaireName}}</div>
+                <div class="titintro" id="titintro">{{questionnaire.questionnairePrompt}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="progress" id="answerprogress">
+        <!--<div class="progress-ywc">已完成</div>-->
+        <div class="progress-bar">
+            <div class="progress-color" style="width:100%"></div>
+        </div>
+        <!--
+        <div class="progress-num">0%</div>-->
+    </div>
+    <div class="content">
+        <div class="question-choice-tips" style="display:none">
+            <div class="question-choice-tippic"><img src="/images/themecommons/warning_16.gif" style="width: 17px; height: 17px;"></div>
+            <div id="ePage" class="question-choice-tiptext"></div>
+        </div>
+        <!--题目区域开始-->
+        <div class="topic-type-content topic-type-question after-clear" *ngFor="let item of questionnaire.questions;let i = index;">
+            <!--单选题开始-->
+            <div *ngIf="item.questionType==0">
+                <div class="question-title" type="6" name="radio-question"><span class="required" [hidden]="!item.isNecessary">*</span><span class="question-id" order="2" page="1" index="1" absolute_id="5" question-required="Y" has_other="N" title-quote="N" choice-quote="0">Q{{i+1}}</span>
+                    <div class="position-relative">
+                        <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="false" content-default="1" style="background: rgb(255, 255, 255);" [textContent]="item.questionName" (input)="item.questionName=$event.target.textContent">
+                            {{item.questionName}}
+                        </div>
+                    </div>
+                </div>
+                <ul class="question-choice">
+                    <li class="choice" has_other="N" choice_absolute_id="1" *ngFor="let itemChoice of item.questionSelection ; let qc = index">
+                        <input type="radio" [name]="i" (click)="select(i,qc,0)">
+                        <div class="position-relative">
+                            <div class="edit-area edit-child-element" contenteditable="false" content-default="1" [textContent]="itemChoice.text" (input)="itemChoice.text=$event.target.textContent">
+                                {{itemChoice.text}}
+                            </div>
+                        </div>
+                        <div class="option-tips"></div>
+                    </li>
+                </ul>
+            </div>
+            <!--单选题结束-->
+
+            <!--下拉选择题开始-->
+            <div *ngIf="item.questionType==1">
+                <div class="question-title" type="7" name="select-question">
+                    <span class="required" [hidden]="!item.isNecessary">*</span>
+                    <span class="question-id" order="3" page="1" index="2" absolute_id="6" question-required="Y" has_other="N" title-quote="N" choice-quote="0">Q{{i+1}}</span>
+                    <div class="position-relative">
+                        <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="false" [textContent]="item.questionName" (input)="item.questionName=$event.target.textContent">
+                            {{item.questionName}}
+                        </div>
+                    </div>
+                </div>
+                <select class="question-choice" style="padding: 0;margin: 15px 0 20px 35px;" [(ngModel)]="item.selected">
+                     <option class="choice" has_other="N" choice_absolute_id="1" *ngFor="let itemChoice of item.questionSelection; let qc = index" [value]="[qc]" (click)="select(i,qc,0)">
+                        {{itemChoice.text}} 
+                      </option>
+                </select>
+            </div>
+            <!--下拉选择题结束-->
+
+            <!--多选题开始-->
+            <div *ngIf="item.questionType==2">
+                <div class="question-title" type="8" name="checkbox-question"><span class="required" [hidden]="!item.isNecessary">*</span>
+                    <span class="question-id" order="4" page="1" index="3" absolute_id="7" question-required="Y" has_other="N" title-quote="N" choice-quote="0" min="" max="" exclusive-options="">Q{{i+1}}</span>
+                    <div class="position-relative">
+                        <div class="qs-content edit-area edit-title" tabindex="0" contenteditable="false" content-default="1" style="background: rgb(255, 255, 255);" [textContent]="item.questionName" (input)="item.questionName=$event.target.textContent">
+                            {{item.questionName}}
+                        </div>
+                    </div>
+                </div>
+                <ul class="question-choice">
+                    <li class="choice" has_other="N" choice_absolute_id="1" *ngFor="let itemChoice of item.questionSelection; let qc = index">
+                        <input type="checkbox" name="i" (click)="select(i,qc,1)">
+                        <div class=" position-relative ">
+                            <div class="edit-area edit-child-element " contenteditable="false " content-default="1 " style="background: rgb(255, 255, 255); " [textContent]="itemChoice.text " (input)="itemChoice.text=$event.target.textContent ">
+                                {{itemChoice.text}}
+                            </div>
+                        </div>
+                        <div class="option-tips "></div>
+                    </li>
+                </ul>
+            </div>
+            <!--多选题结束-->
+
+            <!--单行填空题开始-->
+            <div *ngIf="item.questionType==3 ">
+                <div class="question-title " type="1 " name="input-question ">
+                    <span class="required " [hidden]="!item.isNecessary ">*</span>
+                    <span class="question-id " order="5 " page="1 " index="4 " absolute_id="8 " question-required="Y " has_other="N " title-quote="N ">Q{{i+1}}</span>
+                    <div class="position-relative ">
+                        <div class="qs-content edit-area edit-title " contenteditable="false " content-default="1 " style="background: rgb(255, 255, 255); " [textContent]="item.questionName " (input)="item.questionName=$event.target.textContent ">
+                            {{item.questionName}}
+                        </div>
+                    </div>
+                </div>
+                <ul class="question-choice ">
+                    <li><input type="text " name="input " class="input-single" [(ngModel)]="item.questionSelection[0].text"></li>
+                </ul>
+            </div>
+            <!--单行填空题结束-->
+
+            <!--多行填空题开始-->
+            <div *ngIf="item.questionType==4 ">
+                <div class="question-title " type="1 " name="input-question ">
+                    <span class="required " [hidden]="!item.isNecessary ">*</span>
+                    <span class="question-id " order="5 " page="1 " index="4 " absolute_id="8 " question-required="Y " has_other="N " title-quote="N ">Q{{i+1}}</span>
+                    <div class="position-relative ">
+                        <div class="qs-content edit-area edit-title " contenteditable="false " content-default="1 " style="background: rgb(255, 255, 255); " [textContent]="item.questionName " (input)="item.questionName=$event.target.textContent ">
+                            {{item.questionName}}
+                        </div>
+                    </div>
+                </div>
+                <ul class="question-choice ">
+                    <li class="auto-height ">
+                        <textarea name="multi-input " class="multi-input" [(ngModel)]="item.questionSelection[0].text">
+                            </textarea>
+                    </li>
+                </ul>
+            </div>
+            <!--多行填空题结束-->
+
+            <!--矩阵单选题开始-->
+            <div *ngIf="item.questionType==5 ">
+                <div class="question-title " type="9 " name="radio-matrix-question "><span class="required " [hidden]="!item.isNecessary ">*</span><span class="question-id " order="8 " page="1 " index="7 " absolute_id="11 " question-required="Y
+                            " has_other="N " title-quote="N ">Q{{i+1}}</span>
+                    <div class="position-relative ">
+                        <div class="qs-content edit-area edit-title " contenteditable="false " content-default="1 " style="background: rgb(255, 255, 255); " [textContent]="item.questionName " (input)="item.questionName=$event.target.textContent "> {{item.questionName}}</div>
+                    </div>
+                </div>
+                <ul class="question-choice " style="float:left;width: 700px; ">
+                    <li class="auto-height ">
+                        <table style="border-collapse: collapse; ">
+                            <tbody>
+                                <tr *ngFor="let itemLine of item.questionSelection[0].line; let line=index ">
+                                    <td class="radio_array_title edit-area " name="checkbox-matrix " contenteditable="false ">
+                                        {{itemLine.text}}
+                                    </td>
+                                    <td name="checkbox-matrix-choice " *ngFor="let itemChoice of item.questionSelection[0].choice;let qc=index ">
+                                        <div class="position-relative " style="width:100% " *ngIf="line==0 ">
+                                            <li class="choice edit-area matrix-choice " has_other="N " contenteditable="false " content-default="1 ">
+                                                {{itemChoice.text}}
+                                            </li>
+                                        </div>
+                                        <input type="radio" *ngIf="line!=0 " [name]="i+line" (click)="selectMatrix(i,line,qc,0)">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </li>
+                </ul>
+            </div>
+            <!--矩阵单选题结束-->
+
+            <!--矩阵多选题开始-->
+            <div *ngIf="item.questionType==6 ">
+                <div class="question-title " type="13 " name="checkbox-matrix-question "><span class="required " [hidden]="!item.isNecessary ">*</span>
+                    <span class="question-id " order="9 " page="1 " index="8 " absolute_id="12 " question-required="Y " has_other="N " title-quote="N ">Q{{i+1}}</span>
+                    <div class="position-relative ">
+                        <div class="qs-content edit-area edit-title " contenteditable="false " content-default="1 " style="background: rgb(255, 255, 255); " [textContent]="item.questionName " (input)="item.questionName=$event.target.textContent "> {{item.questionName}}</div>
+                    </div>
+                </div>
+                <ul class="question-choice " style="float:left;width: 700px; ">
+                    <li class="auto-height ">
+                        <table style="border-collapse: collapse; ">
+                            <tbody>
+                                <tr *ngFor="let itemLine of item.questionSelection[0].line; let line=index ">
+                                    <td class="checkbox_array_title edit-area " name="checkbox-matrix " contenteditable="false ">
+                                        {{itemLine.text}}
+                                    </td>
+                                    <td name="checkbox-matrix-choice " *ngFor="let itemChoice of item.questionSelection[0].choice; let qc=index ">
+                                        <div class="position-relative " style="width:100% " *ngIf="line==0 ">
+                                            <li class="choice edit-area matrix-choice " has_other="N " contenteditable="false " content-default="1 ">
+                                                {{itemChoice.text}}
+                                            </li>
+                                        </div>
+                                        <input type="checkbox" *ngIf="line!=0" [name]="i+line" (click)="selectMatrix(i,line,qc,1)">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </li>
+                </ul>
+            </div>
+            <!--矩阵多选题结束-->
+
+            <!--图片单选开始-->
+            <div *ngIf="item.questionType==7 ">
+                <div class="question-title " type="14 " name="radio-question ">
+                    <span class="required " [hidden]="!item.isNecessary ">*</span>
+                    <span class="question-id " order="10 " page="1 " index="9 " absolute_id="13 " question-required="Y " has_other="N " title-quote="N " choice-quote="0 ">
+                                                Q{{i+1}}</span>
+                    <div class="position-relative ">
+                        <div class="position-relative ">
+                            <div class="qs-content edit-area edit-title " tabindex="0 " contenteditable="false " content-default="1 " style="background: rgb(255, 255, 255); " [textContent]="item.questionName " (input)="item.questionName=$event.target.textContent "> {{item.questionName}}</div>
+                        </div>
+                    </div>
+                </div>
+                <ul class="question-choice Matrix ">
+                    <li class="choice survey-question-radio-img " has_other="N " choice_absolute_id="2 " *ngFor="let itemChoice of item.questionSelection ; let qc=i ndex ">
+                        <div class="survey-question-radio-choice edit-area-active ">
+                            <div class="survey-question-radio-choice-img ">
+                                <a class="remove-child-element survey-question-radio-img-remove " (click)="deleteQuestionChoice(i,qc) "></a> <img [src]="itemChoice.imgUrl "> </div>
+                            <div class="survey-question-radio-choice-text ">
+                                <input type="radio" [name]="i" (click)="select(i,qc,0)">
+                                <label class="edit-area edit-child-element " contenteditable="false " style="background: rgb(255, 255, 255); " [textContent]="itemChoice.text " (input)="itemChoice.text=$event.target.textContent ">
+                                                             {{itemChoice.text}}
+                                                         </label>
+                                <div class="option-tips "></div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--图片单选结束-->
+
+            <!--图片多选开始-->
+            <div *ngIf="item.questionType==8">
+                <div class="question-title" type="15" name="checkbox-question ">
+                    <span class="required" [hidden]="!item.isNecessary">*</span><span class="question-id" order="10 " page="1 " index="10 " absolute_id="14 " question-required="Y " has_other="N " title-quote="N " choice-quote="0 " min=" " max=" ">Q{{i+1}}</span>
+                    <div class="position-relative ">
+                        <div class="qs-content edit-area edit-title " tabindex="0 " contenteditable="false " content-default="1 " style="background: rgb(255, 255, 255); " [textContent]="item.questionName " (input)="item.questionName=$event.target.textContent "> {{item.questionName}}</div>
+                    </div>
+                </div>
+                <ul class="question-choice Matrix ">
+                    <li class="choice survey-question-radio-img " has_other="N " choice_absolute_id="2 " *ngFor="let itemChoice of item.questionSelection ; let qc=i ndex ">
+                        <div class="survey-question-radio-choice edit-area-active ">
+                            <div class="survey-question-radio-choice-img ">
+                                <a class="remove-child-element survey-question-radio-img-remove " (click)="deleteQuestionChoice(i,qc) "></a> <img [src]="itemChoice.imgUrl "> </div>
+                            <div class="survey-question-radio-choice-text ">
+                                <input type="checkbox" [name]="i" (click)="select(i,qc,1)">
+                                <label class="edit-area edit-child-element " contenteditable="false " style="background: rgb(255, 255, 255); " [textContent]="itemChoice.text " (input)="itemChoice.text=$event.target.textContent ">
+                                                             {{itemChoice.text}}
+                                                         </label>
+                                <div class="option-tips "></div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--图片多选结束-->
+
+            <!--描述说明开始-->
+            <div *ngIf="item.questionType==9 ">
+                <div class="question-title " type="15 " name="checkbox-question ">
+                    <span class="required " [hidden]="!item.isNecessary ">*</span><span class="question-id " order="10 " page="1 " index="10 " absolute_id="14 " question-required="Y " has_other="N " title-quote="N " choice-quote="0 " min=" " max=" ">Q{{i+1}}</span>
+                    <div class="position-relative ">
+                        <div class="qs-content edit-area edit-title " tabindex="0 " contenteditable="false " content-default="1 " style="background: rgb(255, 255, 255); " [textContent]="item.questionName " (input)="item.questionName=$event.target.textContent "> {{item.questionName}}</div>
+                    </div>
+                </div>
+                <div class="question-title " type="10 " name="description "><span class="question-id " order="11 " page="1 " index="0 " absolute_id="15 " question-required="N " has_other="N "></span>
+                    <div class="position-relative ">
+                        <div class="qs-content qs-high-content edit-area edit-title " contenteditable="true" content-default="1 " style="background: rgb(255, 255, 255);border: 1px solid #dbdbdb; cursor:text " [textContent]="item.questionSelection[0].text" (input)="item.questionSelection[0].text=$event.target.textContent"></div>
+                    </div>
+                </div>
+            </div>
+            <!--描述说明结束-->
+        </div>
+        <!--题目区域结束-->
+    </div>
+    <div class="next "><span class="submitbnt "><span (click)="submit() " title="提交 ">提交</span></span>
+    </div>
+    <div class="rights-reserve ">本问卷平台是由
+        <a href="# " target="_blank "> <span class="choice-listtit ">调研星</span></a><span style="vertical-align:super; font-size:10px ">TM</span> 提供</div>
+</div>

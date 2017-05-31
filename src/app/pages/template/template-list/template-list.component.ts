@@ -1,6 +1,8 @@
 import { Component, OnInit,Output } from '@angular/core';
 import { Pagination } from '../../../widgets/pagination/pagination'
 import { QuestionnaireService } from '../../../services/questionnaire'
+import { Subscription }   from 'rxjs/Subscription';
+import {ActivatedRoute, Params } from '@angular/router';
 @Component({
   selector: 'app-template-list',
   templateUrl: './template-list.component.html',
@@ -15,10 +17,16 @@ export class TemplateListComponent implements OnInit {
   questionList;
   @Output() 
   public pagination:Pagination = Pagination.defaultPagination;
-  constructor(public Qs:QuestionnaireService) { }
+  constructor(public Qs:QuestionnaireService,private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.initList();
+    this.route.queryParams.subscribe(params => {
+        // Defaults to 0 if no query param provided.
+        this.questionnaireEntity.questionnaireCatalog = +params['genre'] || null;
+        this.questionnaireEntity.questionnaireName= params['filterName'];
+        this.initList();
+    });
+    /*this.initList();*/
     this.pagination.changePage = (() => {
       this.initList();
     });

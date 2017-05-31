@@ -64,4 +64,17 @@ export class QuestionnaireService implements OnInit {
            .map(this.extractData)
            .catch(this.handleError);
     }
+    savePlay(questionnaireAnswer){
+        const params = new URLSearchParams();
+        params.set('answerData', JSON.stringify(questionnaireAnswer));
+       return this.http.post("api/answer/anserData",params)
+        .map(this.extractData)
+        .catch(this.handleError);
+    }
+     getsavePlayById(questionnaireId){
+        return this.http.get('api/answer/getCountById?questionnaireId='+questionnaireId)
+           .map(this.extractData)
+           .catch(this.handleError);
+    }
+
 }

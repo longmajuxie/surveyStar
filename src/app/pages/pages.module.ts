@@ -2,7 +2,7 @@ import { NgModule }      from '@angular/core';
 
 import { CommonModule }  from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators,NgForm } from '@angular/forms';
 
 import { routing }       from './pages.routes';
 
@@ -17,6 +17,7 @@ import { AppFooterComponent } from '../widgets/app-footer/app-footer.component';
 import { AppHeaderComponent } from '../widgets/app-header/app-header.component';
 import { HomeComponent } from './home/home.component';
 import { TemplateDetailComponent } from './template/template-detail/template-detail.component';
+import { TemplatePlayComponent } from './template/template-play/template-play.component'
 import { TopicCreateComponent } from './template/topic-create/topic-create.component';
 import { TemplateCreateOrEditComponent } from './template/template-create-or-edit/template-create-or-edit.component';
 import { QuestionnairePlayComponent } from './questionnaire/questionnaire-play/questionnaire-play.component';
@@ -37,6 +38,7 @@ import { stringToJsonPipe,stringLineToJsonPipe,stringChoiceToJsonPipe } from '..
       TemplateDetailComponent,
       TopicCreateComponent,
       TemplateCreateOrEditComponent,
+      TemplatePlayComponent,
       QuestionnairePlayComponent,
       stringToJsonPipe,
       stringLineToJsonPipe,

@@ -1,16 +1,13 @@
-import { Component, OnInit,Output} from '@angular/core';
-import { Subscription }   from 'rxjs/Subscription';
-import { QuestionnaireService } from '../../../services/questionnaire'
+import { Component, OnInit,Output } from '@angular/core';
+import { QuestionnaireService } from '../../../services/questionnaire';
 import { Pagination } from '../../../widgets/pagination/pagination'
 @Component({
-  selector: 'app-questionnaire-template-list',
-  templateUrl: './questionnaire-template-list.component.html',
-  styleUrls: ['./questionnaire-template-list.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class QuestionnaireTemplateListComponent implements OnInit {
-
-  genreIndex;
-    public  questionnaireTypes=[
+export class HomeComponent implements OnInit {
+public  questionnaireTypes=[
         {
            questionnaireStage:"产品调研阶段",
            questionnaireGenreDetail:[
@@ -134,11 +131,23 @@ export class QuestionnaireTemplateListComponent implements OnInit {
       this.initList();
     });
   }
- 
+  private statusChanged(state){
+      if(state==0){
+         this.currentStatus="全部状态";
+         this.questionnaireEntity.quesState=null;
+      }else if(state==1){
+         this.currentStatus="未发布";
+         this.questionnaireEntity.quesState=0;
+      }else {
+         this.currentStatus="已发布";
+          this.questionnaireEntity.quesState=1;
+      }
+      this.filter();
+      this.isShowSelectTab=false;
+  }
   
-  filter(index){
-    this.genreIndex=index;
-    this.pagination=Pagination.defaultPagination;
+  private filter(){
+     this.pagination=Pagination.defaultPagination;
      this.initList();
   }
   private initList(): void {

@@ -1,0 +1,71 @@
+<div class="wrapper">
+    <div class="survey-wrap-in">
+        <div class="rightc">
+            <div class="question-search">
+                <div class="question-search-fields">
+                    <label class="" for="q1"></label>
+                    <input type="text" name="q" id="q1" value="" placeholder="请搜索您想要的网络调查问卷模板或者公开问卷" [(ngModel)]="questionnaireEntity.questionnaireName">
+                    <a href="javascript:void(0);" onclick="cleanSearch(1);" id="q1CleanBtn" class="current" style="display: none;"><img src="/images/public/close005.gif" alt=""></a>
+                </div>
+                <button class="question-search-submit whitebtn" id="q1Btn" type="button" (click)="filter()">搜索</button>
+                <div class="clear"></div>
+                <div class="hot-key">
+                    热门网络问卷：
+                    <span>网络调查</span>
+                    <span>满意度调查</span>
+                    <span>市场调查</span>
+                    <span>产品调查</span>
+                    <span>大学生</span>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="filter">
+                <div class="fore1">
+                    <dl>
+                        <!-- <dt>排序：</dt>
+                        <dd>
+                            <a href="javascript:void(0);" onclick="sortByRank();return false;">相关度</a>
+                        </dd>
+                        <dd>
+                            <a href="javascript:void(0);" onclick="sortByTime();return false;" class="hover">创建时间<span class="arrow-time"></span></a>
+                        </dd>
+                        <dd>
+                            <a href="javascript:void(0);" onclick="sortByViewer();return false;">查看数</a>
+                        </dd>
+                        <dd>
+                            <a href="javascript:void(0);" onclick="sortBySample();return false;">答题数</a>
+                        </dd>-->
+                    </dl>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="surveymain" id="surveymain0">
+                <ul class="block">
+                    <li *ngFor="let item of questionList">
+                        <p class="question-survey-tit">
+                            <a [routerLink]="['/pages/template/detail',item.questionnaireId]" [routerLinkActive]="['active']" target="_blank">{{item.questionnaireName}}</a>
+                        </p>
+                        <p class="mt5"> &nbsp; &nbsp;{{item.questionnairePrompt}}</p>
+                        <p class="gray9 mt5">
+                            创建日期： {{item.createTime}} &nbsp;&nbsp;|&nbsp;&nbsp;问卷分类：
+                            <span>{{item.questionnaireType | emQuestionnaireType}}</span>&nbsp;&nbsp;|&nbsp;&nbsp;共{{9}}个问题&nbsp;&nbsp;|&nbsp;&nbsp;20人体验答题
+                        </p>
+                        <p class="mt5">
+                            <!-- <a href="/inside/survey/createOpenSurvey/iS2tlu9L" class="graybtn"><span class="copy">复制问卷</span></a>-->
+                            <a [routerLink]="['/pages/template/detail',item.questionnaireId]" [routerLinkActive]="['active']" target="_blank" class="graybtn"><span class="answer">体验答题</span></a>
+                            <!-- a href="javascript:void(0);" onclick="showForwardRegister();return false;"  class="graybtn"><span class="view">查看结果</span></a -->
+                            <a [routerLink]="['/pages/report/view',item.questionnaireId]" [routerLinkActive]="['active']" target="_blank" class="graybtn"><span class="view">查看结果</span></a>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <div class="question-survey-search" style="display:none;">无相关公开问卷，请重新搜索</div>
+            <div class="clear"></div>
+            <div class="manu-qc t-right mb30 mt20">
+                <page [(pagination)]="pagination">
+                </page>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>

@@ -509,3 +509,15 @@ h6 {
 .newTem {
     margin-top: 0px;
 }
+
+li a {
+    cursor: pointer;
+}
+
+.gn_list .active,
+.gn_list .active a,
+.hy_list .active,
+.hy_list .active a {
+    background-color: #6FC5FF;
+    color: #fff;
+}

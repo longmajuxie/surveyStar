@@ -1,0 +1,62 @@
+<div class="preview-cont">
+    <div id="sensitiveinfo" class="info mb8" style="display:none; width:788px; margin:0 auto">
+        <span>出于安全原因，姓名、地址、电子邮件、电话号码、上传文件等敏感信息不会在分享中显示，如需查看请联系问卷所有者获取。</span>
+    </div>
+    <div class="no-probox" *ngIf="optionsList.length==0">
+        <div class="lodding-pic"><img src="assets/img/loading.gif"></div>
+        <p class="mt15 f-f60 font14">调研宝正在努力加载统计结果，请耐心等待…</p>
+    </div>
+    <div class="statistics-center" id="main" *ngIf="optionsList.length>0">
+        <div class="th-question-view" *ngFor="let item of optionsList; let i=index">
+            <div class="th-chart-controls clearfix">
+                <div class="persistent-buttons fr"></div>
+                <div class="fr th-display-options">
+                    <a href="javascript:void(0)" class="thbtn thbtn-small thbtn-arrow btn-menu-left chart-type" (click)="item.dropDowm=!item.dropDowm">图表类型<span>
+                        <i class="fa fa-caret-down" aria-hidden="true"></i>
+                        </span>
+                        </a>
+                    <div name="chartMenu" class="chart-menu xlmenu-w" *ngIf="item.dropDowm">
+                        <ul>
+                            <li class="chart-option chart2" title="柱状图" (click)="selectChart(i,0)"><i class="fa fa-bar-chart" aria-hidden="true"></i></li>
+                            <li class="chart-option chart1" title="条形图" (click)="selectChart(i,1)"><i class="fa fa-align-left" aria-hidden="true"></i></li>
+                        </ul>
+                        <ul>
+                            <li class="chart-option chart3" title="饼图" (click)="selectChart(i,2)"><i class="fa fa-pie-chart" aria-hidden="true"></i></li>
+                            <li class="chart-option chart4" title="折线图" (click)="selectChart(i,3)"><i class="fa fa-line-chart" aria-hidden="true"></i></li>
+                        </ul>
+                    </div>
+                </div><span class="th-questionnumber heavy notranslate"><b>Q{{i+1}}</b></span></div>
+            <div class="questionview-content">
+                <!--<div name="titleDiv">
+                    <h1>{{item}}</h1>
+                    <h3>被访者人数：14</h3>
+                </div>-->
+                <div class="chart-container">
+                    <div [hidden]="item.chartType==1|| item.chartType==2 ||item.chartType==3">
+                        <chart [options]="item.options[0]"></chart>
+                    </div>
+                    <div [hidden]="item.chartType==0|| item.chartType==2 ||item.chartType==3">
+                        <chart [options]="item.options[1]"></chart>
+                    </div>
+                    <div [hidden]="item.chartType==1|| item.chartType==0 ||item.chartType==3">
+                        <chart [options]="item.options[2]"></chart>
+                    </div>
+                    <div [hidden]="item.chartType==1|| item.chartType==2 ||item.chartType==0">
+                        <chart [options]="item.options[3]"></chart>
+                    </div>
+                </div>
+                <div class="data-table-container">
+                    <table class="data-table data-table-summary"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hot-wj-report-wrap">
+        <div class="hot-tit clearfix">
+            <!--<chart [options]="options"></chart>-->
+            <h3 class="fl">热门问卷调查报告推荐 <a [routerLink]="['/pages/report/home']" [routerLinkActive]="['active']" target="_blank"><span class="fr">更多&gt;&gt;</span></a></h3>
+        </div>
+        <ul class="hot-wj-report-list">
+        </ul>
+    </div>
+</div>

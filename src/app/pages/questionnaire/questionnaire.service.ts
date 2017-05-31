@@ -24,7 +24,7 @@ export class QuestionnaireDelService implements OnInit {
             let question={
                  questionGenre:index,
                  questionTitle:this.questionGenre[index],
-                 isNecessary:true,     
+                 isNecessary:true,
                  isEdit:false,      //下拉选择是否编辑
                  questionChoice:[]
               };
@@ -57,23 +57,23 @@ export class QuestionnaireDelService implements OnInit {
                         line:[
                              {
                                 text:"",
-                                isSelected:false
+                                isSelected:[]
                             },
                             {
                                 text:"矩阵行1",
-                                isSelected:false
+                                isSelected:[]
                             },
                             {
                                 text:"矩阵行2",
-                                isSelected:false
+                                isSelected:[]
                             },
                              {
                                 text:"矩阵行3",
-                                isSelected:false
+                                isSelected:[]
                             },
                              {
                                 text:"矩阵行4",
-                                isSelected:false
+                                isSelected:[]
                             }
                         ],
                         choice:[

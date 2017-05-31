@@ -11,9 +11,9 @@
                         <li class="selected_s">问卷</li>
                     </ul>
                     <s class="arrow"></s>
-                    <input id="keywords" name="keywords" type="text" placeholder="输入关键字，搜索您想要的问卷模板" value="">
+                    <input id="keywords" name="keywords" type="text" placeholder="输入关键字，搜索您想要的问卷模板" value="" [(ngModel)]="filterName">
                     <a>
-                        <div class="searchicon" id="search_btn">
+                        <div class="searchicon" id="search_btn" (click)="filter(null)">
                             <img src="assets/img/search_ico.png">
                         </div>
                     </a>
@@ -35,22 +35,19 @@
                             <div class="h1">功能分类</div>
                             <ul class="ul-capability gn_list">
 
-                                <li title="品牌营销"><a href="/classify/brand_f_1">品牌营销</a></li>
+                                <li title="品牌营销" [ngClass]="{'active':indextab==1}"><a (click)="filter(1)">品牌营销</a></li>
 
-                                <li title="产品测试"><a href="/classify/product_f_1">产品测试</a></li>
+                                <li title="产品测试" [ngClass]="{'active':indextab==2}"><a (click)="filter(2)">产品测试</a></li>
 
-                                <li title="消费者分析"><a href="/classify/consumer_f_1">消费者分析</a></li>
+                                <li title="消费者分析" [ngClass]="{'active':indextab==3}"><a (click)="filter(3)">消费者分析</a></li>
 
-                                <li title="满意度调查"><a href="/classify/satis_f_1">满意度调查</a></li>
+                                <li title="满意度调查" [ngClass]="{'active':indextab==4}"><a (click)="filter(4)">满意度调查</a></li>
 
-                                <li title="人力资源"><a href="/classify/human_f_1">人力资源</a></li>
+                                <li title="人力资源" [ngClass]="{'active':indextab==5}"><a (click)="filter(5)">人力资源</a></li>
 
-                                <li title="学术教育"><a href="/classify/edu_f_1">学术教育</a></li>
+                                <li title="学术教育" [ngClass]="{'active':indextab==6}"><a (click)="filter(6)">学术教育</a></li>
 
-                                <li title="社会民意"><a href="/classify/opinion_f_1">社会民意</a></li>
-
-                                <li title="其他"><a href="/classify/other_f_1">其他</a></li>
-
+                                <li title="社会民意" [ngClass]="{'active':indextab==-1}"><a (click)="filter(-1)">其他</a></li>
                             </ul>
                         </div>
                     </div>

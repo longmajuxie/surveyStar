@@ -10,6 +10,7 @@ import { TemplateDetailComponent } from './template/template-detail/template-det
 import { TopicCreateComponent } from './template/topic-create/topic-create.component';
 import { TemplateCreateOrEditComponent } from './template/template-create-or-edit/template-create-or-edit.component';
 import { QuestionnairePlayComponent } from './questionnaire/questionnaire-play/questionnaire-play.component';
+import { TemplatePlayComponent } from './template/template-play/template-play.component'
 './service/ga'
 
 // noinspection TypeScriptValidateTypes
@@ -41,6 +42,11 @@ export const routes: Routes = [
       { path: 'template', loadChildren: 'app/pages/template/template.module#TemplateModule' },
       { path: 'measurement', loadChildren: 'app/pages/measurement/measurement.module#MeasurementModule' },
       { path: 'template/detail/:id', component: TemplateDetailComponent},
+      {
+         canActivate: [AuthGuard],
+         path: 'template/play/:id', 
+         component: TemplatePlayComponent
+        },
        { path: 'template/create', component: TopicCreateComponent },
       { path: 'template/createOrEdit', component: TemplateCreateOrEditComponent },
        { path: 'questionnaire/previewOrPlay', component:QuestionnairePlayComponent },
