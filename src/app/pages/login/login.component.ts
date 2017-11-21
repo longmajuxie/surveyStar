@@ -10,35 +10,35 @@ import { AuthenticationService } from '../../services/authentication.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-    
-    
-    userInfo={
-      userName:"",
-      passWord:""
-    };
-    errMsg="";
-    constructor(private router:Router,private storage:AuthenticationService){}
-    ngOnInit() {
-        
-    }
 
-    doLogin() {
-       
-    }
 
-    ngOnDestroy() {
-      
-    }
-    login(){
-      this.storage.login(this.userInfo.userName,this.userInfo.passWord).subscribe(
-                    // the first argument is a function which runs on success
-            data => { 
-                this.router.navigate(['/pages/home']);
-            },
-          // the second argument is a function which runs on error
-            err => console.error(err),
+  userInfo = {
+    userName: '',
+    passWord: ''
+  };
+  errMsg = "";
+  constructor(private router: Router, private storage: AuthenticationService) { }
+  ngOnInit() {
+
+  }
+
+  doLogin() {
+
+  }
+
+  ngOnDestroy() {
+
+  }
+  login() {
+    this.storage.login(this.userInfo.userName, this.userInfo.passWord).subscribe(
+      // the first argument is a function which runs on success
+      data => {
+        this.router.navigate(['/pages/home']);
+      },
+      // the second argument is a function which runs on error
+      err => console.error(err),
       // the third argument is a function which runs on completion
-            () => console.log('done loading')
-        );
-    }
+      () => console.log('done loading')
+    );
+  }
 }

@@ -1,12 +1,12 @@
-import { NgModule }      from '@angular/core';
+import { NgModule } from '@angular/core';
 
-import { CommonModule }  from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators,NgForm } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 
-import { routing }       from './pages.routes';
+import { routing } from './pages.routes';
 
-import {LocalStorageService, SessionStorageService} from 'ng2-webstorage';
+import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 import { AuthenticationService } from '../services/authentication.service';
 import { AuthGuard } from '../services/guard.service';
 import { Pages } from './pages.component';
@@ -22,29 +22,29 @@ import { TopicCreateComponent } from './template/topic-create/topic-create.compo
 import { TemplateCreateOrEditComponent } from './template/template-create-or-edit/template-create-or-edit.component';
 import { QuestionnairePlayComponent } from './questionnaire/questionnaire-play/questionnaire-play.component';
 import { QuestionnaireService } from '../services/questionnaire'
-import { stringToJsonPipe,stringLineToJsonPipe,stringChoiceToJsonPipe } from '../filters/common.filters';
+import { stringToJsonPipe, stringLineToJsonPipe, stringChoiceToJsonPipe } from '../filters/common.filters';
 
 
 @NgModule({
-  imports: [CommonModule,BrowserModule,FormsModule,ReactiveFormsModule, routing],
+  imports: [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule, routing],
   declarations: [
-      Pages,
-      SignupComponent,
-      LoginComponent,
-      LayoutsComponent,
-      AppFooterComponent,
-      AppHeaderComponent,
-      HomeComponent,
-      TemplateDetailComponent,
-      TopicCreateComponent,
-      TemplateCreateOrEditComponent,
-      TemplatePlayComponent,
-      QuestionnairePlayComponent,
-      stringToJsonPipe,
-      stringLineToJsonPipe,
-      stringChoiceToJsonPipe,
-    ],
-  providers:[
+    Pages,
+    SignupComponent,
+    LoginComponent,
+    LayoutsComponent,
+    AppFooterComponent,
+    AppHeaderComponent,
+    HomeComponent,
+    TemplateDetailComponent,
+    TopicCreateComponent,
+    TemplateCreateOrEditComponent,
+    TemplatePlayComponent,
+    QuestionnairePlayComponent,
+    stringToJsonPipe,
+    stringLineToJsonPipe,
+    stringChoiceToJsonPipe,
+  ],
+  providers: [
     LocalStorageService,
     SessionStorageService,
     AuthenticationService,

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+<!-- <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -81,4 +81,98 @@
             </ul>
         </div>
     </div>
-</nav>
+</nav> -->
+
+<div class="layui-header header header-index">
+    <div class="layui-main">
+        <a class="logo" href="#">
+            <img src="assets/img/logo.jpg" alt="SurveyStar">
+        </a>
+
+        <ul class="layui-nav">
+            <li class="layui-nav-item ">
+                <a [routerLink]="['/pages/home']" [routerLinkActive]="['active']">首页</a>
+            </li>
+            <li class="layui-nav-item ">
+                <a class="nav-link" [routerLink]="['/pages/topic-discussion']" [routerLinkActive]="['active']">话题讨论</a>
+            </li>
+            <li class="layui-nav-item layui-hide-xs">
+                <a class="nav-link" [routerLink]="['/pages/template']" [routerLinkActive]="['active']">调查中心</a>
+            </li>
+
+            <li class="layui-nav-item layui-hide-xs">
+                <a class="nav-link" [routerLink]="['/pages/questionnaire']" [routerLinkActive]="['active']">问卷</a>
+            </li>
+
+            <li class="layui-nav-item layui-hide-sm layui-show-xs">
+                <a class="nav-link" [routerLink]="['/pages/report']" [routerLinkActive]="['active']">报告</a>
+            </li>
+            <li class="layui-nav-item layui-hide-sm layui-show-xs">
+                <a class="nav-link" [routerLink]="['/pages/measurement']" [routerLinkActive]="['active']">热门测评</a>
+            </li>
+            <span class="layui-nav-bar" style="left: 238.5px; top: 55px; width: 0px; opacity: 0;"></span>
+
+            <li class="layui-nav-item layui-hide-sm layui-show-xs">
+                <form class="searchbox">
+                    <input class="mr-sm-2" type="text" placeholder="Search">
+                    <button class="btn" type="submit">Search</button>
+                </form>
+            </li>
+            <li class="layui-nav-item layui-hide-sm layui-show-xs">
+                <div class="o-login fl" data-login-content="yes" *ngIf="user">
+                    <a class="o-login-a" href="javascript:void(0)">
+                        <img _ngcontent-aej-17="" class="user-image" ng-reflect-src="assets/img/user.jpg" src="assets/img/user.jpg" ng-reflect-alt="WEBER Antoine" alt="WEBER Antoine">
+
+                        <span _ngcontent-aej-17="" class="hidden-xs">{{user.username}}</span>
+                    </a>
+                    <i></i>
+                    <b class="hide umes-icon"></b>
+                    <div class="l-menu out" style="display: none;"><i class="lmsj-top" style="right: 69px;"></i>
+                        <div class="uinfo-dropmenu">
+                            <div class="box1 chat-member">
+                                <div class="chat-mem-con clearfix">
+                                    <ul _ngcontent-aej-17="" class="dropdown-menu">
+
+                                        <li _ngcontent-aej-17="" class="user-header">
+                                            <img _ngcontent-aej-17="" class="img-circle" ng-reflect-src="assets/img/user.jpg" src="assets/img/user.jpg" ng-reflect-alt="WEBER Antoine" alt="WEBER Antoine">
+                                            <p _ngcontent-aej-17="">
+                                                {{user.username}}
+                                                <small _ngcontent-aej-17="">Member since </small>
+                                            </p>
+                                        </li>
+
+                                        <li _ngcontent-aej-17="" class="user-body">
+                                            <div _ngcontent-aej-17="" class="col-xs-4 text-center">
+                                                <a _ngcontent-aej-17="" href="#">Followers</a>
+                                            </div>
+                                            <div _ngcontent-aej-17="" class="col-xs-4 text-center">
+                                                <a _ngcontent-aej-17="" href="#">Sales</a>
+                                            </div>
+                                            <div _ngcontent-aej-17="" class="col-xs-4 text-center">
+                                                <a _ngcontent-aej-17="" href="#">Friends</a>
+                                            </div>
+                                        </li>
+
+                                        <li _ngcontent-aej-17="" class="user-footer">
+                                            <div _ngcontent-aej-17="" class="pull-left">
+                                                <a _ngcontent-aej-17="" class="btn btn-default btn-flat" href="#">Profile</a>
+                                            </div>
+                                            <div _ngcontent-aej-17="" class="pull-right">
+                                                <a _ngcontent-aej-17="" class="btn btn-default btn-flat" (click)="signOut()">Sign out</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="o-unlogin fl" *ngIf="!user">
+                    <span class="icofont u-ico fl"></span>
+                    <li class="signup"><i class="fa fa-user-plus" aria-hidden="true" style="margin-right: 1px"></i> <a [routerLink]="['/signup']" [routerLinkActive]="['active']">注册</a></li>
+                    <em class="fl">|</em>
+                    <li class="login"><i class="fa fa-sign-in" aria-hidden="true" style="margin-right: 2px"></i><a [routerLink]="['/login']" [routerLinkActive]="['active']">登录</a></li>
+                </div>
+            </li>
+        </ul>
+    </div>

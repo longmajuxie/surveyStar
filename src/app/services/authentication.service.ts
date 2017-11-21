@@ -6,12 +6,12 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
-import {LocalStorageService, SessionStorageService} from 'ng2-webstorage';
+import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
 
 @Injectable()
 export class AuthenticationService implements OnInit {
 
-    
+
     ngOnInit(){}
     constructor(private http:Http, private storage:LocalStorageService) { }
 

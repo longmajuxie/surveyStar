@@ -9,15 +9,15 @@ declare var $: any;
 })
 export class AppHeaderComponent implements OnInit {
   user;
-  constructor(private auth:AuthenticationService) {
-    this.user=this.auth.getUser();
+  constructor(private auth: AuthenticationService) {
+    this.user = this.auth.getUser();
   }
 
   ngOnInit() {
-   
+
   }
-  signOut(){
+  signOut() {
     this.auth.logOut();
-    this.user="";
+    this.user = "";
   }
 }
